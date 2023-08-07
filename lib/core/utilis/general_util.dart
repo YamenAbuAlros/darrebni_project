@@ -4,7 +4,6 @@ import 'package:template/core/services/location_service.dart';
 import 'package:template/core/utilis/network_utilis.dart';
 import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../app/my_app_controller.dart';
 import '../data/repositories/shared_preference_repositories.dart';
 import '../enums/connectivity_status.dart';

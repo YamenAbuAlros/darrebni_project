@@ -22,9 +22,9 @@ class CustomText extends StatelessWidget {
           ? TextDirection.rtl
           : TextDirection.ltr,
       text,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.right,
       style: TextStyle(
-          color: textcolor ?? AppColors.secondaryColor,
+          color: textcolor ?? AppColors.mainPurple1,
           // ignore: prefer_if_null_operators
           fontSize: fontsize ?? width * 0.035,
           // ignore: prefer_if_null_operators

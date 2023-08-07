@@ -5,7 +5,7 @@ import 'package:template/core/translation/app_translation.dart';
 
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:template/ui/views/splash_screen/splash_screen_view.dart';
+import 'package:template/ui/views/register.dart';
 
 import '../core/utilis/general_util.dart';
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: const SplashScreenView()));
+            home: const RegisterView()));
   }
 }
 
