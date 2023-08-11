@@ -5,7 +5,7 @@ import 'package:template/core/translation/app_translation.dart';
 
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:template/ui/views/register.dart';
+import 'package:template/ui/views/register_view/register_view.dart';
 
 import '../core/utilis/general_util.dart';
 

@@ -36,13 +36,14 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
-        // labelText: label ?? '',
+
+        prefixIconConstraints: BoxConstraints(maxWidth: width * 0.5),
         hintTextDirection: TextDirection.rtl,
         filled: true,
         fillColor: AppColors.mainblue3,
         constraints: BoxConstraints(
             maxWidth: mwidth ?? width, maxHeight: mheight ?? width * 0.14),
-        // contentPadding: EdgeInsetsDirectional.only(),
+        contentPadding: EdgeInsetsDirectional.only(start: width * 0.02 ),
         hintText: hinttext,
         hintStyle: TextStyle(
             color: AppColors.placeHolderColor,
