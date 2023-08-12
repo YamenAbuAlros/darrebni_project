@@ -36,18 +36,17 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
-
-        prefixIconConstraints: BoxConstraints(maxWidth: width * 0.5),
-        hintTextDirection: TextDirection.rtl,
+        prefixIconConstraints: BoxConstraints(
+          maxWidth: width * 0.05,
+        ), // hintTextDirection: TextDirection.ltr,
         filled: true,
-        fillColor: AppColors.mainblue3,
+        fillColor: AppColors.mainblue2,
         constraints: BoxConstraints(
             maxWidth: mwidth ?? width, maxHeight: mheight ?? width * 0.14),
-        contentPadding: EdgeInsetsDirectional.only(start: width * 0.02 ),
+
         hintText: hinttext,
         hintStyle: TextStyle(
-            color: AppColors.placeHolderColor,
-            fontSize: fontsize ?? width * 0.04),
+            color: AppColors.mainblue1, fontSize: fontsize ?? width * 0.035),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(bradius ?? width * 0.02),
             borderSide: BorderSide(color: AppColors.mainWhiteColor)),

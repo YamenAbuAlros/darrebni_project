@@ -5,7 +5,7 @@ import 'package:template/core/translation/app_translation.dart';
 
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:template/ui/views/register_view/register_view.dart';
+import 'package:template/ui/views/login_view/login_view.dart';
 
 import '../core/utilis/general_util.dart';
 
@@ -30,9 +30,10 @@ class MyApp extends StatelessWidget {
             translations: AppTranslation(), //1. call BotToastInit
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              fontFamily: 'Alexandria-Regular',
               primarySwatch: Colors.blue,
             ),
-            home: const RegisterView()));
+            home: const LoginView()));
   }
 }
 

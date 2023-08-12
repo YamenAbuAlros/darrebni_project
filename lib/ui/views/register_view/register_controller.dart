@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
@@ -9,6 +10,7 @@ class RegisterController extends GetxController {
     'الهندسة المعمارية',
     'التمريض'
   ];
-    RxString radioValue = ''.obs;
-
+  RxString radioValue = ''.obs;
+  TextEditingController userController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 }

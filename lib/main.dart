@@ -14,7 +14,7 @@ Future<void> main() async {
   await Get.putAsync<SharedPreferences>(() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs;
-  }); 
+  });
 
   //*  -- Add To Dependency Injection --
   Get.put(SharedPreferenceRepositories());

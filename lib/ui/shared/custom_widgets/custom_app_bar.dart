@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:template/ui/shared/colors.dart';
 import 'package:template/ui/shared/custom_widgets/custom_text.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
@@ -22,10 +23,16 @@ class CustomAppBar extends StatelessWidget {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: iconName != null
+              ? MainAxisAlignment.spaceBetween
+              : MainAxisAlignment.center,
           children: [
             if (iconName != null)
-              SvgPicture.asset("assets/images/$iconName.svg"),
+              InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: SvgPicture.asset("assets/images/$iconName.svg")),
             CustomText(
                 text: title,
                 textcolor: AppColors.mainBlack,
