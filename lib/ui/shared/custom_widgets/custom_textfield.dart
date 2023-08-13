@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:template/ui/shared/colors.dart';
 import 'package:template/ui/shared/utils.dart';
 
@@ -14,7 +15,7 @@ class CustomTextField extends StatelessWidget {
     this.errorText,
     this.validator,
     this.label,
-    required this.prefixIcon,
+    required this.iconName,
   });
   final String? Function(String?)? validator;
   final String? hinttext;
@@ -25,7 +26,7 @@ class CustomTextField extends StatelessWidget {
   final double? bradius;
   final String? errorText;
   final String? label;
-  final prefixIcon;
+  final String iconName;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,10 @@ class CustomTextField extends StatelessWidget {
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
-        prefixIcon: prefixIcon,
+        prefixIcon: SvgPicture.asset(
+          "assets/images/$iconName.svg",
+          color: AppColors.placeHolderColor,
+        ),
         prefixIconConstraints: BoxConstraints(
           maxWidth: width * 0.05,
         ), // hintTextDirection: TextDirection.ltr,
@@ -43,10 +47,11 @@ class CustomTextField extends StatelessWidget {
         fillColor: AppColors.mainblue2,
         constraints: BoxConstraints(
             maxWidth: mwidth ?? width, maxHeight: mheight ?? width * 0.14),
-
+        prefixIconColor: AppColors.placeHolderColor,
         hintText: hinttext,
         hintStyle: TextStyle(
-            color: AppColors.mainblue1, fontSize: fontsize ?? width * 0.035),
+            color: AppColors.placeHolderColor,
+            fontSize: fontsize ?? width * 0.035),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(bradius ?? width * 0.02),
             borderSide: BorderSide(color: AppColors.mainWhiteColor)),

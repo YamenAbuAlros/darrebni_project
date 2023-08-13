@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/colors.dart';
 import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
@@ -41,9 +40,7 @@ class _LoginViewState extends State<LoginView> {
                 const CustomText(text: "اسم المستخدم"),
                 (width * 0.03).sbh,
                 CustomTextField(
-                  prefixIcon: SvgPicture.asset(
-                    "assets/images/ic_profile.svg",
-                  ),
+                  iconName: 'ic_profile',
                   hinttext: "اسم المستخدم",
                   controller: controller.userController,
                 ),
@@ -51,9 +48,7 @@ class _LoginViewState extends State<LoginView> {
                 const CustomText(text: "رمز الدخول"),
                 (width * 0.03).sbh,
                 CustomTextField(
-                    prefixIcon: SvgPicture.asset(
-                      "assets/images/ic_key.svg",
-                    ),
+                    iconName: "ic_key",
                     hinttext: "رمز الدخول",
                     controller: controller.loginController),
                 (width * 0.05).sbh,
