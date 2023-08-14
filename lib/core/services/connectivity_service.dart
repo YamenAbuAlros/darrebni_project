@@ -32,7 +32,7 @@ class ConnectivityService {
         return ConnectivityStatus.OFFLINE;
       case ConnectivityResult.vpn:
         return ConnectivityStatus.ONLINE;
-      case ConnectivityResult.other:
+      case ConnectivityResult.vpn:
         return ConnectivityStatus.ONLINE;
     }
   }
