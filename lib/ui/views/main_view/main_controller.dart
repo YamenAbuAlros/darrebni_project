@@ -8,7 +8,7 @@ class MainController extends GetxController {
   RxInt lengthList = 0.obs;
   RxInt currentIndex = 1.obs;
   var selected = BottomNavigationEnum.HOME.obs;
-  PageController pageViewController = PageController(initialPage: 0);
+  PageController pageViewController = PageController(initialPage: 1);
   void animatedToPage(selectedEnum, pageNumber) {
     print(pageNumber);
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:template/ui/shared/custom_widgets/custom_text.dart';
+
+import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
+import 'package:template/ui/shared/custom_widgets/custom_textfield.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -11,12 +13,12 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Scaffold(
+        body: Column(
       children: const [
-        Center(
-          child: CustomText(text: 'ProfileView'),
-        )
+        CustomAppBar(iconName: 'ic_profile', text: "الملف الشخصي"),
+        // CustomTextField(controller: controller, iconName: iconName)
       ],
-    );
+    ));
   }
 }

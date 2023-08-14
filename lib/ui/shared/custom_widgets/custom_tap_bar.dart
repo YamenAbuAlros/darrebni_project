@@ -22,6 +22,7 @@ class CustomTapBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        (height * 0.01).sbh,
         Row(
           mainAxisAlignment: iconName != null
               ? MainAxisAlignment.spaceBetween

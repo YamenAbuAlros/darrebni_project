@@ -151,8 +151,8 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 (height * 0.025).sbh,
-                Visibility(
-                    visible: controller.gridLength.value > 4,
+              Obx(() =>   Visibility(
+                    visible: controller.gridLength.value == 6,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: List.generate(2, (index) {
@@ -170,7 +170,7 @@ class _HomeViewState extends State<HomeView> {
                           ],
                         );
                       }),
-                    )),
+                    )),),
               ],
             ),
           ),

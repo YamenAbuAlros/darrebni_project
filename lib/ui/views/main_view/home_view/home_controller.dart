@@ -21,7 +21,7 @@ class HomeController extends GetxController {
     ['تمريض', 'nurs'],
     ['هندسة معلوماتية', 'It'],
     ['هندسة معمارية', 'ARCH']
-  ].obs;
+  ];
   void changeList(int index) {
     selectedNum.value = index;
     int i = 0;
@@ -32,15 +32,14 @@ class HomeController extends GetxController {
           })
         : index == 1
             ? specialictionsList.forEach((element) {
-                if (i < 4) specializzationListShow.add(element);
+                if (i > 3) specializzationListShow.add(element);
                 i++;
               })
             : specialictionsList.forEach((element) {
-                if (i > 3) {
+                if (i < 4) {
                   specializzationListShow.add(element);
-
-                  i++;
                 }
+                i++;
               });
     index == 0
         ? gridLength.value = 6

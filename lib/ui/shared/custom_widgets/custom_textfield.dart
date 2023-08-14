@@ -38,7 +38,7 @@ class CustomTextField extends StatelessWidget {
 
       decoration: InputDecoration(
         prefix: SizedBox(
-          width: width * 0.01,
+          width: width * 0.02,
         ),
         prefixIcon: SvgPicture.asset(
           "assets/images/$iconName.svg",
