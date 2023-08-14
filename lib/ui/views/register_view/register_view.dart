@@ -11,6 +11,8 @@ import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/login_view/login_view.dart';
 import 'package:template/ui/views/register_view/register_controller.dart';
 
+import '../../shared/custom_widgets/custom_tap_bar.dart';
+
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
 
@@ -30,7 +32,7 @@ class _RegisterViewState extends State<RegisterView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomAppBar(
+                const CustomTapBar(
                   title: "إنشاء حساب",
                   imageName: "signup",
                   iconName: "ic_back",

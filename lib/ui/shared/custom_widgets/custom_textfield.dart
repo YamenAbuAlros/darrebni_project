@@ -31,22 +31,27 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      textDirection: TextDirection.rtl,
+      // textDirection: TextDirection.rtl,
       textInputAction: TextInputAction.next,
       validator: validator,
       controller: controller,
+
       decoration: InputDecoration(
+        prefix: SizedBox(
+          width: width * 0.01,
+        ),
         prefixIcon: SvgPicture.asset(
           "assets/images/$iconName.svg",
           color: AppColors.placeHolderColor,
         ),
         prefixIconConstraints: BoxConstraints(
           maxWidth: width * 0.05,
-        ), // hintTextDirection: TextDirection.ltr,
+        ),
+        contentPadding: const EdgeInsetsDirectional.only(start: 10),
         filled: true,
         fillColor: AppColors.mainblue2,
         constraints: BoxConstraints(
-            maxWidth: mwidth ?? width, maxHeight: mheight ?? width * 0.14),
+            minWidth: mwidth ?? width, minHeight: mheight ?? width * 0.15),
         prefixIconColor: AppColors.placeHolderColor,
         hintText: hinttext,
         hintStyle: TextStyle(

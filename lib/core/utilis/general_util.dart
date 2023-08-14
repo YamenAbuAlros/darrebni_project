@@ -23,7 +23,7 @@ ConnectivityService get connectivityService => Get.find<ConnectivityService>();
 
 MyAppController get myAppController => Get.find<MyAppController>();
 
-LocationService get locationService => Get.find<LocationService>();
+// LocationService get locationService => Get.find<LocationService>();
 // NotificationService get notificationService => Get.find<NotificationService>();
 
 //! -- For Launcher --
@@ -35,64 +35,64 @@ String? encodeQueryParameters(Map<String, String> params) {
       .join('&');
 }
 
-sendSms(String path, String body) async {
-  final Uri smsLaunchUri = Uri(
-    scheme: 'sms',
-    path: path,
-    queryParameters: <String, String>{
-      'body': Uri.encodeComponent(body),
-    },
-  );
-  if (await canLaunchUrl(smsLaunchUri)) {
-    launchUrl(smsLaunchUri);
-  } else {
-    CustomShowToast.showMessage(
-        message: 'Could not launch $smsLaunchUri',
-        messageType: MessageType.REJECTED);
-  }
-}
+// sendSms(String path, String body) async {
+//   final Uri smsLaunchUri = Uri(
+//     scheme: 'sms',
+//     path: path,
+//     queryParameters: <String, String>{
+//       'body': Uri.encodeComponent(body),
+//     },
+//   );
+//   if (await canLaunchUrl(smsLaunchUri)) {
+//     launchUrl(smsLaunchUri);
+//   } else {
+//     CustomShowToast.showMessage(
+//         message: 'Could not launch $smsLaunchUri',
+//         messageType: MessageType.REJECTED);
+//   }
+// }
 
-sendEmail(String path, String subject) async {
-  final Uri emailLaunchUri = Uri(
-    scheme: 'mailto',
-    path: path,
-    query: encodeQueryParameters(<String, String>{
-      'subject': subject,
-    }),
-  );
-//^ Here you canuse mode with launchUrl for open in our app or in external app
+// sendEmail(String path, String subject) async {
+//   final Uri emailLaunchUri = Uri(
+//     scheme: 'mailto',
+//     path: path,
+//     query: encodeQueryParameters(<String, String>{
+//       'subject': subject,
+//     }),
+//   );
+// //^ Here you canuse mode with launchUrl for open in our app or in external app
 
-  if (await canLaunchUrl(emailLaunchUri)) {
-    launchUrl(emailLaunchUri);
-  } else {
-    CustomShowToast.showMessage(
-        message: 'Could not launch $emailLaunchUri',
-        messageType: MessageType.REJECTED);
-  }
-}
+//   if (await canLaunchUrl(emailLaunchUri)) {
+//     launchUrl(emailLaunchUri);
+//   } else {
+//     CustomShowToast.showMessage(
+//         message: 'Could not launch $emailLaunchUri',
+//         messageType: MessageType.REJECTED);
+//   }
+// }
 
-callwith(String path) async {
-  final Uri callLaunchUri = Uri(
-    scheme: 'tel',
-    path: path,
-  );
-  if (await canLaunchUrl(callLaunchUri)) {
-    launchUrl(callLaunchUri);
-  } else {
-    CustomShowToast.showMessage(
-        message: 'Could not launch $callLaunchUri',
-        messageType: MessageType.REJECTED);
-  }
-}
+// callwith(String path) async {
+//   final Uri callLaunchUri = Uri(
+//     scheme: 'tel',
+//     path: path,
+//   );
+//   if (await canLaunchUrl(callLaunchUri)) {
+//     launchUrl(callLaunchUri);
+//   } else {
+//     CustomShowToast.showMessage(
+//         message: 'Could not launch $callLaunchUri',
+//         messageType: MessageType.REJECTED);
+//   }
+// }
 
-Future<void> openUrl(url) async {
-  if (await canLaunchUrl(url)) {
-    launchUrl(url);
-  } else {
-    CustomShowToast.showMessage(
-        message: 'Could not launch $url', messageType: MessageType.REJECTED);
-  }
-}
+// Future<void> openUrl(url) async {
+//   if (await canLaunchUrl(url)) {
+//     launchUrl(url);
+//   } else {
+//     CustomShowToast.showMessage(
+//         message: 'Could not launch $url', messageType: MessageType.REJECTED);
+//   }
+// }
 
 double get taxAmount => 0.18;
 double get deliveryAmount => 0.1;

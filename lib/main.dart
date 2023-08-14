@@ -21,7 +21,7 @@ Future<void> main() async {
   Get.put(ConnectivityService());
   Get.put(MyAppController());
   // Get.put(CartServices());
-  Get.put(LocationService());
+  // Get.put(LocationService());
 
   // try {
   //   await Firebase.initializeApp(

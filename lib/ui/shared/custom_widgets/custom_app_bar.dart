@@ -1,48 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:template/ui/shared/colors.dart';
-import 'package:template/ui/shared/custom_widgets/custom_text.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
 
+import '../colors.dart';
+import 'custom_text.dart';
+
 class CustomAppBar extends StatelessWidget {
-  final String title;
-  final String? iconName;
-  final String? imageName;
-
-  const CustomAppBar({
-    super.key,
-    required this.title,
-    this.iconName,
-    this.imageName,
-  });
-
+  const CustomAppBar({super.key, required this.iconName, required this.text});
+  final String iconName;
+  final String text;
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Row(
-          mainAxisAlignment: iconName != null
-              ? MainAxisAlignment.spaceBetween
-              : MainAxisAlignment.center,
-          children: [
-            if (iconName != null)
-              InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: SvgPicture.asset("assets/images/$iconName.svg")),
-            CustomText(
-                text: title,
-                textcolor: AppColors.mainBlack,
-                fontsize: width * 0.06),
-            (width * 0.04).sbw,
-          ],
+        SvgPicture.asset(
+          'assets/images/shapeMaker.svg',
+          width: width,
         ),
-        (width * 0.05).sbh,
-        if (imageName != null) SvgPicture.asset("assets/images/$imageName.svg"),
-        (width * 0.04).sbh,
+        PositionedDirectional(
+          top: height * 0.07,
+          start: width * 0.05,
+          child: Row(
+            // crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              SvgPicture.asset(
+                'assets/images/$iconName.svg',
+                color: AppColors.mainWhite,
+              ),
+              (width * 0.05).sbw,
+              CustomText(
+                text: text,
+                textcolor: AppColors.mainWhite,
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

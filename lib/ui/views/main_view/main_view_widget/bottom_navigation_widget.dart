@@ -29,12 +29,6 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
           width: width,
           height: height * 0.11,
           alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(width * 0.05),
-                topRight: Radius.circular(width * 0.05)),
-            color: AppColors.mainWhiteColor,
-          ),
         ),
         Positioned(
           bottom: 0,
@@ -100,10 +94,22 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
       },
       child: Column(
         children: [
-          SvgPicture.asset(
-            'assets/images/$imageName.svg',
-            color: isSelected ? AppColors.primaryColor : AppColors.mainBlack,
-            width: width * 0.05,
+          Container(
+            padding: EdgeInsets.all(width * 0.01),
+            width: width * 0.1,
+            height: height * 0.042,
+            decoration: isSelected
+                ? BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            width: width * 0.005,
+                            color: AppColors.mainPurple1)))
+                : null,
+            child: SvgPicture.asset(
+              'assets/images/$imageName.svg',
+              color: AppColors.mainPurple1,
+              width: width * 0.055,
+            ),
           ),
         ],
       ),

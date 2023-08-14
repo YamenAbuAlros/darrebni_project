@@ -10,6 +10,7 @@ import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/main_view/main_view.dart';
 import 'package:template/ui/views/register_view/register_view.dart';
 
+import '../../shared/custom_widgets/custom_tap_bar.dart';
 import 'login_controller.dart';
 
 class LoginView extends StatefulWidget {
@@ -32,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
               // mainAxisAlignment: MainAxisAlignment.start,s
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomAppBar(
+                const CustomTapBar(
                   title: "تسجيل الدخول",
                   imageName: "Login",
                   // iconName: "ic_back",
