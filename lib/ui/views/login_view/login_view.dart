@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/colors.dart';
-import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
 import 'package:template/ui/shared/custom_widgets/custom_button.dart';
+import 'package:template/ui/shared/custom_widgets/custom_rich_text.dart';
 import 'package:template/ui/shared/custom_widgets/custom_text.dart';
 import 'package:template/ui/shared/custom_widgets/custom_textfield.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
@@ -41,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
                 const CustomText(text: "اسم المستخدم"),
                 (width * 0.03).sbh,
                 CustomTextField(
-                  iconName: 'ic_profile',
+                  prefixIconName: 'ic_profile',
                   hinttext: "اسم المستخدم",
                   controller: controller.userController,
                 ),
@@ -49,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
                 const CustomText(text: "رمز الدخول"),
                 (width * 0.03).sbh,
                 CustomTextField(
-                    iconName: "ic_key",
+                    prefixIconName: "ic_key",
                     hinttext: "رمز الدخول",
                     controller: controller.loginController),
                 (width * 0.05).sbh,
@@ -58,23 +58,12 @@ class _LoginViewState extends State<LoginView> {
                   textColor: AppColors.mainWhite,
                 ),
                 (width * 0.05).sbh,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomText(
-                      text: 'ليس لديك حساب؟',
-                      textcolor: AppColors.mainBlack,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.off(const RegisterView());
-                      },
-                      child: const CustomText(
-                        text: 'أنشأ حسابك الآن',
-                      ),
-                    ),
-                  ],
-                ),
+                CustomRichText(
+                    text1: 'ليس لديك حساب',
+                    text2: 'أنشأ حسابك الان',
+                    ontap: () {
+                      Get.to(RegisterView());
+                    }),
                 const Spacer(),
                 InkWell(
                   onTap: () {

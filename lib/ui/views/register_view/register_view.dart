@@ -40,14 +40,14 @@ class _RegisterViewState extends State<RegisterView> {
                 const CustomText(text: "اسم المستخدم"),
                 (width * 0.03).sbh,
                 CustomTextField(
-                    iconName: 'ic_profile',
+                    prefixIconName: 'ic_profile',
                     hinttext: "اسم المستخدم",
                     controller: controller.userController),
                 (width * 0.05).sbh,
                 const CustomText(text: "رقم الموبايل"),
                 (width * 0.03).sbh,
                 CustomTextField(
-                    iconName: 'ic_phone',
+                    prefixIconName: 'ic_phone',
                     hinttext: "رقم الموبايل",
                     controller: controller.phoneController),
                 (width * 0.05).sbh,

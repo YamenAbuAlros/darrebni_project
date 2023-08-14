@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 CustomTextField(
                     controller: controller.searchController,
-                    iconName: 'ic_search',
+                    prefixIconName: 'ic_search',
                     hinttext: 'بحث'),
                 // (height * 0.005).sbh,
                 CarouselSlider(
@@ -151,8 +151,8 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 (height * 0.025).sbh,
-                Visibility(
-                    visible: controller.gridLength.value > 4,
+              Obx(() =>   Visibility(
+                    visible: controller.gridLength.value == 6,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: List.generate(2, (index) {
@@ -170,7 +170,7 @@ class _HomeViewState extends State<HomeView> {
                           ],
                         );
                       }),
-                    )),
+                    )),),
               ],
             ),
           ),
