@@ -3,7 +3,6 @@ import 'package:template/app/my_app.dart';
 import 'package:template/app/my_app_controller.dart';
 import 'package:template/core/data/repositories/shared_preference_repositories.dart';
 import 'package:template/core/services/connectivity_service.dart';
-import 'package:template/core/services/location_service.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
