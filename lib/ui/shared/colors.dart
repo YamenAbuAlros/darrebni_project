@@ -6,7 +6,7 @@ class AppColors {
   static Color mainPurple1 = const Color.fromRGBO(111, 40, 119, 1);
   static Color mainblue1 = const Color.fromRGBO(32, 196, 244, 1);
   static Color mainblue2 = const Color.fromRGBO(185, 229, 251, 0.15);
-  static Color mainblue3 = const Color.fromRGBO(185, 229, 251, 0.1);
+  static Color mainblue3 = const Color.fromRGBO(185, 229, 251, 1);
 
   static Color mainWhite = const Color.fromRGBO(255, 255, 255, 1);
   static Color mainBlack = const Color.fromRGBO(0, 0, 0, 1);

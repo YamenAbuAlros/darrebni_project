@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 CustomTextField(
                     controller: controller.searchController,
-                    iconName: 'ic_search',
+                    prefixIconName: 'ic_search',
                     hinttext: 'بحث'),
                 // (height * 0.005).sbh,
                 CarouselSlider(
