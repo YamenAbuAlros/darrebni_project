@@ -7,7 +7,6 @@ import 'package:template/ui/shared/custom_widgets/custom_rich_text.dart';
 import 'package:template/ui/shared/custom_widgets/custom_text.dart';
 import 'package:template/ui/shared/custom_widgets/custom_textfield.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
-import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/login_view/login_view.dart';
 import 'package:template/ui/views/register_view/register_view.dart';
 
@@ -20,7 +19,7 @@ void showCustomAlertDialog({
     AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
-        side: BorderSide(color: AppColors.mainColor, width: 2.0),
+        side: BorderSide(color: AppColors.mainPurple1, width: 2.0),
       ),
       content: Column(mainAxisSize: MainAxisSize.min,
         children: [
