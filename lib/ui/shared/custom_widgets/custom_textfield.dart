@@ -78,5 +78,5 @@ class CustomTextField extends StatelessWidget {
             borderSide: BorderSide(color: AppColors.mainWhiteColor)),
       ),
     );
-  }g
+  }
 }
