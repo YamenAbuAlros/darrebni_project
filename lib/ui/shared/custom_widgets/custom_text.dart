@@ -25,6 +25,8 @@ class CustomText extends StatelessWidget {
           : TextDirection.ltr,
       text,
       textAlign: TextAlign.right,
+      maxLines: null,
+      overflow: TextOverflow.visible,
       // maxLines: 1,
       style: TextStyle(
           // fontFamily: 'Alexandria-Regular',

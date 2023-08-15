@@ -10,6 +10,7 @@ import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/main_view/main_view.dart';
 import 'package:template/ui/views/register_view/register_view.dart';
 
+import '../../shared/custom_widgets/custom_question.dart';
 import '../../shared/custom_widgets/custom_tap_bar.dart';
 import 'login_controller.dart';
 
@@ -26,6 +27,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
           extendBody: true,
           body: Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: width * 0.05),
@@ -56,6 +58,10 @@ class _LoginViewState extends State<LoginView> {
                 CustomButton(
                   text: "تسجيل الدخول",
                   textColor: AppColors.mainWhite,
+                  onPressed:(){
+                    Get.to(CustomQuestion(options: ['434','gchgc','gchgc'],questionText: 'wgat ig hbb',correctOptionIndex:0 ,));
+                    // showCustomAlertDialog(context:context,isNotReport: false,report: controller.loginController);
+                  },
                 ),
                 (width * 0.05).sbh,
                 CustomRichText(

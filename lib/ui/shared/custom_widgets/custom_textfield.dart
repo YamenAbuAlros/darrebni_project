@@ -41,7 +41,7 @@ class CustomTextField extends StatelessWidget {
       textInputAction: TextInputAction.next,
       validator: validator,
       controller: controller,
-
+     maxLines:maxLines??1 ,
       decoration: InputDecoration(
         suffixIconConstraints: BoxConstraints(
           maxWidth: width * 0.05,
