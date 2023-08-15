@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIconName,
     this.suffixIconName,
     this.textFieldColor,
+    this.maxLines,
   });
   final String? Function(String?)? validator;
   final String? hinttext;
@@ -31,6 +32,7 @@ class CustomTextField extends StatelessWidget {
   final String? prefixIconName;
   final String? suffixIconName;
   final Color? textFieldColor;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,8 @@ class CustomTextField extends StatelessWidget {
         prefixIconConstraints: BoxConstraints(
           maxWidth: width * 0.05,
         ),
-        contentPadding: const EdgeInsetsDirectional.only(start: 10),
+        contentPadding: EdgeInsetsDirectional.only(
+            start: 10, top: maxLines != null ? 10 : 0.0),
         filled: true,
         fillColor: textFieldColor ?? AppColors.mainblue2,
         constraints: BoxConstraints(
