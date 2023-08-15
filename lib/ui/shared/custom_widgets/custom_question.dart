@@ -1,11 +1,55 @@
 // import 'package:flutter/material.dart';
 // import 'package:template/ui/shared/custom_widgets/custom_radioLisTile.dart';
 // import 'package:template/ui/shared/extenssions/extenssions.dart';
-// class CustomQuestion extends StatelessWidget {
-//   const CustomQuestion({super.key});
+// class Question {
+//   final String questionText;
+//   final List<String> options;
+//   final int correctOptionIndex;
+//
+//   Question({required this.questionText, required this.options, required this.correctOptionIndex});
+// }
+// class CustomQuestion extends StatefulWidget {
+//   final String questionText;
+//   final List<String> options;
+//   final int correctOptionIndex;
+//   const CustomQuestion({super.key, required this.questionText, required this.options, required this.correctOptionIndex});
+//
+//   @override
+//   State<CustomQuestion> createState() => _CustomQuestionState();
+// }
+//
+// class _CustomQuestionState extends State<CustomQuestion> {
+//   int _currentQuestionIndex = 0;
+//
+//   int _score = 0;
+//
+//   List<Question> _questions = [
+//     Question(
+//       questionText: 'ما هو عاصمة فرنسا؟',
+//       options: ['باريس', 'لندن', 'مدريد', 'روما', 'برلين'],
+//       correctOptionIndex: 0,
+//     ),
+//     // إضافة المزيد من الأسئلة هنا
+//   ];
+//
+//   void _checkAnswer(int selectedIndex) {
+//     setState(() {
+//       if (selectedIndex == _questions[_currentQuestionIndex].correctOptionIndex) {
+//         _score++;
+//       }
+//       _currentQuestionIndex++;
+//
+//       if (_currentQuestionIndex >= _questions.length) {
+//         // تم الانتهاء من الأسئلة
+//         // يمكنك القيام بتنفيذ أي شيء تريده هنا
+//       }
+//     });
+//   }
+//
 //
 //   @override
 //   Widget build(BuildContext context) {
+//     double progress = (_currentQuestionIndex + 1) / _questions.length;
 //     return  Column(
 //       children: [
 //         LinearProgressIndicator(
@@ -33,10 +77,6 @@
 //               child:CustomRadioLisTile(text:option.value,  value: option.key,
 //                 groupValue: _selectedOption,
 //                 onChanged: (selectedValue) => _checkAnswer(selectedValue),),
-//               // ElevatedButton(
-//               //   onPressed: () => _checkAnswer(option.key),
-//               //   child: Text(option.value),
-//               // ),
 //             ),
 //           )
 //               .toList(),
