@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import 'package:template/ui/shared/custom_widgets/custom_text.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/about_app/about_app.dart';
+import 'package:template/ui/views/main_view/profile_view/profile_controller.dart';
 import 'package:template/ui/views/update_profile/update_profile_view.dart';
 
 import '../../../shared/custom_widgets/custom_container.dart';
@@ -21,20 +24,48 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
       children: [
-        const CustomAppBar(iconName: 'ic_profile', text: "الملف الشخصي"),
+        CustomAppBar(
+          iconName: 'ic_profile',
+          text: "الملف الشخصي",
+          ontap: () {
+            Get.back();
+          },
+        ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.05),
           child: Column(
             children: [
-              CircleAvatar(
-                radius: 60,
-                backgroundColor: AppColors.mainWhite,
-                child: SvgPicture.asset('assets/images/User.svg'),
+              GetBuilder<ProfileController>(
+                init: ProfileController(),
+                builder: (controller) {
+                  return InkWell(
+                    onTap: () {
+                      controller.showBottomSheetwithGetX();
+                    },
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundColor: AppColors.mainWhite,
+                      child: controller.choosedImage != null
+                          ? ClipOval(
+                              child: controller.choosedImage != null
+                                  ? Image.file(
+                                      File(controller.choosedImage!.path),
+                                      fit: BoxFit.fill,
+                                    )
+                                  : controller.result != null
+                                      ? const Icon(Icons.file_copy)
+                                      : null,
+                            )
+                          : SvgPicture.asset('assets/images/User.svg'),
+                    ),
+                  );
+                },
               ),
               (height * 0.02).sbh,
               const CustomText(text: 'اسم المستخدم'),
@@ -71,3 +102,54 @@ class _ProfileViewState extends State<ProfileView> {
     ));
   }
 }
+
+
+
+
+// GetBuilder<SignUpContoller>(
+//                 init: SignUpContoller(),
+//                 builder: (controller) => Stack(
+//                   alignment: Alignment.bottomCenter,
+//                   children: [
+//                     Center(
+//                       child: InkWell(
+//                         onTap: controller.choosedImage == null &&
+//                                 controller.result == null
+//                             ? () {
+//                                 signUpController.showBottomSheetwithGetX();
+                //               }
+                //             : null,
+                //         child: CircleAvatar(
+                //           radius: width * 0.13,
+                //           backgroundColor: AppColors.placeHolderColor,
+                //           child: ClipOval(
+                //             child: controller.choosedImage != null
+                //                 ? Image.file(
+                //                     File(controller.choosedImage!.path),
+                //                     fit: BoxFit.fill,
+                //                   )
+                //                 : controller.result != null
+                //                     ? const Icon(Icons.file_copy)
+                //                     : null,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     Visibility(
+                //       visible: controller.choosedImage != null ||
+                //           controller.result != null,
+                //       child: Positioned(
+                //           left: width * 0.55,
+                //           child: InkWell(
+                //             onTap: () {
+                //               signUpController.showBottomSheetwithGetX();
+                //             },
+                //             child: CircleAvatar(
+                //               radius: width * 0.05,
+                //               child: const Icon(Icons.edit),
+                //             ),
+                //           )),
+                //     )
+                //   ],
+                // ),
+              // ),

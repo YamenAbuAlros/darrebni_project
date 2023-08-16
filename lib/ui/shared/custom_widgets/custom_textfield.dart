@@ -44,6 +44,9 @@ class CustomTextField extends StatelessWidget {
         suffixIconConstraints: BoxConstraints(
           maxWidth: width * 0.05,
         ),
+        // suffix: SizedBox(
+        //   width: width * 0.04,
+        // ),
         suffixIcon: suffixIconName != null
             ? SvgPicture.asset(
                 "assets/images/$suffixIconName.svg",
@@ -53,14 +56,17 @@ class CustomTextField extends StatelessWidget {
         prefix: SizedBox(
           width: width * 0.02,
         ),
-        prefixIcon:prefixIconName != null? SvgPicture.asset(
-          "assets/images/$prefixIconName.svg",
-          color: AppColors.placeHolderColor,
-        ):null,
+        prefixIcon: prefixIconName != null
+            ? SvgPicture.asset(
+                "assets/images/$prefixIconName.svg",
+                color: AppColors.placeHolderColor,
+              )
+            : null,
         prefixIconConstraints: BoxConstraints(
           maxWidth: width * 0.05,
         ),
-        contentPadding: const EdgeInsetsDirectional.only(start: 10),
+        contentPadding:
+            EdgeInsetsDirectional.symmetric(horizontal: width * 0.05),
         filled: true,
         fillColor: textFieldColor ?? AppColors.mainblue2,
         constraints: BoxConstraints(

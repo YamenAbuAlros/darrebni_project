@@ -26,7 +26,8 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          extendBody: true,
+          resizeToAvoidBottomInset: false,
+          // extendBody: true,
           body: Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: width * 0.05),
             child: Column(
@@ -59,10 +60,10 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 (width * 0.05).sbh,
                 CustomRichText(
-                    text1: 'ليس لديك حساب',
+                    text1: 'ليس لديك حساب؟',
                     text2: 'أنشأ حسابك الان',
                     ontap: () {
-                      Get.to(RegisterView());
+                      Get.to(const RegisterView());
                     }),
                 const Spacer(),
                 InkWell(

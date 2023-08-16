@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
 import 'package:template/ui/shared/custom_widgets/custom_text.dart';
 
 class FavoriteView extends StatefulWidget {
@@ -12,9 +14,13 @@ class _FavoriteViewState extends State<FavoriteView> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        Center(
-          child: CustomText(text: 'FavoriteView'),
+      children: [
+        CustomAppBar(
+          iconName: 'ic_back',
+          text: 'الاسئلة المهمة',
+          ontap: () {
+            Get.back();
+          },
         )
       ],
     );

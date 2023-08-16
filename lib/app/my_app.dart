@@ -9,7 +9,6 @@ import 'package:template/ui/views/login_view/login_view.dart';
 
 import '../core/utilis/general_util.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -33,6 +32,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: 'Alexandria-Regular',
               primarySwatch: Colors.blue,
+              // buttonTheme:
+              // const ButtonThemeData(buttonColor: Colors.transparent),
             ),
             home: const LoginView()));
   }

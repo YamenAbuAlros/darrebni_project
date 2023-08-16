@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/colors.dart';
-import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
 import 'package:template/ui/shared/custom_widgets/custom_button.dart';
 import 'package:template/ui/shared/custom_widgets/custom_radioLisTile.dart';
 import 'package:template/ui/shared/custom_widgets/custom_text.dart';
@@ -26,6 +25,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+          resizeToAvoidBottomInset: false,
           extendBody: true,
           body: Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: width * 0.05),

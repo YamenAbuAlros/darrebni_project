@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
 
 class AboutAppView extends StatefulWidget {
@@ -15,7 +16,13 @@ class _AboutAppViewState extends State<AboutAppView> {
     return Scaffold(
       body: Column(
         children: [
-          const CustomAppBar(iconName: 'ic_back', text: 'عن التطبيق'),
+          CustomAppBar(
+            iconName: 'ic_back',
+            text: 'عن التطبيق',
+            ontap: () {
+              Get.back();
+            },
+          ),
           Column(
             children: [SvgPicture.asset('assets/images/about_app.svg')],
           )

@@ -1,1 +1,1 @@
-enum ImageType { GALLERY, CAMERA, FILE }
+enum ImageType { GALLERY, CAMERA }

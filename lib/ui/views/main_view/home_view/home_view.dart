@@ -4,11 +4,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/custom_widgets/custom_textfield.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
+import 'package:template/ui/views/it_view/main_it_view.dart';
 
 import 'package:template/ui/views/main_view/home_view/home_controller.dart';
 
 import '../../../shared/colors.dart';
 import '../../../shared/custom_widgets/custom_app_bar.dart';
+import '../../../shared/custom_widgets/custom_container.dart';
 import '../../../shared/custom_widgets/custom_text.dart';
 import '../../../shared/utils.dart';
 
@@ -78,18 +80,20 @@ class _HomeViewState extends State<HomeView> {
                         BoxDecoration(border: Border.all(width: width * 0.005)),
                   )
                 ]),
-                Container(
-                    padding: EdgeInsets.all(width * 0.01),
-                    width: width * 0.3,
-                    height: height * 0.045,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            right: BorderSide(
-                                width: 2, color: AppColors.maingrey))),
-                    child: CustomText(
-                      text: 'التصنيفات',
-                      textcolor: AppColors.mainBlack,
-                    )),
+
+                CustomContainer(text: 'التصنيفات', color: AppColors.maingrey),
+                // Container(
+                //     padding: EdgeInsets.all(width * 0.01),
+                //     width: width * 0.3,
+                //     height: height * 0.045,
+                //     decoration: BoxDecoration(
+                //         border: Border(
+                //             right: BorderSide(
+                //                 width: 2, color: AppColors.maingrey))),
+                //     child: CustomText(
+                //       text: 'التصنيفات',
+                //       textcolor: AppColors.mainBlack,
+                //     )),
                 (height * 0.03).sbh,
                 SizedBox(
                     height: height * 0.05,
@@ -132,7 +136,9 @@ class _HomeViewState extends State<HomeView> {
                   () => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: List.generate(
-                        controller.gridLength.value>4?controller.gridLength.value-2:controller.gridLength.value, (index) {
+                        controller.gridLength.value > 4
+                            ? controller.gridLength.value - 2
+                            : controller.gridLength.value, (index) {
                       var imageName =
                           controller.specializzationListShow[index].last;
 
@@ -151,26 +157,34 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 (height * 0.025).sbh,
-              Obx(() =>   Visibility(
-                    visible: controller.gridLength.value == 6,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: List.generate(2, (index) {
-                        var imageName =
-                            controller.specializzationListShow[index + 4].last;
-                        return Column(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/ic_search.svg',
-                            ),
-                            (height * 0.02).sbh,
-                            CustomText(
-                                text: controller
-                                    .specializzationListShow[index + 4].first)
-                          ],
-                        );
-                      }),
-                    )),),
+                Obx(() {
+                  return controller.gridLength.value == 6
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: List.generate(2, (index) {
+                            var imageName = controller
+                                .specializzationListShow[index + 4].last;
+                            return InkWell(
+                              onTap: () {
+                                Get.to(const MainItView());
+                              },
+                              child: Column(
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/images/ic_search.svg',
+                                  ),
+                                  (height * 0.02).sbh,
+                                  CustomText(
+                                      text: controller
+                                          .specializzationListShow[index + 4]
+                                          .first)
+                                ],
+                              ),
+                            );
+                          }),
+                        )
+                      : const SizedBox();
+                }),
               ],
             ),
           ),

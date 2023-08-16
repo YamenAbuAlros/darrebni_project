@@ -7,11 +7,11 @@ import 'custom_text.dart';
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer(
-      {super.key, this.color, required this.text, this.iconName, required this.ontap});
+      {super.key, this.color, required this.text, this.iconName, this.ontap});
   final Color? color;
   final String text;
   final String? iconName;
-  final Function() ontap;
+  final Function()? ontap;
   @override
   Widget build(BuildContext context) {
     return Container(

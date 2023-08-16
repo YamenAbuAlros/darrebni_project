@@ -7,9 +7,11 @@ import '../colors.dart';
 import 'custom_text.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.iconName, required this.text});
+  const CustomAppBar(
+      {super.key, required this.iconName, required this.text, this.ontap});
   final String iconName;
   final String text;
+  final Function()? ontap;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,9 +26,12 @@ class CustomAppBar extends StatelessWidget {
           child: Row(
             // crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SvgPicture.asset(
-                'assets/images/$iconName.svg',
-                color: AppColors.mainWhite,
+              InkWell(
+                onTap: ontap,
+                child: SvgPicture.asset(
+                  'assets/images/$iconName.svg',
+                  color: AppColors.mainWhite,
+                ),
               ),
               (width * 0.05).sbw,
               CustomText(
