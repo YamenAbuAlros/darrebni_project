@@ -32,27 +32,29 @@ void showCustomAlertDialog({
               text: 'تسجيل الدخول',
               textColor: AppColors.mainWhite,
               onPressed: () {
-                Get.to(const LoginView());
+                Get.off(const LoginView());
               },),
             (15).sbh,
             CustomRichText(
               text1: 'ليس لديك حساب',
               text2: 'أنشأ حسابك الان',
               ontap: () {
-                Get.to(const RegisterView());
+                Get.off(const RegisterView());
               },
             ),
           ],
           if (!isNotReport) ...[
             CustomTextField(
               controller: report!,
-            // mheight: width *0.5,
+              // mheight: width *0.5,
               hinttext: 'ارسل شكوى/اقتراح',
               maxLines: 8,
             ),
             (10).sbh,
             CustomButton(
-                text: 'أرسل', textColor: AppColors.mainWhite),
+              text: 'أرسل', textColor: AppColors.mainWhite,onPressed: (){
+              Get.back();
+            },),
           ]
         ],
       ),
