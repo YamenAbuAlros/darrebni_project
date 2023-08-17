@@ -7,15 +7,16 @@ import '../../../core/utilis/general_util.dart';
 class CustomText extends StatelessWidget {
   const CustomText(
       {super.key,
-      required this.text,
-      this.textcolor,
-      this.fontsize,
-      this.fontWeight,
-      this.isDecoration = false});
+        required this.text,
+        this.textcolor,
+        this.fontsize,
+        this.fontWeight,
+        this.isDecoration = false, this.isTextAlignCenter=false});
   final String text;
   final double? fontsize;
   final Color? textcolor;
   final bool isDecoration;
+  final bool? isTextAlignCenter;
   final FontWeight? fontWeight;
   @override
   Widget build(BuildContext context) {
@@ -24,10 +25,12 @@ class CustomText extends StatelessWidget {
           ? TextDirection.rtl
           : TextDirection.ltr,
       text,
-      textAlign: TextAlign.right,
+      textAlign:isTextAlignCenter!?TextAlign.center: TextAlign.right,
+      maxLines: null,
+      overflow: TextOverflow.visible,
       // maxLines: 1,
       style: TextStyle(
-          // fontFamily: 'Alexandria-Regular',
+        // fontFamily: 'Alexandria-Regular',
           decoration: isDecoration ? TextDecoration.underline : null,
           color: textcolor ?? AppColors.mainPurple1,
           // ignore: prefer_if_null_operators

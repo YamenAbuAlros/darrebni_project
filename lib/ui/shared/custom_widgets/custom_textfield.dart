@@ -41,7 +41,7 @@ class CustomTextField extends StatelessWidget {
       textInputAction: TextInputAction.next,
       validator: validator,
       controller: controller,
-
+      maxLines:maxLines??1 ,
       decoration: InputDecoration(
         suffixIconConstraints: BoxConstraints(
           maxWidth: width * 0.05,
@@ -51,9 +51,9 @@ class CustomTextField extends StatelessWidget {
         // ),
         suffixIcon: suffixIconName != null
             ? SvgPicture.asset(
-                "assets/images/$suffixIconName.svg",
-                color: AppColors.placeHolderColor,
-              )
+          "assets/images/$suffixIconName.svg",
+          color: AppColors.placeHolderColor,
+        )
             : null,
         prefix: SizedBox(
           width: width * 0.02,
@@ -81,7 +81,7 @@ class CustomTextField extends StatelessWidget {
             color: AppColors.placeHolderColor,
             fontSize: fontsize ?? width * 0.035),
         enabledBorder: OutlineInputBorder(
-            // borderRadius: BorderRadius.circular(bradius ?? width * 0.02),
+          // borderRadius: BorderRadius.circular(bradius ?? width * 0.02),
             borderSide: BorderSide(color: AppColors.mainWhiteColor)),
       ),
     );

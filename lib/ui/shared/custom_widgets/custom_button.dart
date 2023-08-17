@@ -42,7 +42,7 @@ class CustomButton extends StatelessWidget {
               : null,
           side: borderColor != null
               ? BorderSide(
-                  width: 1.0, color: borderColor ?? AppColors.mainWhiteColor)
+              width: 1.0, color: borderColor ?? AppColors.mainWhiteColor)
               : null,
           maximumSize: Size(widthSize ?? width, heightSize ?? height * 0.07),
           minimumSize:
