@@ -1,7 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:template/core/enums/connectivity_status.dart';
 import 'package:template/core/services/base_controller.dart';
-import 'package:template/ui/shared/utils.dart';
 
 import '../core/utilis/general_util.dart';
 

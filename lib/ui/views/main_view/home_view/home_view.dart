@@ -58,28 +58,37 @@ class _HomeViewState extends State<HomeView> {
                   ],
                   options: CarouselOptions(aspectRatio: 3),
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Container(
-                    width: width * 0.02,
-                    height: width * 0.02,
-                    decoration:
-                        BoxDecoration(border: Border.all(width: width * 0.005)),
-                  ),
-                  (width * 0.01).sbw,
-                  Container(
-                    width: width * 0.02,
-                    height: width * 0.02,
-                    decoration:
-                        BoxDecoration(border: Border.all(width: width * 0.005)),
-                  ),
-                  (width * 0.01).sbw,
-                  Container(
-                    width: width * 0.02,
-                    height: width * 0.02,
-                    decoration:
-                        BoxDecoration(border: Border.all(width: width * 0.005)),
-                  )
-                ]),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: 
+                  List.generate(3, (index) => Padding(
+                    padding:  EdgeInsetsDirectional.only(end: width*0.01),
+                    child: Container(
+                      width: width * 0.02,
+                      height: width * 0.02,
+                      decoration:
+                          BoxDecoration(border: Border.all(width: width * 0.005)),
+                    ),
+                  ), )
+                  // Container(
+                  //   width: width * 0.02,
+                  //   height: width * 0.02,
+                  //   decoration:
+                  //       BoxDecoration(border: Border.all(width: width * 0.005)),
+                  // ),
+                  // (width * 0.01).sbw,
+                  // Container(
+                  //   width: width * 0.02,
+                  //   height: width * 0.02,
+                  //   decoration:
+                  //       BoxDecoration(border: Border.all(width: width * 0.005)),
+                  // ),
+                  // (width * 0.01).sbw,
+                  // Container(
+                  //   width: width * 0.02,
+                  //   height: width * 0.02,
+                  //   decoration:
+                  //       BoxDecoration(border: Border.all(width: width * 0.005)),
+                  // )
+                ),
 
                 CustomContainer(text: 'التصنيفات', color: AppColors.maingrey),
                 // Container(
