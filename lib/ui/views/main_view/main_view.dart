@@ -21,8 +21,10 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: controller.pageViewController,
         children: const [
           NotificationView(),

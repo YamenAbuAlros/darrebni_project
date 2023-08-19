@@ -43,6 +43,10 @@ class _HomeViewState extends State<HomeView> {
                 CarouselSlider(
                   items: [
                     Image.asset('assets/images/ad-section.png'),
+                    Image.asset('assets/images/ad-section.png'),
+
+                    Image.asset('assets/images/ad-section.png'),
+
                     // CachedNetworkImage(
                     //   height: height * 0.1,
                     //   errorWidget: (context, url, error) =>
@@ -56,39 +60,63 @@ class _HomeViewState extends State<HomeView> {
                     //   imageUrl: 'assets/images/ad-section.svg',
                     // ),
                   ],
-                  options: CarouselOptions(aspectRatio: 3),
+                  options: CarouselOptions(
+                    aspectRatio: 3,
+                    // height: height * 0.4,
+                    initialPage: 0,
+                    enableInfiniteScroll: false,
+                    reverse: false,
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    enlargeFactor: 0.3,
+                    onPageChanged: (i, _) {
+                      controller.indexCarousel.value = i;
+                    },
+                    scrollDirection: Axis.horizontal,
+                  ),
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: 
-                  List.generate(3, (index) => Padding(
-                    padding:  EdgeInsetsDirectional.only(end: width*0.01),
-                    child: Container(
-                      width: width * 0.02,
-                      height: width * 0.02,
-                      decoration:
-                          BoxDecoration(border: Border.all(width: width * 0.005)),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                        3,
+                        (index) => Obx(
+                              () => Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    end: width * 0.01),
+                                child: Container(
+                                  width: width * 0.02,
+                                  height: width * 0.02,
+                                  decoration: BoxDecoration(
+                                      color: controller.indexCarousel == index
+                                          ? AppColors.mainPurple1
+                                          : null,
+                                      border: Border.all(width: width * 0.005)),
+                                ),
+                              ),
+                            ))
+                    // Container(
+                    //   width: width * 0.02,
+                    //   height: width * 0.02,
+                    //   decoration:
+                    //       BoxDecoration(border: Border.all(width: width * 0.005)),
+                    // ),
+                    // (width * 0.01).sbw,
+                    // Container(
+                    //   width: width * 0.02,
+                    //   height: width * 0.02,
+                    //   decoration:
+                    //       BoxDecoration(border: Border.all(width: width * 0.005)),
+                    // ),
+                    // (width * 0.01).sbw,
+                    // Container(
+                    //   width: width * 0.02,
+                    //   height: width * 0.02,
+                    //   decoration:
+                    //       BoxDecoration(border: Border.all(width: width * 0.005)),
+                    // )
                     ),
-                  ), )
-                  // Container(
-                  //   width: width * 0.02,
-                  //   height: width * 0.02,
-                  //   decoration:
-                  //       BoxDecoration(border: Border.all(width: width * 0.005)),
-                  // ),
-                  // (width * 0.01).sbw,
-                  // Container(
-                  //   width: width * 0.02,
-                  //   height: width * 0.02,
-                  //   decoration:
-                  //       BoxDecoration(border: Border.all(width: width * 0.005)),
-                  // ),
-                  // (width * 0.01).sbw,
-                  // Container(
-                  //   width: width * 0.02,
-                  //   height: width * 0.02,
-                  //   decoration:
-                  //       BoxDecoration(border: Border.all(width: width * 0.005)),
-                  // )
-                ),
 
                 CustomContainer(text: 'التصنيفات', color: AppColors.maingrey),
                 // Container(
@@ -151,16 +179,24 @@ class _HomeViewState extends State<HomeView> {
                       var imageName =
                           controller.specializzationListShow[index].last;
 
-                      return Column(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/images/ic_search.svg',
-                          ),
-                          (height * 0.02).sbh,
-                          CustomText(
-                              text: controller
-                                  .specializzationListShow[index].first)
-                        ],
+                      return InkWell(
+                        onTap: () {
+                          Get.to(MainItView(
+                            collageName:
+                                controller.specializzationListShow[index].first,
+                          ));
+                        },
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              'assets/images/ic_search.svg',
+                            ),
+                            (height * 0.02).sbh,
+                            CustomText(
+                                text: controller
+                                    .specializzationListShow[index].first)
+                          ],
+                        ),
                       );
                     }),
                   ),
@@ -175,7 +211,10 @@ class _HomeViewState extends State<HomeView> {
                                 .specializzationListShow[index + 4].last;
                             return InkWell(
                               onTap: () {
-                                Get.to(const MainItView());
+                                Get.to(MainItView(
+                                  collageName: controller
+                                      .specializzationListShow[index].first,
+                                ));
                               },
                               child: Column(
                                 children: [

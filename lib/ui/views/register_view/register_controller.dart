@@ -4,6 +4,7 @@ import 'package:template/core/enums/request_type.dart';
 import 'package:template/core/utilis/network_utilis.dart';
 
 class RegisterController extends GetxController {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   onInit() {
     getAllSpecializtions();

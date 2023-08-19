@@ -6,6 +6,7 @@ class HomeController extends GetxController {
   List<String> categoriesList = ['الكل', 'الكليات الهندسية', 'الكليات الطبية'];
   RxInt selectedNum = 0.obs;
   RxInt gridLength = 6.obs;
+  RxInt indexCarousel = 0.obs;
   List<List> specialictionsList = [
     ['طب بشري', 'Dr'],
     ['طب اسنان', 'dentist'],

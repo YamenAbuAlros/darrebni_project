@@ -14,26 +14,26 @@ class CustomContainer extends StatelessWidget {
   final Function()? ontap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(width * 0.02),
-        decoration: BoxDecoration(
-            border: Border(
-                right: BorderSide(
-                    width: width * 0.005,
-                    color: color ?? AppColors.mainPurple1))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomText(text: text, textcolor: color ?? AppColors.mainPurple1),
-            if (iconName != null)
-              InkWell(
-                onTap: ontap,
-                child: SvgPicture.asset(
+    return InkWell(
+      onTap: ontap,
+      child: Container(
+          padding: EdgeInsets.all(width * 0.02),
+          decoration: BoxDecoration(
+              border: Border(
+                  right: BorderSide(
+                      width: width * 0.005,
+                      color: color ?? AppColors.mainPurple1))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText(text: text, textcolor: color ?? AppColors.mainPurple1),
+              if (iconName != null)
+                SvgPicture.asset(
                   'assets/images/$iconName.svg',
                   color: color ?? AppColors.mainPurple1,
-                ),
-              )
-          ],
-        ));
+                )
+            ],
+          )),
+    );
   }
 }

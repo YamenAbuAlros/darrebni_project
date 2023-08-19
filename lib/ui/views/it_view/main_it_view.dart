@@ -8,116 +8,198 @@ import 'package:template/ui/shared/custom_widgets/custom_container.dart';
 import 'package:template/ui/shared/custom_widgets/custom_textfield.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
+import 'package:template/ui/views/it_view/it_view.dart';
 import 'package:template/ui/views/it_view/main_it_controller.dart';
 
 class MainItView extends StatefulWidget {
-  const MainItView({super.key});
-
+  const MainItView({super.key, required this.collageName});
+  final String collageName;
   @override
   State<MainItView> createState() => _MainItViewState();
 }
 
 class _MainItViewState extends State<MainItView> {
-  MainItController controller = Get.put(MainItController());
+  late MainItController controller;
 
-  get itemBuilder => null;
+  // get itemBuilder => null;
+  @override
+  void initState() {
+    controller = Get.put(MainItController(collageName: widget.collageName));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(children: [
         CustomAppBar(
             iconName: 'ic_back',
-            text: 'كلية الهندسة المعلوماتية',
+            text: controller.collageName,
             ontap: () {
               Get.back();
             }),
-        Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: width * 0.05),
-          child: Column(
-            children: [
-              CustomTextField(
-                  controller: controller.searchController,
-                  prefixIconName: 'ic_search',
-                  hinttext: 'بحث'),
-              CarouselSlider(
-                items: [
-                  Image.asset('assets/images/ad-section.png'),
-                  // CachedNetworkImage(
-                  //   height: height * 0.1,
-                  //   errorWidget: (context, url, error) =>
-                  //       const Icon(Icons.error),
-                  //   // width: width,
-
-                  //   placeholder: (context, url) => CircularProgressIndicator(
-                  //     color: AppColors.mainOrangeColor,
-                  //     strokeWidth: 2,
-                  //   ),
-                  //   imageUrl: 'assets/images/ad-section.svg',
-                  // ),
-                ],
-                options: CarouselOptions(aspectRatio: 3),
-              ),
-              (height * 0.02).sbh,
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Container(
-                  width: width * 0.02,
-                  height: width * 0.02,
-                  decoration:
-                      BoxDecoration(border: Border.all(width: width * 0.005)),
-                ),
-                (width * 0.01).sbw,
-                Container(
-                  width: width * 0.02,
-                  height: width * 0.02,
-                  decoration:
-                      BoxDecoration(border: Border.all(width: width * 0.005)),
-                ),
-                (width * 0.01).sbw,
-                Container(
-                  width: width * 0.02,
-                  height: width * 0.02,
-                  decoration:
-                      BoxDecoration(border: Border.all(width: width * 0.005)),
-                )
-              ]),
-              (height * 0.04).sbh,
-              CustomContainer(
-                text: 'التصنيفات',
-                color: AppColors.mainBlack,
-              ),
-              Wrap(
-                  children: List.generate(
-                controller.nameList.length,
-                (index) {
-                  return Padding(
-                    padding: EdgeInsetsDirectional.only(
-                        end: width * 0.02, bottom: width * 0.02),
-                    child: CustomButton(
-                        isBackgroundColor: false,
-                        borderColor: AppColors.mainPurple1,
-                        backgroundColor: AppColors.mainWhite,
-                        widthSize: width * 0.4,
-                        text: controller.nameList[index],
-                        textColor: AppColors.blueColor),
-                  );
-                },
-              )),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+        Expanded(
+          child: Padding(
+            padding: EdgeInsetsDirectional.only(
+                end: width * 0.05, start: width * 0.05),
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  CustomButton(
-                      backgroundColor: AppColors.mainblue1,
-                      widthSize: width * 0.3,
-                      text: 'الدورات',
-                      textColor: AppColors.mainWhite),
-                  (width * 0.05).sbw,
-                  CustomButton(
-                      widthSize: width * 0.3,
-                      text: 'بنك الأسئلة',
-                      textColor: AppColors.mainWhite)
+                  CustomTextField(
+                      controller: controller.searchController,
+                      prefixIconName: 'ic_search',
+                      hinttext: 'بحث'),
+                  CarouselSlider(
+                    items: [
+                      Image.asset('assets/images/ad-section.png'),
+
+                      Image.asset('assets/images/ad-section.png'),
+
+                      Image.asset('assets/images/ad-section.png'),
+                      // CachedNetworkImage(
+                      //   height: height * 0.1,
+                      //   errorWidget: (context, url, error) =>
+                      //       const Icon(Icons.error),
+                      //   // width: width,
+
+                      //   placeholder: (context, url) => CircularProgressIndicator(
+                      //     color: AppColors.mainOrangeColor,
+                      //     strokeWidth: 2,
+                      //   ),
+                      //   imageUrl: 'assets/images/ad-section.svg',
+                      // ),
+                    ],
+                    options: CarouselOptions(
+                      aspectRatio: 3,
+                      // height: height * 0.4,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      autoPlay: true,
+                      autoPlayAnimationDuration:
+                          const Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      enlargeFactor: 0.3,
+                      onPageChanged: (i, _) {
+                        controller.carouselIndex.value = i;
+                      },
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  ),
+                  (height * 0.02).sbh,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                        3,
+                        (index) => Obx(
+                              () => Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    end: width * 0.01),
+                                child: Container(
+                                  width: width * 0.02,
+                                  height: width * 0.02,
+                                  decoration: BoxDecoration(
+                                      color: controller.carouselIndex == index
+                                          ? AppColors.mainPurple1
+                                          : null,
+                                      border: Border.all(width: width * 0.005)),
+                                ),
+                              ),
+                            )),
+                    // Container(
+                    //   width: width * 0.02,
+                    //   height: width * 0.02,
+                    //   decoration: BoxDecoration(
+                    //       border: Border.all(width: width * 0.005)),
+                    // ),
+                    // (width * 0.01).sbw,
+                    // Container(
+                    //   width: width * 0.02,
+                    //   height: width * 0.02,
+                    //   decoration: BoxDecoration(
+                    //       border: Border.all(width: width * 0.005)),
+                    // ),
+                    // (width * 0.01).sbw,
+                    // Container(
+                    //   width: width * 0.02,
+                    //   height: width * 0.02,
+                    //   decoration: BoxDecoration(
+                    //       border: Border.all(width: width * 0.005)),
+                    // )
+                  ),
+                  (height * 0.04).sbh,
+                  CustomContainer(
+                    text: 'التصنيفات',
+                    color: AppColors.mainBlack,
+                  ),
+                  // Wrap(
+                  //   spacing: 8.0, // المسافة الأفقية بين الأزرار
+                  //   runSpacing: 8.0, // المسافة الرأسية بين الأزرار
+                  //   children: controller.nameList.map((buttonText) {
+                  //     final textLength = buttonText.length;
+                  //     final buttonWidth =
+                  //         textLength * 12.0 + 32.0; // تعديل القيمة حسب احتياجاتك
+
+                  //     return ElevatedButton(
+                  //       onPressed: () {
+                  //         // Button onPressed logic
+                  //       },
+                  //       child: SizedBox(
+                  //         width: buttonWidth,
+                  //         child: Text(buttonText),
+                  //       ),
+                  //     );
+                  //   }).toList(),
+                  // ),
+                  (width * 0.05).sbh,
+                  Wrap(
+                      // crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: width * 0.02,
+                      runSpacing: width * 0.02,
+                      alignment: WrapAlignment.center,
+                      children: List.generate(
+                        controller.nameList.length,
+                        (index) {
+                          final textLength = controller.nameList[index].length;
+                          final buttonWidth = (textLength * (width * 0.03)) +
+                              width * 0.02; // تعديل القيمة حسب احتياجات
+                          return CustomButton(
+                              onPressed: () {
+                                Get.to(ItView(
+                                  collageName: controller.collageName,
+                                  materialName: controller.nameList[index],
+                                ));
+                              },
+                              // isBackgroundColor: false,
+                              borderColor: AppColors.mainPurple1,
+                              backgroundColor: AppColors.mainWhite,
+                              widthSize: buttonWidth > width * 0.15
+                                  ? buttonWidth
+                                  : width * 0.19,
+                              text: controller.nameList[index],
+                              textColor: AppColors.mainPurple1);
+                        },
+                      )),
+                  (width * 0.05).sbh,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomButton(
+                          backgroundColor: AppColors.mainblue1,
+                          widthSize: width * 0.3,
+                          text: 'الدورات',
+                          textColor: AppColors.mainWhite),
+                      (width * 0.05).sbw,
+                      CustomButton(
+                          widthSize: width * 0.3,
+                          text: 'بنك الأسئلة',
+                          textColor: AppColors.mainWhite)
+                    ],
+                  ),
                 ],
-              )
-            ],
+              ),
+            ),
           ),
         )
       ]),

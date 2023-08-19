@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:template/core/utilis/string_util.dart';
 import 'package:template/ui/shared/colors.dart';
 import 'package:template/ui/shared/custom_widgets/custom_button.dart';
 import 'package:template/ui/shared/custom_widgets/custom_rich_text.dart';
@@ -30,54 +31,76 @@ class _LoginViewState extends State<LoginView> {
           // extendBody: true,
           body: Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: width * 0.05),
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.start,s
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomTapBar(
-                  title: "تسجيل الدخول",
-                  imageName: "Login",
-                  // iconName: "ic_back",
-                ),
-                const CustomText(text: "اسم المستخدم"),
-                (width * 0.03).sbh,
-                CustomTextField(
-                  prefixIconName: 'ic_profile',
-                  hinttext: "اسم المستخدم",
-                  controller: controller.userController,
-                ),
-                (width * 0.05).sbh,
-                const CustomText(text: "رمز الدخول"),
-                (width * 0.03).sbh,
-                CustomTextField(
-                    prefixIconName: "ic_key",
-                    hinttext: "رمز الدخول",
-                    controller: controller.loginController),
-                (width * 0.05).sbh,
-                CustomButton(
-                  text: "تسجيل الدخول",
-                  textColor: AppColors.mainWhite,
-                ),
-                (width * 0.05).sbh,
-                CustomRichText(
-                    text1: 'ليس لديك حساب؟',
-                    text2: 'أنشأ حسابك الان',
-                    ontap: () {
-                      Get.to(const RegisterView());
-                    }),
-                const Spacer(),
-                InkWell(
-                  onTap: () {
-                    Get.to(const MainView());
-                  },
-                  child: const Center(
-                      child: CustomText(
-                    text: 'المتابعة كزائر',
-                    isDecoration: true,
-                  )),
-                ),
-                (width * 0.1).sbh,
-              ],
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.start,s
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomTapBar(
+                    title: "تسجيل الدخول",
+                    imageName: "Login",
+                    // iconName: "ic_back",
+                  ),
+                  const CustomText(text: "اسم المستخدم"),
+                  (width * 0.03).sbh,
+                  CustomTextField(
+                    keyboardtype: TextInputType.text,
+                    prefixIconName: 'ic_profile',
+                    hinttext: "اسم المستخدم",
+                    controller: controller.userController,
+                    validator: (value) {
+                      if (value!.isEmpty) return 'الرجاء إدخال اسمك';
+
+                      if (!StringUtil.isArabicOrEnglishName(value)) {
+                        return 'الرجاءالتحقق من اسمك';
+                      }
+                      return null;
+                    },
+                  ),
+                  (width * 0.05).sbh,
+                  const CustomText(text: "رمز الدخول"),
+                  (width * 0.03).sbh,
+                  CustomTextField(
+                      keyboardtype: TextInputType.number,
+                      validator: (value) {
+                        if (value!.isEmpty) return 'الرجاء إدخال رمز الدخول';
+                        return null;
+                      },
+                      prefixIconName: "ic_key",
+                      hinttext: "رمز الدخول",
+                      controller: controller.loginController),
+                  (width * 0.05).sbh,
+                  CustomButton(
+                    onPressed: () {
+                      if (controller.formKey.currentState!.validate()) {
+                        // Get.to();
+                      }
+                    },
+                    text: "تسجيل الدخول",
+                    textColor: AppColors.mainWhite,
+                  ),
+                  (width * 0.05).sbh,
+                  CustomRichText(
+                      text1: 'ليس لديك حساب؟',
+                      text2: 'أنشأ حسابك الان',
+                      ontap: () {
+                        Get.to(const RegisterView());
+                      }),
+                  const Spacer(),
+                  InkWell(
+                    onTap: () {
+                      Get.to(const MainView());
+                    },
+                    child: const Center(
+                        child: CustomText(
+                      text: 'المتابعة كزائر',
+                      isDecoration: true,
+                    )),
+                  ),
+                  (width * 0.1).sbh,
+                ],
+              ),
             ),
           )),
     );

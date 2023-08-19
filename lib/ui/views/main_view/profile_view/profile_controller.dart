@@ -7,6 +7,8 @@ import 'package:template/core/enums/image_type.dart';
 import '../../../shared/colors.dart';
 
 class ProfileController extends GetxController {
+TextEditingController  complaintController=TextEditingController();
+
   final ImagePicker picker = ImagePicker();
   bool userChoose = false;
   var sbar;

@@ -17,6 +17,7 @@ double screenHieght(double percent) {
   return Get.height / percent;
 }
 
+
 void customLoader() => BotToast.showCustomLoading(toastBuilder: (context) {
       return Container(
         decoration: BoxDecoration(

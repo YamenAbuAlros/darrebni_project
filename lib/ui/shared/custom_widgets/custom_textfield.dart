@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIconName,
     this.suffixIconName,
     this.textFieldColor,
-    this.maxLines,
+    this.maxLines, this.keyboardtype,
   });
   final String? Function(String?)? validator;
   final String? hinttext;
@@ -33,15 +33,17 @@ class CustomTextField extends StatelessWidget {
   final String? suffixIconName;
   final Color? textFieldColor;
   final int? maxLines;
+  final TextInputType? keyboardtype;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardtype,
       // textDirection: TextDirection.rtl,
       textInputAction: TextInputAction.next,
       validator: validator,
       controller: controller,
-      maxLines:maxLines??1 ,
+      maxLines: maxLines ?? 1,
       decoration: InputDecoration(
         suffixIconConstraints: BoxConstraints(
           maxWidth: width * 0.05,
@@ -51,9 +53,9 @@ class CustomTextField extends StatelessWidget {
         // ),
         suffixIcon: suffixIconName != null
             ? SvgPicture.asset(
-          "assets/images/$suffixIconName.svg",
-          color: AppColors.placeHolderColor,
-        )
+                "assets/images/$suffixIconName.svg",
+                color: AppColors.placeHolderColor,
+              )
             : null,
         prefix: SizedBox(
           width: width * 0.02,
@@ -70,7 +72,7 @@ class CustomTextField extends StatelessWidget {
         // contentPadding:
         // EdgeInsetsDirectional.symmetric(horizontal: width * 0.05),
         contentPadding: EdgeInsetsDirectional.only(
-            start: 10, top: maxLines != null ? 10 : 0.0),
+            start: width * 0.05, top: maxLines != null ? 10 : 0.0),
         filled: true,
         fillColor: textFieldColor ?? AppColors.mainblue2,
         constraints: BoxConstraints(
@@ -81,7 +83,7 @@ class CustomTextField extends StatelessWidget {
             color: AppColors.placeHolderColor,
             fontSize: fontsize ?? width * 0.035),
         enabledBorder: OutlineInputBorder(
-          // borderRadius: BorderRadius.circular(bradius ?? width * 0.02),
+            // borderRadius: BorderRadius.circular(bradius ?? width * 0.02),
             borderSide: BorderSide(color: AppColors.mainWhiteColor)),
       ),
     );

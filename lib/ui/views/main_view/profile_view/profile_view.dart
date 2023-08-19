@@ -7,6 +7,7 @@ import 'package:template/ui/shared/colors.dart';
 
 import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
 import 'package:template/ui/shared/custom_widgets/custom_button.dart';
+import 'package:template/ui/shared/custom_widgets/custom_overalay.dart';
 import 'package:template/ui/shared/custom_widgets/custom_text.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
@@ -27,8 +28,7 @@ class _ProfileViewState extends State<ProfileView> {
   ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
+    return Column(
       children: [
         CustomAppBar(
           iconName: 'ic_profile',
@@ -79,7 +79,11 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               (height * 0.04).sbh,
               CustomContainer(
-                ontap: () {},
+                ontap: () {
+                  showCustomAlertDialog(
+                      report: controller.complaintController,
+                      isNotReport: false);
+                },
                 color: AppColors.mainblue1,
                 text: 'ارسال شكاوي',
                 iconName: 'ic_send',
@@ -99,7 +103,7 @@ class _ProfileViewState extends State<ProfileView> {
           ),
         )
       ],
-    ));
+    );
   }
 }
 

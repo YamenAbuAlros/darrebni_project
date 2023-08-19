@@ -27,42 +27,45 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
             iconName: 'ic_profile', text: 'تعديل المعلومات الشخصية'),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CustomText(text: "حلا الدروبي"),
-              (width * 0.03).sbh,
-              CustomTextField(
-                textFieldColor: AppColors.mainblue3,
-                suffixIconName: 'ic_edit',
-                prefixIconName: 'ic_profile',
-                hinttext: "حلا الدروبي",
-                controller: controller.userController,
-              ),
-              (width * 0.05).sbh,
-              const CustomText(text: "رقم الهاتف"),
-              (width * 0.03).sbh,
-              CustomTextField(
+          child: Form(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                 CustomText(text: controller.userController.text),
+                (width * 0.03).sbh,
+                CustomTextField(
                   textFieldColor: AppColors.mainblue3,
                   suffixIconName: 'ic_edit',
-                  prefixIconName: "ic_phone",
-                  hinttext: "+963-999-999-999",
-                  controller: controller.phoneNumberController),
-              (width * 0.35).sbh,
-              CustomButton(
-                  text: 'حفظ التغيرات', textColor: AppColors.mainWhite),
-              (width * 0.05).sbh,
-              InkWell(
-                onTap: () {
-                  // Get.to();
-                },
-                child: const Center(
-                    child: CustomText(
-                  text: 'تراجع',
-                  isDecoration: true,
-                )),
-              ),
-            ],
+                  prefixIconName: 'ic_profile',
+                  hinttext: "حلا الدروبي",
+                  controller: controller.userController,
+                ),
+                (width * 0.05).sbh,
+                const CustomText(text: "رقم الهاتف"),
+                (width * 0.03).sbh,
+                CustomTextField(
+                    textFieldColor: AppColors.mainblue3,
+                    suffixIconName: 'ic_edit',
+                    prefixIconName: "ic_phone",
+                    hinttext: "+963-999-999-999",
+                    controller: controller.phoneNumberController),
+                (width * 0.35).sbh,
+                CustomButton(
+                    text: 'حفظ التغيرات', textColor: AppColors.mainWhite),
+                (width * 0.05).sbh,
+                InkWell(
+                  onTap: () {
+                    // Get.to();
+                  },
+                  child: const Center(
+                      child: CustomText(
+                    text: 'تراجع',
+                    isDecoration: true,
+                  )),
+                ),
+              ],
+            ),
           ),
         )
       ]),
