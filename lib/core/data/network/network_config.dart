@@ -4,7 +4,7 @@ import 'package:template/core/utilis/network_utilis.dart';
 import '../../utilis/general_util.dart';
 
 class NetworkConfig {
-  static String BASE_API = 'api/web/';
+  static String BASE_API = 'https://backendsp01.000webhostapp.com/api/';
   // static String BASE_API = 'api/v1/';
 
   static String getFullApiRoute(String apiroute) {
