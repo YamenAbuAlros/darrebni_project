@@ -8,7 +8,7 @@ import 'package:mime/mime.dart';
 import 'package:path/path.dart' as path;
 
 class NetworkUtil {
-  static String baseUrl = "training.owner-tech.com";
+  static String baseUrl = "https://backendsp01.000webhostapp.com/api/";
   // static String baseUrl = "electra-space-api.owner-tech.com";
 
   static var client = http.Client();
