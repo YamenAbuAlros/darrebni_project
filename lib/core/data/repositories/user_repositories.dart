@@ -7,6 +7,13 @@ import 'package:template/core/enums/request_type.dart';
 import 'package:template/core/enums/request_type_multipart.dart';
 import 'package:template/core/utilis/network_utilis.dart';
 
+//——-Login—————
+// name : sami
+// code : ePx9ekn6Or
+//"token": "36|tyIFQW83aeuoFxk3wVCi7wOS6VQ6XSRU864a39mz"
+//"id": 1,
+//"uuid": "36414ce6-4db7-4c88-8cec-7f7dca0c1293",
+
 class UserRepositoriey {
   static Future<Either<String, bool>> login(
       {required String name, required String code}) async {
