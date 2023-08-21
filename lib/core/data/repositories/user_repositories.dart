@@ -31,13 +31,11 @@ class UserRepositoriey {
     }
   }
 
-  Future<Either<String, bool>> Register({
-    required String email,
-    required String password,
-    required String lastname,
-    required String firstname,
-    int? age,
-    String? photo,
+ static Future<Either<String, bool>> register({
+    required String name,
+    required String phone,
+    required String college_id,
+    // String? photo,
   }) async {
     try {
       return NetworkUtil.postMultipart(
@@ -46,22 +44,20 @@ class UserRepositoriey {
           headers: NetworkConfig.getHeaders(
             needAuth: false,
             type: RequestType.POST,
-            // extraHeaders: {
-            //   "Content-Type":
-            //       "multipart/form-data; boundary=--------------------------5014115597297111058551",
-            //   "Content-Length": "82554"
-            // }
+            extraHeaders: {
+              "Content-Type":
+                  "multipart/form-data;"
+            }
           ),
           fields: {
-            'Email': email,
-            'Password': password,
-            "FirstName": firstname,
-            "LastName": lastname,
-            'Age': age.toString(),
+            'name': name,
+            'phone': phone,
+            "college_id": college_id,
           },
-          files: {
-            "Photo": photo ?? '',
-          }).then((respons) {
+          // files: {
+          //   "Photo": photo ?? '',
+          // }
+          ).then((respons) {
         CommonResponse<dynamic> commonResponse =
             CommonResponse.fromJson(respons);
 
@@ -70,7 +66,8 @@ class UserRepositoriey {
         } else {
           return Left(commonResponse.message ?? '');
         }
-      });
+      }
+      );
     } catch (e) {
       return Left(e.toString());
     }

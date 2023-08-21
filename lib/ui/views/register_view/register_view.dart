@@ -173,9 +173,7 @@ class _RegisterViewState extends State<RegisterView> {
                     (width * 0.05).sbh,
                     CustomButton(
                       onPressed: () {
-                        if (controller.formKey.currentState!.validate()) {
-                          // Get.to();
-                        }
+                        controller.register();
                       },
                       text: "إنشاء الحساب",
                       textColor: AppColors.mainWhite,

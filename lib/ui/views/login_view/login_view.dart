@@ -10,7 +10,6 @@ import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/main_view/main_view.dart';
 import 'package:template/ui/views/register_view/register_view.dart';
-
 import '../../shared/custom_widgets/custom_tap_bar.dart';
 import 'login_controller.dart';
 
@@ -75,6 +74,7 @@ class _LoginViewState extends State<LoginView> {
                     onPressed: () {
                       if (controller.formKey.currentState!.validate()) {
                         // Get.to();
+
                       }
                     },
                     text: "تسجيل الدخول",
