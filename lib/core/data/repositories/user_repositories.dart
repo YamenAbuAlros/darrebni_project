@@ -8,22 +8,26 @@ import 'package:template/core/enums/request_type_multipart.dart';
 import 'package:template/core/utilis/network_utilis.dart';
 
 class UserRepositoriey {
-  Future<Either<String, TokenInfo>> login(
-      {required String email, required String password}) async {
+  static Future<Either<String, bool>> login(
+      {required String name, required String code}) async {
     try {
-      return NetworkUtil.sendRequest(
-              type: RequestType.POST,
+      return NetworkUtil.postMultipart(
+              method: MultiRequestType.POST,
               url: UserEndPoints.login,
-              body: {"userName": email, "password": password},
+              fields: {"name":name, "code":code},  //"code":'ePx9ekn6Or'
               headers: NetworkConfig.getHeaders(
-                  needAuth: false, type: RequestType.POST))
+                  extraHeaders: {"Content-Type": "multipart/form-data;"},
+                  needAuth: false,
+                  type: RequestType.POST))
           .then((respons) {
-        CommonResponse<Map<String, dynamic>> commonResponse =
+        CommonResponse<dynamic> commonResponse =
             CommonResponse.fromJson(respons);
-        if (commonResponse.getstatus) {
-          return Right(TokenInfo.fromJson(commonResponse.data ?? {}));
+
+        if (commonResponse.getstatus && commonResponse.data['status'] == true) {
+          return Right(commonResponse.getstatus);
         } else {
-          return Left(commonResponse.message ?? '');
+          (commonResponse.data['message']);
+          return Left(commonResponse.data['message'] ?? '');
         }
       });
     } catch (e) {
@@ -31,43 +35,36 @@ class UserRepositoriey {
     }
   }
 
- static Future<Either<String, bool>> register({
+  static Future<Either<String, bool>> register({
     required String name,
     required String phone,
-    required String college_id,
+    required int college_id,
     // String? photo,
   }) async {
     try {
       return NetworkUtil.postMultipart(
-          url: UserEndPoints.register,
-          method: MultiRequestType.POST,
-          headers: NetworkConfig.getHeaders(
+        url: UserEndPoints.register,
+        method: MultiRequestType.POST,
+        headers: NetworkConfig.getHeaders(
             needAuth: false,
             type: RequestType.POST,
-            extraHeaders: {
-              "Content-Type":
-                  "multipart/form-data;"
-            }
-          ),
-          fields: {
-            'name': name,
-            'phone': phone,
-            "college_id": college_id,
-          },
-          // files: {
-          //   "Photo": photo ?? '',
-          // }
-          ).then((respons) {
+            extraHeaders: {"Content-Type": "multipart/form-data;"}),
+        fields: {
+          'name': name,
+          'phone': phone,
+          "college_id": college_id.toString(),
+        },
+      ).then((respons) {
         CommonResponse<dynamic> commonResponse =
             CommonResponse.fromJson(respons);
 
-        if (commonResponse.getstatus) {
+        if (commonResponse.getstatus && commonResponse.data['status'] == true) {
           return Right(commonResponse.getstatus);
         } else {
-          return Left(commonResponse.message ?? '');
+          (commonResponse.data['message']);
+          return Left(commonResponse.data['message'] ?? '');
         }
-      }
-      );
+      });
     } catch (e) {
       return Left(e.toString());
     }

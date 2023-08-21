@@ -47,7 +47,7 @@ class _LoginViewState extends State<LoginView> {
                     keyboardtype: TextInputType.text,
                     prefixIconName: 'ic_profile',
                     hinttext: "اسم المستخدم",
-                    controller: controller.userController,
+                    controller: controller.userNameController,
                     validator: (value) {
                       if (value!.isEmpty) return 'الرجاء إدخال اسمك';
 
@@ -68,14 +68,11 @@ class _LoginViewState extends State<LoginView> {
                       },
                       prefixIconName: "ic_key",
                       hinttext: "رمز الدخول",
-                      controller: controller.loginController),
+                      controller: controller.codeLoginController),
                   (width * 0.05).sbh,
                   CustomButton(
                     onPressed: () {
-                      if (controller.formKey.currentState!.validate()) {
-                        // Get.to();
-
-                      }
+                      controller.login();
                     },
                     text: "تسجيل الدخول",
                     textColor: AppColors.mainWhite,

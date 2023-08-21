@@ -1,32 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:template/core/data/repositories/user_repositories.dart';
+import 'package:template/core/enums/message_type.dart';
 import 'package:template/core/services/base_controller.dart';
+import 'package:template/core/utilis/general_util.dart';
+import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
+import 'package:template/ui/views/main_view/main_view.dart';
 
 class LoginController extends BaseController {
-  TextEditingController userController = TextEditingController();
-  TextEditingController loginController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController codeLoginController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 
-
-  // void login() {
-  //   if (formKey.currentState!.validate()) {
-  //     runFullLoadingFutureFunction(
-  //         function: UserRepository()
-  //             .login(
-  //             email: emailController.text, password: passwordController.text)
-  //             .then((value) {
-  //           value.fold((l) {
-  //             CustomToast.showMessage(message: l, messageType: MessageType.REJECTED);
-  //           }, (r) {
-  //             storage.setLoggedIN(true);
-  //             storage.setTokenIno(r);
-  //             Get.off(const ShoppingPageView(), transition: Transition.cupertino);
-  //           });
-  //         }));
-  //   } else {}
-  // }
-
+  void login() {
+    if (formKey.currentState!.validate()) {
+      runFullLoadingFutureFunction(
+          function: UserRepositoriey
+              .login(
+              name: userNameController.text, code:codeLoginController.text)
+              .then((value) {
+            value.fold(
+                    (l) {
+                  CustomShowToast.showMessage(
+                      message: l, messageType: MessageType.REJECTED);
+                },
+                    (r) {
+                  storage.setSubStatus(true);
+                  // storage.setTokenIno(r);
+                  Get.off(const MainView(), transition: Transition.cupertino);
+                });
+          }));
+    } else {}
+  }
 
 
 }

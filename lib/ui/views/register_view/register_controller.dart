@@ -26,13 +26,13 @@ class RegisterController extends BaseController {
 
   @override
   onInit() {
-    getAllSpecializtions();
+    // getAllSpecializtions();
     super.onInit();
   }
 
-  void getAllSpecializtions() {
-    NetworkUtil.sendRequest(type: RequestType.GET, url: '/');
-  }
+  // void getAllSpecializtions() {
+  //   NetworkUtil.sendRequest(type: RequestType.GET, url: '/');
+  // }
 
   void register() {
     if (formKey.currentState!.validate()) {
@@ -41,7 +41,7 @@ class RegisterController extends BaseController {
               .register(
                   name: userController.text,
                   phone: phoneController.text,
-                  college_id:radioValue.value )
+                  college_id:1 )
               .then((value) {
         value.fold(
                 (l) {
@@ -49,7 +49,7 @@ class RegisterController extends BaseController {
               message: l, messageType: MessageType.REJECTED);
         },
                 (r) {
-          storage.setSubStatus(true);
+          // storage.setSubStatus(true);
           // storage.setTokenIno(r);
           Get.off(const MainView(), transition: Transition.cupertino);
         });
