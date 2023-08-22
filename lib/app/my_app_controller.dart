@@ -12,11 +12,11 @@ class MyAppController extends BaseController {
   }
 
   void listenForConnectivityStatus() {
-    print("Connection From MyAppController First initial $connectivityStatus");
+    ("Connection From MyAppController First initial $connectivityStatus");
 
     connectivityService.connectivityStatusController.stream.listen((event) {
       setConnectivityStatus = event;
-      print("Connection From MyAppController Changed To $event");
+      ("Connection From MyAppController Changed To $event");
       // Get.put(HomeViewController()).isOnline.value =
       //     connectivityStatus == ConnectivityStatus.ONLINE ? true : false;
       if (isOffline) {

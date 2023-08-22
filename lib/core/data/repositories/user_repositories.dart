@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:template/core/data/models/apis/token_info.dart';
 import 'package:template/core/data/models/common_response.dart';
-import 'package:template/core/data/models/register_model.dart';
 import 'package:template/core/data/network/endpoints/user_endpoints.dart';
 import 'package:template/core/data/network/network_config.dart';
 import 'package:template/core/enums/request_type.dart';

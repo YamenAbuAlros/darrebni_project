@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:template/core/enums/message_type.dart';
+import 'package:template/core/utilis/general_util.dart';
+import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
+import 'package:template/ui/views/main_view/main_view.dart';
+
+import '../../../../core/data/repositories/all_categories_repositories.dart';
 
 class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   List<String> categoriesList = ['الكل', 'الكليات الهندسية', 'الكليات الطبية'];
+  // List<String> categoryNames = [];
   RxInt selectedNum = 0.obs;
   RxInt gridLength = 6.obs;
   RxInt indexCarousel = 0.obs;
@@ -48,4 +55,26 @@ class HomeController extends GetxController {
             ? gridLength.value = 2
             : gridLength.value = 4;
   }
+// @override
+//   void onInit() {
+//     // TODO: implement onInit
+//   // allCategories();
+//     super.onInit();
+//   }
+  // allCategories(){
+  //   AllCategoriesRepositories.allCategories().then((value) {
+  //   value.fold(
+  //   (l) {
+  //   CustomShowToast.showMessage(
+  //   message: l, messageType: MessageType.REJECTED);
+  //   },
+  //   (r) {
+  //     r.data!.categories!.forEach((category) {
+  //       String? categoryName = category.name;
+  //       categoryNames.add(categoryName!);
+  //     });
+  //     // r.data!.categories![0].name;
+  //   });
+  //   });
+  // }
 }
