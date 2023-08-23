@@ -10,7 +10,7 @@ import '../../../../core/data/repositories/all_categories_repositories.dart';
 class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   List<String> categoriesList = ['الكل', 'الكليات الهندسية', 'الكليات الطبية'];
-  RxList<dynamic> categoryNames = [].obs;
+  RxList<dynamic> categoryNames = ['الكل'].obs;
   RxInt selectedNum = 0.obs;
   RxInt gridLength = 6.obs;
   RxInt indexCarousel = 0.obs;
