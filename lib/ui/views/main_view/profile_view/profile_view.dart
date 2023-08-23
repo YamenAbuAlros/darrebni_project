@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/colors.dart';
-
 import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
 import 'package:template/ui/shared/custom_widgets/custom_button.dart';
 import 'package:template/ui/shared/custom_widgets/custom_overalay.dart';

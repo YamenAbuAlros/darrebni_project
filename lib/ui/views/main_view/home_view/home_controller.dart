@@ -73,11 +73,6 @@ class HomeController extends GetxController {
         String name = category['name'];
         categoryNames.add(name);
       }
-      // r.data!.categories!.forEach((category) {
-      //   String? categoryName = category.name;
-      //   categoryNames.add(categoryName!);
-      // });
-      // r.data!.categories![0].name;
     });
     });
   }

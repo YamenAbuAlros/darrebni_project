@@ -1,10 +1,13 @@
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:template/core/data/repositories/profile_repositories/get_myprofile_repositories.dart';
+import 'package:template/core/data/repositories/profile_repositories/update_photo_repositories.dart';
 import 'package:template/core/enums/image_type.dart';
-
 import '../../../shared/colors.dart';
+import 'package:cross_file/cross_file.dart';
 
 class ProfileController extends GetxController {
 TextEditingController  complaintController=TextEditingController();
@@ -74,5 +77,10 @@ TextEditingController  complaintController=TextEditingController();
     update();
 
     Get.back();
+  }
+
+  Future EditImageProgile() async{
+    await UpdatePhotoRepositories.updatePhoto(photo:File(choosedImage!.path));
+    await GetMyProfileRepositories.getMyProfile();
   }
 }
