@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/custom_widgets/custom_textfield.dart';
@@ -134,40 +135,48 @@ class _HomeViewState extends State<HomeView> {
                 (height * 0.03).sbh,
                 SizedBox(
                     height: height * 0.05,
-                    child: ListView.separated(
+                    child:Obx(() =>  controller.categoryNames.isNotEmpty?
+                    ListView.separated(
                       shrinkWrap: true,
                       physics: const AlwaysScrollableScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        return Obx(() => Container(
-                              decoration: controller.selectedNum.value == index
-                                  ? BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              width: width * 0.005,
-                                              color: AppColors.mainblue1)))
-                                  : null,
-                              child: InkWell(
-                                onTap: () {
-                                  controller.changeList(index);
-                                },
-                                child: CustomText(
-                                  text: controller.categoriesList[index],
-                                  textcolor:
-                                      controller.selectedNum.value == index
-                                          ? AppColors.mainblue1
-                                          : AppColors.mainBlack,
-                                ),
+                        return
+                          Container(
+                            decoration: controller.selectedNum.value == index
+                                ? BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        width: width * 0.005,
+                                        color: AppColors.mainblue1)))
+                                : null,
+                            child: InkWell(
+                              onTap: () {
+                                controller.changeList(index);
+                              },
+                              child: CustomText(
+                                text: controller.categoryNames[index],
+                                textcolor:
+                                controller.selectedNum.value == index
+                                    ? AppColors.mainblue1
+                                    : AppColors.mainBlack,
                               ),
-                            ));
+                            ),
+                          );
+
                       },
-                      itemCount: controller.categoriesList.length,
+                      itemCount: controller.categoryNames.length,
                       separatorBuilder: (BuildContext context, int index) {
                         return SizedBox(
                           width: width * 0.05,
                         );
                       },
-                    )),
+                    ):
+                    Center(
+                      child:SpinKitWave(color: AppColors.mainPurple1,size: width*0.09,),
+                    ))
+                   
+                ),
                 (height * 0.025).sbh,
                 Obx(
                   () => Row(

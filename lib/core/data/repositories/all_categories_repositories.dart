@@ -6,7 +6,7 @@ import 'package:template/core/enums/request_type.dart';
 import 'package:template/core/utilis/network_utilis.dart';
 
 class AllCategoriesRepositories {
-  static Future<Either<String,dynamic>> allCategories() async {
+  static Future<Either<String,List<dynamic>>> allCategories() async {
     try {
       return NetworkUtil.sendRequest(
               type: RequestType.GET,
@@ -16,11 +16,11 @@ class AllCategoriesRepositories {
           .then((respons) {
         CommonResponse<dynamic> commonResponse =
             CommonResponse.fromJson(respons);
-        if (commonResponse.getstatus && commonResponse.data.status == true) {
-          return Right(commonResponse.data);
+        if (commonResponse.getstatus && commonResponse.data['status']== true) {
+          return Right(commonResponse.data['data']['categories']);
         } else {
           (commonResponse.data.message);
-          return Left(commonResponse.data.message ?? '');
+          return Left(commonResponse.data['message'] ?? '');
         }
       });
     } catch (e) {

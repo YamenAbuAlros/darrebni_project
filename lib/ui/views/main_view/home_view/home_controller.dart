@@ -10,7 +10,7 @@ import '../../../../core/data/repositories/all_categories_repositories.dart';
 class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   List<String> categoriesList = ['الكل', 'الكليات الهندسية', 'الكليات الطبية'];
-  // List<String> categoryNames = [];
+  RxList<dynamic> categoryNames = [].obs;
   RxInt selectedNum = 0.obs;
   RxInt gridLength = 6.obs;
   RxInt indexCarousel = 0.obs;
@@ -55,26 +55,30 @@ class HomeController extends GetxController {
             ? gridLength.value = 2
             : gridLength.value = 4;
   }
-// @override
-//   void onInit() {
-//     // TODO: implement onInit
-//   // allCategories();
-//     super.onInit();
-//   }
-  // allCategories(){
-  //   AllCategoriesRepositories.allCategories().then((value) {
-  //   value.fold(
-  //   (l) {
-  //   CustomShowToast.showMessage(
-  //   message: l, messageType: MessageType.REJECTED);
-  //   },
-  //   (r) {
-  //     r.data!.categories!.forEach((category) {
-  //       String? categoryName = category.name;
-  //       categoryNames.add(categoryName!);
-  //     });
-  //     // r.data!.categories![0].name;
-  //   });
-  //   });
-  // }
+@override
+  void onInit() {
+    // TODO: implement onInit
+  allCategories();
+    super.onInit();
+  }
+  Future allCategories() async{
+    await AllCategoriesRepositories.allCategories().then((value) {
+    value.fold(
+    (l) {
+    CustomShowToast.showMessage(
+    message: l, messageType: MessageType.REJECTED);
+    },
+    (r) {
+      for (var category in r) {
+        String name = category['name'];
+        categoryNames.add(name);
+      }
+      // r.data!.categories!.forEach((category) {
+      //   String? categoryName = category.name;
+      //   categoryNames.add(categoryName!);
+      // });
+      // r.data!.categories![0].name;
+    });
+    });
+  }
 }
