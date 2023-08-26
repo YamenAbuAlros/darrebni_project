@@ -9,7 +9,7 @@ import 'package:template/core/enums/request_type_multipart.dart';
 import '../../../utilis/network_utilis.dart';
 
 class UpdateProfileRepositories {
-  static Future<Either<String, bool>> updateProfile(
+  static Future<Either<String, UpdateProfileModel>> updateProfile(
       {required String name, required String phone}) async {
     try {
       return NetworkUtil.postMultipart(
@@ -21,10 +21,10 @@ class UpdateProfileRepositories {
                   needAuth: true,
                   type: RequestType.POST))
           .then((respons) {
-        CommonResponse<UpdateProfileModel> commonResponse =
+        CommonResponse<dynamic> commonResponse =
             CommonResponse.fromJson(respons);
         if (commonResponse.getstatus && commonResponse.data!.status == true) {
-          return Right(commonResponse.getstatus);
+          return Right(commonResponse.data['data']);
         } else {
           (commonResponse.data!.message);
           return Left(commonResponse.data!.message ?? '');

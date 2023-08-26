@@ -1,13 +1,38 @@
-class AllCollegeModel {
+class SpecializationsOfCollegeByIdModel {
+  String? uuid;
+  String? name;
+  College? college;
+
+  SpecializationsOfCollegeByIdModel({this.uuid, this.name, this.college});
+
+  SpecializationsOfCollegeByIdModel.fromJson(Map<String, dynamic> json) {
+    uuid = json['uuid'];
+    name = json['name'];
+    college =
+    json['college'] != null ? new College.fromJson(json['college']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['uuid'] = this.uuid;
+    data['name'] = this.name;
+    if (this.college != null) {
+      data['college'] = this.college!.toJson();
+    }
+    return data;
+  }
+}
+
+class College {
   int? id;
   String? uuid;
   String? name;
   String? logo;
   Category? category;
 
-  AllCollegeModel({this.id, this.uuid, this.name, this.logo, this.category});
+  College({this.id, this.uuid, this.name, this.logo, this.category});
 
-  AllCollegeModel.fromJson(Map<String, dynamic> json) {
+  College.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     uuid = json['uuid'];
     name = json['name'];

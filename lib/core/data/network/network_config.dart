@@ -18,6 +18,7 @@ class NetworkConfig {
       Map<String, String>? extraHeaders = const {}}) {
     return {
       if (needHost!) "Host": NetworkUtil.baseUrl,
+      // if (needAuth!)"Authorization": "Bearer 7|67tq9HBCoPvaBYw07kxWHjyU7swwJVgupN3kgalg",
       if (needAuth!)"Authorization": "Bearer ${storage.getTokenInfo()?.accessToken ?? ''}",
       if (type != RequestType.GET) "Content-Type": "application/json",
       // if (type is MultiRequestType) "Content-Type": "application/json",

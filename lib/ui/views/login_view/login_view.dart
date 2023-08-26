@@ -61,7 +61,6 @@ class _LoginViewState extends State<LoginView> {
                   const CustomText(text: "رمز الدخول"),
                   (width * 0.03).sbh,
                   CustomTextField(
-                      keyboardtype: TextInputType.number,
                       validator: (value) {
                         if (value!.isEmpty) return 'الرجاء إدخال رمز الدخول';
                         return null;
@@ -82,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
                       text1: 'ليس لديك حساب؟',
                       text2: 'أنشأ حسابك الان',
                       ontap: () {
-                        Get.to(const RegisterView());
+                        Get.off(const RegisterView());
                       }),
                   const Spacer(),
                   InkWell(

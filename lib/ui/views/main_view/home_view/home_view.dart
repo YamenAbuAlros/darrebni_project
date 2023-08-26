@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:template/core/utilis/general_util.dart';
+import 'package:template/ui/shared/custom_widgets/custom_overalay.dart';
 import 'package:template/ui/shared/custom_widgets/custom_textfield.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/views/it_view/main_it_view.dart';
@@ -97,76 +99,46 @@ class _HomeViewState extends State<HomeView> {
                                       border: Border.all(width: width * 0.005)),
                                 ),
                               ),
-                            ))
-                    // Container(
-                    //   width: width * 0.02,
-                    //   height: width * 0.02,
-                    //   decoration:
-                    //       BoxDecoration(border: Border.all(width: width * 0.005)),
-                    // ),
-                    // (width * 0.01).sbw,
-                    // Container(
-                    //   width: width * 0.02,
-                    //   height: width * 0.02,
-                    //   decoration:
-                    //       BoxDecoration(border: Border.all(width: width * 0.005)),
-                    // ),
-                    // (width * 0.01).sbw,
-                    // Container(
-                    //   width: width * 0.02,
-                    //   height: width * 0.02,
-                    //   decoration:
-                    //       BoxDecoration(border: Border.all(width: width * 0.005)),
-                    // )
-                    ),
+                            ))),
 
                 CustomContainer(text: 'التصنيفات', color: AppColors.maingrey),
-                // Container(
-                //     padding: EdgeInsets.all(width * 0.01),
-                //     width: width * 0.3,
-                //     height: height * 0.045,
-                //     decoration: BoxDecoration(
-                //         border: Border(
-                //             right: BorderSide(
-                //                 width: 2, color: AppColors.maingrey))),
-                //     child: CustomText(
-                //       text: 'التصنيفات',
-                //       textcolor: AppColors.mainBlack,
-                //     )),
+
                 (height * 0.03).sbh,
                 SizedBox(
                     height: height * 0.05,
-                    child: Obx(() => controller.categoryNames.length>1
+                    child: Obx(() => controller.categoriesAllName.isNotEmpty
                         ? ListView.separated(
                             shrinkWrap: true,
                             physics: const AlwaysScrollableScrollPhysics(),
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
-                              return Obx(() =>  Container(
-                                decoration: controller.selectedNum.value ==
-                                    index
-                                    ? BoxDecoration(
-                                    border: Border(
-                                        bottom: BorderSide(
-                                            width: width * 0.005,
-                                            color: AppColors.mainblue1)))
-                                    : null,
-                                child: InkWell(
-                                  onTap: () {
-                                    controller.changeList(index);
-                                  },
-                                  child: CustomText(
-                                    text: controller.categoryNames[index],
-                                    textcolor:
-                                    controller.selectedNum.value == index
-                                        ? AppColors.mainblue1
-                                        : AppColors.mainBlack,
-                                  ),
-                                ),
-                              ) );
-
+                              return Obx(() => Container(
+                                    decoration: controller.selectedNum.value ==
+                                            index
+                                        ? BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    width: width * 0.005,
+                                                    color:
+                                                        AppColors.mainblue1)))
+                                        : null,
+                                    child: InkWell(
+                                      onTap: () {
+                                        controller.changeList(index);
+                                      },
+                                      child: CustomText(
+                                        text:
+                                            controller.categoriesAllName[index],
+                                        textcolor:
+                                            controller.selectedNum.value ==
+                                                    index
+                                                ? AppColors.mainblue1
+                                                : AppColors.mainBlack,
+                                      ),
+                                    ),
+                                  ));
                             },
-                            itemCount: controller.categoryNames.length,
+                            itemCount: controller.categoriesAllName.length,
                             separatorBuilder:
                                 (BuildContext context, int index) {
                               return SizedBox(
@@ -192,11 +164,11 @@ class _HomeViewState extends State<HomeView> {
                           controller.specializzationListShow[index].last;
 
                       return InkWell(
-                        onTap: () {
+                        onTap: () {storage.isLoggedIn?
                           Get.to(MainItView(
                             collageName:
                                 controller.specializzationListShow[index].first,
-                          ));
+                          )):showCustomAlertDialog();
                         },
                         child: Column(
                           children: [

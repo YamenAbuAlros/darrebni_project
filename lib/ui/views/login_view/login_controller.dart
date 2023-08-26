@@ -27,12 +27,17 @@ class LoginController extends BaseController {
                 },
                     (r) {
                   storage.setSubStatus(true);
-                  // storage.setTokenIno(r);
+                  storage.setTokenIno(r);
                   Get.off(const MainView(), transition: Transition.cupertino);
                 });
           }));
     } else {}
   }
 
-
+@override
+  void onClose() {
+    userNameController.clear();
+    codeLoginController.clear();
+    super.onClose();
+  }
 }

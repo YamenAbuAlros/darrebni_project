@@ -7,7 +7,7 @@ import 'package:template/core/enums/request_type.dart';
 import '../../../utilis/network_utilis.dart';
 
 class GetMyProfileRepositories {
-  static Future<Either<String, bool>> getMyProfile() async {
+  static Future<Either<String, GetMyProfileModel>> getMyProfile() async {
     try {
       return NetworkUtil.sendRequest(type: RequestType.GET,
           url: ProfileEndPoint.getMyProfile,
@@ -15,10 +15,10 @@ class GetMyProfileRepositories {
               needAuth: true,
               type: RequestType.GET))
           .then((respons) {
-        CommonResponse<GetMyProfileModel> commonResponse =
+        CommonResponse<dynamic> commonResponse =
         CommonResponse.fromJson(respons);
         if (commonResponse.getstatus && commonResponse.data!.status == true) {
-          return Right(commonResponse.getstatus);
+          return Right(commonResponse.data['data']);
         } else {
           (commonResponse.data!.message);
           return Left(commonResponse.data!.message ?? '');

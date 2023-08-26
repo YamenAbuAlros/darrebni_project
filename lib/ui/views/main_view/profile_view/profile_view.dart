@@ -96,7 +96,7 @@ class _ProfileViewState extends State<ProfileView> {
                 iconName: 'ic_info',
               ),
               (height * 0.04).sbh,
-              CustomButton(text: 'تسجيل الخروج', textColor: AppColors.mainWhite)
+              CustomButton(text: 'تسجيل الخروج', textColor: AppColors.mainWhite,onPressed: (){controller.logout();},)
             ],
           ),
         )

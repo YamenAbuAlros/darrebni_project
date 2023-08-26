@@ -133,7 +133,9 @@ class SharedPreferenceRepositories {
   dynamic getPreference({required String key}) {
     return globalSharedPreferences.get(key);
   }
-
+void removeToken(){
+  globalSharedPreferences.remove(PREF_TOKEN);
+}
   clearPreference() {
     globalSharedPreferences.clear();
   }

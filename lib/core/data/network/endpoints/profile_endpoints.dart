@@ -5,4 +5,6 @@ class ProfileEndPoint {
   static String updatePhoto = NetworkConfig.getFullApiRoute('profile/update-photo');
   static String getMyProfile = NetworkConfig.getFullApiRoute('my-profile');
   static String userProfile = NetworkConfig.getFullApiRoute('profile/:uuid');
+  static String logout = NetworkConfig.getFullApiRoute('logout');
+
 }

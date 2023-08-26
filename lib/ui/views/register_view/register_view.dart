@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/colors.dart';
@@ -23,6 +25,7 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   RegisterController controller = Get.put(RegisterController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -78,96 +81,138 @@ class _RegisterViewState extends State<RegisterView> {
                     (width * 0.03).sbh,
                     const CustomText(text: "اختر الاختصاص"),
                     (width * 0.03).sbh,
+                    // Obx(
+                    //   () => Row(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       Column(
+                    //         children: [
+                    //           SvgPicture.asset('assets/images/ic_search.svg'),
+                    //           CustomRadioLisTile(
+                    //             text: controller.specializtionList[0],
+                    //             groupValue: controller.radioValue.value,
+                    //             onchanged: (value) {
+                    //               controller.radioValue.value = value!;
+                    //             },
+                    //             value: controller.specializtionList[0],
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Column(
+                    //         children: [
+                    //           SvgPicture.asset('assets/images/ic_search.svg'),
+                    //           CustomRadioLisTile(
+                    //             text: controller.specializtionList[1],
+                    //             groupValue: controller.radioValue.value,
+                    //             onchanged: (value) {
+                    //               controller.radioValue.value = value!;
+                    //             },
+                    //             value: controller.specializtionList[1],
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Column(
+                    //         children: [
+                    //           SvgPicture.asset('assets/images/ic_search.svg'),
+                    //           CustomRadioLisTile(
+                    //             text: controller.specializtionList[2],
+                    //             groupValue: controller.radioValue.value,
+                    //             onchanged: (value) {
+                    //               controller.radioValue.value = value!;
+                    //             },
+                    //             value: controller.specializtionList[2],
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+
+                    // Obx(
+                    //   () => Row(
+                    //     children: [
+                    //       Column(
+                    //         children: [
+                    //           SvgPicture.asset('assets/images/ic_search.svg'),
+                    //           CustomRadioLisTile(
+                    //             text: controller.specializtionList[3],
+                    //             groupValue: controller.radioValue.value,
+                    //             onchanged: (value) {
+                    //               controller.radioValue.value = value!;
+                    //             },
+                    //             value: controller.specializtionList[3],
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Column(
+                    //         children: [
+                    //           SvgPicture.asset('assets/images/ic_search.svg'),
+                    //           CustomRadioLisTile(
+                    //             text: controller.specializtionList[4],
+                    //             groupValue: controller.radioValue.value,
+                    //             onchanged: (value) {
+                    //               controller.radioValue.value = value!;
+                    //             },
+                    //             value: controller.specializtionList[4],
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Column(
+                    //         children: [
+                    //           SvgPicture.asset('assets/images/ic_search.svg'),
+                    //           CustomRadioLisTile(
+                    //             text: controller.specializtionList[5],
+                    //             groupValue: controller.radioValue.value,
+                    //             onchanged: (value) {
+                    //               controller.radioValue.value = value!;
+                    //             },
+                    //             value: controller.specializtionList[5],
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       //
+                    //     ],
+                    //   ),
+                    // ),
+
                     Obx(
-                      () => Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            children: [
-                              SvgPicture.asset('assets/images/ic_search.svg'),
-                              CustomRadioLisTile(
-                                text: controller.specializtionList[0],
-                                groupValue: controller.radioValue.value,
-                                onchanged: (value) {
-                                  controller.radioValue.value = value!;
-                                },
-                                value: controller.specializtionList[0],
+                      () => SizedBox(height: height*0.3,
+                        child: controller.isLodding.value
+                            ? ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return Column(
+                                    children: [
+                                      CachedNetworkImage(
+                                        height: height * 0.1,
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                        // width: width,
+                                        placeholder: (context, url) =>
+                                            CircularProgressIndicator(
+                                          color: AppColors.mainOrangeColor,
+                                          strokeWidth: 2,
+                                        ),
+                                        imageUrl: controller
+                                            .specializationList[index][1],
+                                      ),
+                                      CustomRadioLisTile(
+                                        text: controller
+                                            .specializationList[index][0],
+                                        groupValue: controller.radioValue.value,
+                                        onchanged: (value) {
+                                          controller.radioValue.value = value!;
+                                        },
+                                        value: controller
+                                            .specializationList[index][0],
+                                      ),
+                                    ],
+                                  );
+                                })
+                            : SpinKitWave(
+                                color: AppColors.mainPurple1,
+                                size: width * 0.09,
                               ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              SvgPicture.asset('assets/images/ic_search.svg'),
-                              CustomRadioLisTile(
-                                text: controller.specializtionList[1],
-                                groupValue: controller.radioValue.value,
-                                onchanged: (value) {
-                                  controller.radioValue.value = value!;
-                                },
-                                value: controller.specializtionList[1],
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              SvgPicture.asset('assets/images/ic_search.svg'),
-                              CustomRadioLisTile(
-                                text: controller.specializtionList[2],
-                                groupValue: controller.radioValue.value,
-                                onchanged: (value) {
-                                  controller.radioValue.value = value!;
-                                },
-                                value: controller.specializtionList[2],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Obx(
-                      () => Row(
-                        children: [
-                          Column(
-                            children: [
-                              SvgPicture.asset('assets/images/ic_search.svg'),
-                              CustomRadioLisTile(
-                                text: controller.specializtionList[3],
-                                groupValue: controller.radioValue.value,
-                                onchanged: (value) {
-                                  controller.radioValue.value = value!;
-                                },
-                                value: controller.specializtionList[3],
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              SvgPicture.asset('assets/images/ic_search.svg'),
-                              CustomRadioLisTile(
-                                text: controller.specializtionList[4],
-                                groupValue: controller.radioValue.value,
-                                onchanged: (value) {
-                                  controller.radioValue.value = value!;
-                                },
-                                value: controller.specializtionList[4],
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              SvgPicture.asset('assets/images/ic_search.svg'),
-                              CustomRadioLisTile(
-                                text: controller.specializtionList[5],
-                                groupValue: controller.radioValue.value,
-                                onchanged: (value) {
-                                  controller.radioValue.value = value!;
-                                },
-                                value: controller.specializtionList[5],
-                              ),
-                            ],
-                          ),
-                          //
-                        ],
                       ),
                     ),
                     (width * 0.05).sbh,
