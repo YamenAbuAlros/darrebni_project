@@ -6,6 +6,8 @@ import 'package:template/ui/shared/custom_widgets/custom_button.dart';
 import 'package:template/ui/shared/custom_widgets/custom_text.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 
+import '../../../shared/utils.dart';
+
 class NotificationView extends StatefulWidget {
   const NotificationView({super.key});
 
@@ -19,29 +21,29 @@ class _NotificationViewState extends State<NotificationView> {
     return Column(
       children: [
         const CustomAppBar(iconName: 'ic_back', text: 'الإشعارات'),
-        (80).sbh,
+        (width*0.14).sbh,
         SvgPicture.asset('assets/images/notification.svg'),
-        (30).sbh,
+        (width*0.07).sbh,
         CustomText(
-            text: 'الإشعارات', fontsize: 28, textcolor: AppColors.maingrey),
-        (20).sbh,
+            text: 'الإشعارات', fontsize: width*0.07, textcolor: AppColors.maingrey),
+        (width*0.08).sbh,
         CustomText(
           text:
           'أبقى على إطلاع بمواعيد الإمتحان الوطني\n صدور النتائج، إضافة أسئلة، والكثير من\n الأخبار',
-          fontsize: 14,
+          fontsize: width*0.04,
           textcolor: AppColors.maingrey,
           isTextAlignCenter: true,
         ),
-        (40).sbh,
+        (width*0.09).sbh,
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
+          padding:  EdgeInsets.symmetric(horizontal: width*0.12),
           child: CustomButton(text: 'تفعيل الإشعارات', textColor: AppColors.mainWhite),
         ),
-        (10).sbh,
+        (width*0.03).sbh,
         CustomText(
           text:'تجاهل',
           isDecoration:true,
-          fontsize: 8,
+          fontsize: width*0.04,
           textcolor: AppColors.maingrey,
         ),
       ],

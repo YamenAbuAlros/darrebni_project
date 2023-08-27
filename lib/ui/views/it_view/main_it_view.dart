@@ -13,7 +13,9 @@ import 'package:template/ui/views/it_view/main_it_controller.dart';
 
 class MainItView extends StatefulWidget {
   const MainItView({super.key, required this.collageName});
+
   final String collageName;
+
   @override
   State<MainItView> createState() => _MainItViewState();
 }
@@ -107,51 +109,12 @@ class _MainItViewState extends State<MainItView> {
                                 ),
                               ),
                             )),
-                    // Container(
-                    //   width: width * 0.02,
-                    //   height: width * 0.02,
-                    //   decoration: BoxDecoration(
-                    //       border: Border.all(width: width * 0.005)),
-                    // ),
-                    // (width * 0.01).sbw,
-                    // Container(
-                    //   width: width * 0.02,
-                    //   height: width * 0.02,
-                    //   decoration: BoxDecoration(
-                    //       border: Border.all(width: width * 0.005)),
-                    // ),
-                    // (width * 0.01).sbw,
-                    // Container(
-                    //   width: width * 0.02,
-                    //   height: width * 0.02,
-                    //   decoration: BoxDecoration(
-                    //       border: Border.all(width: width * 0.005)),
-                    // )
                   ),
                   (height * 0.04).sbh,
                   CustomContainer(
                     text: 'التصنيفات',
                     color: AppColors.mainBlack,
                   ),
-                  // Wrap(
-                  //   spacing: 8.0, // المسافة الأفقية بين الأزرار
-                  //   runSpacing: 8.0, // المسافة الرأسية بين الأزرار
-                  //   children: controller.nameList.map((buttonText) {
-                  //     final textLength = buttonText.length;
-                  //     final buttonWidth =
-                  //         textLength * 12.0 + 32.0; // تعديل القيمة حسب احتياجاتك
-
-                  //     return ElevatedButton(
-                  //       onPressed: () {
-                  //         // Button onPressed logic
-                  //       },
-                  //       child: SizedBox(
-                  //         width: buttonWidth,
-                  //         child: Text(buttonText),
-                  //       ),
-                  //     );
-                  //   }).toList(),
-                  // ),
                   (width * 0.05).sbh,
                   Wrap(
                       // crossAxisAlignment: WrapCrossAlignment.center,
@@ -159,16 +122,18 @@ class _MainItViewState extends State<MainItView> {
                       runSpacing: width * 0.02,
                       alignment: WrapAlignment.center,
                       children: List.generate(
-                        controller.nameList.length,
+                        controller.nameOfSpecializations.length,
                         (index) {
-                          final textLength = controller.nameList[index].length;
+                          final textLength =
+                              controller.nameOfSpecializations[index].length;
                           final buttonWidth = (textLength * (width * 0.03)) +
                               width * 0.02; // تعديل القيمة حسب احتياجات
-                          return CustomButton(
+                          return Obx(() => CustomButton(
                               onPressed: () {
                                 Get.to(ItView(
                                   collageName: controller.collageName,
-                                  materialName: controller.nameList[index],
+                                  materialName:
+                                  controller.nameOfSpecializations[index],
                                 ));
                               },
                               // isBackgroundColor: false,
@@ -177,8 +142,9 @@ class _MainItViewState extends State<MainItView> {
                               widthSize: buttonWidth > width * 0.15
                                   ? buttonWidth
                                   : width * 0.19,
-                              text: controller.nameList[index],
-                              textColor: AppColors.mainPurple1);
+                              text: controller.nameOfSpecializations[index],
+                              textColor: AppColors.mainPurple1));
+
                         },
                       )),
                   (width * 0.05).sbh,

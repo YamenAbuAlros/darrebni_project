@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:template/core/enums/bottom_navigation.dart';
+import 'package:template/core/utilis/general_util.dart';
+import 'package:template/ui/shared/custom_widgets/custom_overalay.dart';
 
 import '../../../shared/colors.dart';
 import '../../../shared/utils.dart';
@@ -90,7 +92,8 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   }) {
     return InkWell(
       onTap: () {
-        onTap();
+        storage.isLoggedIn?
+        onTap():showCustomAlertDialog();
       },
       child: Column(
         children: [

@@ -10,7 +10,6 @@ import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/main_view/main_view.dart';
 import 'package:template/ui/views/register_view/register_view.dart';
-
 import '../../shared/custom_widgets/custom_tap_bar.dart';
 import 'login_controller.dart';
 
@@ -48,7 +47,7 @@ class _LoginViewState extends State<LoginView> {
                     keyboardtype: TextInputType.text,
                     prefixIconName: 'ic_profile',
                     hinttext: "اسم المستخدم",
-                    controller: controller.userController,
+                    controller: controller.userNameController,
                     validator: (value) {
                       if (value!.isEmpty) return 'الرجاء إدخال اسمك';
 
@@ -62,20 +61,17 @@ class _LoginViewState extends State<LoginView> {
                   const CustomText(text: "رمز الدخول"),
                   (width * 0.03).sbh,
                   CustomTextField(
-                      keyboardtype: TextInputType.number,
                       validator: (value) {
                         if (value!.isEmpty) return 'الرجاء إدخال رمز الدخول';
                         return null;
                       },
                       prefixIconName: "ic_key",
                       hinttext: "رمز الدخول",
-                      controller: controller.loginController),
+                      controller: controller.codeLoginController),
                   (width * 0.05).sbh,
                   CustomButton(
                     onPressed: () {
-                      if (controller.formKey.currentState!.validate()) {
-                        // Get.to();
-                      }
+                      controller.login();
                     },
                     text: "تسجيل الدخول",
                     textColor: AppColors.mainWhite,
@@ -85,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
                       text1: 'ليس لديك حساب؟',
                       text2: 'أنشأ حسابك الان',
                       ontap: () {
-                        Get.to(const RegisterView());
+                        Get.off(() =>const RegisterView());
                       }),
                   const Spacer(),
                   InkWell(

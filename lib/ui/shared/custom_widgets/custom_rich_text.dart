@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:template/ui/shared/colors.dart';
 import 'package:template/ui/shared/custom_widgets/custom_text.dart';
+import 'package:template/ui/shared/utils.dart';
 
 class CustomRichText extends StatelessWidget {
   const CustomRichText(
@@ -21,10 +22,15 @@ class CustomRichText extends StatelessWidget {
           text: text1,
           textcolor: AppColors.mainBlack,
         ),
-        InkWell(
+        InkWell( highlightColor: Colors.transparent, // تعيين لون اللزن أثناء التأشير
+
           onTap: ontap,
-          child: CustomText(
-            text: text2,
+          child: SizedBox(width:width*0.3 ,height: height*0.05,
+            child: Center(
+              child: CustomText(
+                text: text2,
+              ),
+            ),
           ),
         ),
       ],

@@ -1,13 +1,23 @@
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:template/core/data/repositories/get_myprofile_repositories.dart';
+import 'package:template/core/data/repositories/update_photo_repositories.dart';
 import 'package:template/core/enums/image_type.dart';
-
+import 'package:template/core/utilis/general_util.dart';
+import 'package:template/ui/views/login_view/login_view.dart';
+import '../../../../core/data/repositories/logout_repositories.dart';
+import '../../../../core/data/repositories/shared_preference_repositories.dart';
+import '../../../../core/enums/message_type.dart';
 import '../../../shared/colors.dart';
+import 'package:cross_file/cross_file.dart';
+
+import '../../../shared/custom_widgets/custom_showtoast.dart';
 
 class ProfileController extends GetxController {
-TextEditingController  complaintController=TextEditingController();
+  TextEditingController complaintController = TextEditingController();
 
   final ImagePicker picker = ImagePicker();
   bool userChoose = false;
@@ -17,6 +27,7 @@ TextEditingController  complaintController=TextEditingController();
   var tosendRequest;
   XFile? ifChoose;
   FilePickerResult? result;
+
 ////////////////////////////////////////////
   bool isClicked = false;
   var image;
@@ -51,7 +62,7 @@ TextEditingController  complaintController=TextEditingController();
         ],
       ),
       backgroundColor: AppColors.mainWhiteColor,
-  );
+    );
   }
 
   Future<void> pikFile(ImageType type) async {
@@ -74,5 +85,24 @@ TextEditingController  complaintController=TextEditingController();
     update();
 
     Get.back();
+  }
+
+  Future EditImageProgile() async {
+    await UpdatePhotoRepositories.updatePhoto(photo: File(choosedImage!.path));
+    await GetMyProfileRepositories.getMyProfile();
+  }
+
+  void logout() {
+    LogoutRepositories.logout().then((value) {
+      value.fold((l) { CustomShowToast.showMessage(
+          message: l, messageType: MessageType.REJECTED);}, (r) {
+        if(r){storage.removeToken();
+          Get.offAll(LoginView());}
+        else {
+          CustomShowToast.showMessage(
+        message: 'الرجاء التأكد من الأنترنت', messageType: MessageType.REJECTED);
+        }
+      });
+    });
   }
 }

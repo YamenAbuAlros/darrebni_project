@@ -5,14 +5,17 @@ import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
 import 'package:template/ui/shared/custom_widgets/custom_button.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
+import 'package:template/ui/views/it_question/it_question_view.dart';
 
 import 'main_it_controller.dart';
 
 class ItView extends StatefulWidget {
   const ItView(
       {super.key, required this.collageName, required this.materialName});
+
   final String collageName;
   final String materialName;
+
   @override
   State<ItView> createState() => _ItViewState();
 }
@@ -41,11 +44,29 @@ class _ItViewState extends State<ItView> {
             children: [
               (height * 0.08).sbh,
               CustomButton(
-                  text: 'دورات',
-                  textColor: AppColors.mainWhite,
-                  backgroundColor: AppColors.mainblue1),
+                text: 'دورات',
+                textColor: AppColors.mainWhite,
+                backgroundColor: AppColors.mainblue1,
+                onPressed: () {
+                  Get.to(ItQuestionView(
+                    collageName: controller.collageName,
+                    materialName: widget.materialName,
+                    typeOfQuestion: 'دورات',
+                  ));
+                },
+              ),
               (height * 0.08).sbh,
-              CustomButton(text: 'أسئلة الكتاب', textColor: AppColors.mainWhite)
+              CustomButton(
+                text: 'أسئلة الكتاب',
+                textColor: AppColors.mainWhite,
+                onPressed: () {
+                  Get.to(ItQuestionView(
+                    collageName: controller.collageName,
+                    materialName: widget.materialName,
+                    typeOfQuestion: 'أسئلة الكتاب',
+                  ));
+                },
+              )
             ],
           ),
         )

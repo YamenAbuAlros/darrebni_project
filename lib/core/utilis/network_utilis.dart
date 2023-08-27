@@ -8,7 +8,8 @@ import 'package:mime/mime.dart';
 import 'package:path/path.dart' as path;
 
 class NetworkUtil {
-  static String baseUrl = "training.owner-tech.com";
+  static String baseUrl = "backendsp01.000webhostapp.com";
+
   // static String baseUrl = "electra-space-api.owner-tech.com";
 
   static var client = http.Client();
@@ -22,9 +23,10 @@ class NetworkUtil {
     Map<String, dynamic>? params,
   }) async {
     try {
-      var uri = Uri.https(baseUrl, url, params);
+      // var uri = Uri.https(baseUrl, url, params);
+      var request = http.MultipartRequest('POST', Uri.https(baseUrl, url, params));
 
-      var request = http.MultipartRequest(method.name.toString(), uri);
+      // var request = http.MultipartRequest(method.name.toString(), uri);
 
       var filesKeyList = files!.keys.toList();
       var filesNameList = files.values.toList();

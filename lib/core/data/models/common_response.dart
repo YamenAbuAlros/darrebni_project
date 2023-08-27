@@ -9,7 +9,7 @@ class CommonResponse<T> {
       this.data = json['response'];
     } else {
       if (json['response'] != null && json['response'] is Map) {
-        this.message = json['response']['title'];
+        this.message = json['message'];
       } else {
         switch (statusCode) {
           case 400:
@@ -17,6 +17,9 @@ class CommonResponse<T> {
             break;
           case 401:
             this.message = "401 UnAuthorized";
+            break;
+          case 409:
+            this.message = "409 UnAuthorized";
             break;
           case 404:
             this.message = "404 Not Found";
