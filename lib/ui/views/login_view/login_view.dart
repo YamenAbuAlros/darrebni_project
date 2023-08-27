@@ -81,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
                       text1: 'ليس لديك حساب؟',
                       text2: 'أنشأ حسابك الان',
                       ontap: () {
-                        Get.off(const RegisterView());
+                        Get.off(() =>const RegisterView());
                       }),
                   const Spacer(),
                   InkWell(

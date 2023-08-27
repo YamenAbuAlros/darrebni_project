@@ -6,28 +6,27 @@ import 'package:template/core/data/network/network_config.dart';
 import 'package:template/core/enums/request_type.dart';
 import 'package:template/core/utilis/network_utilis.dart';
 
-class SpecializationsOfCollegeByIdRepositories {
-  static Future<Either<String, List<SpecializationsOfCollegeByIdModel>>>
-      specializationsOfCollege({required idOfCollege}) async {
+class AllCollegeRepositories {
+  static Future<Either<String, List<College>>> allColleges() async {
     try {
       return NetworkUtil.sendRequest(
               type: RequestType.GET,
-              url: CollegeEndpoint.allCollege+idOfCollege,
+              url: CollegeEndpoint.allCollege,
               headers: NetworkConfig.getHeaders(
-                  needAuth: true, type: RequestType.GET,))
+                  needAuth: false, type: RequestType.GET))
           .then((respons) {
         CommonResponse<dynamic> commonResponse =
             CommonResponse.fromJson(respons);
         if (commonResponse.getstatus && commonResponse.data["status"] == true) {
-          List<SpecializationsOfCollegeByIdModel> resultList = [];
-          commonResponse.data['data']['specializations'].forEach(
+          List<College> resultList = [];
+          commonResponse.data['data']['colleges'].forEach(
             (element) {
-              resultList
-                  .add(SpecializationsOfCollegeByIdModel.fromJson(element));
+              resultList.add(College.fromJson(element));
             },
           );
           return Right(resultList);
-        } else {
+        }
+        else {
           (commonResponse.data.message);
           return Left(commonResponse.data['message'] ?? '');
         }

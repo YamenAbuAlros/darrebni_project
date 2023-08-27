@@ -2,19 +2,14 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:template/core/data/repositories/all_category_reositories.dart';
 import 'package:template/core/enums/message_type.dart';
 import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
-import '../../../../core/data/repositories/category_repositories/all_categories_repositories.dart';
+import '../../../../core/data/repositories/all_college_repositories.dart';
 
 class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
 
-  // List<String> categoriesList = ['الكل', 'الكليات الهندسية', 'الكليات الطبية'];
-  RxList<Map<String, List<String>>> Colleges = [
-    {
-      '': ['']
-    }
-  ].obs;
   Map<String, List<String>> Colleges22 = {};
   RxList categoriesAllName = [].obs;
   RxList<List<String>> collegesAllName = [
@@ -72,37 +67,36 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    allCategories();
     super.onInit();
   }
 
-  Future allCategories() async {
-    await AllCollegeRepositories.allCategories().then((value) {
-      value.fold((l) {
-        CustomShowToast.showMessage(
-            message: l, messageType: MessageType.REJECTED);
-      }, (r) {
-        for (var college in r) {
-          String nameCategory = college.category!.name!;
-          String nameColleges = college.name!;
-          String logoCategory = college.category!.logo!;
-          String IdCategory = college.category!.id!.toString();
-          String logoColleges = college.logo!;
-          if (!Colleges22.containsKey(nameCategory)) {
-            Colleges22.addAll({
-              nameCategory: [nameColleges, logoColleges,IdCategory],
-            });
-          } else if (Colleges22.containsKey(nameCategory)) {
-            Colleges22[nameCategory]!.add(nameColleges,);
-            Colleges22[nameCategory]!.add(logoColleges);
-            Colleges22[nameCategory]!.add(IdCategory);
-          }
-        }
-        // categoriesAllName.value = Colleges22.keys.toList();
-        Colleges22.isNotEmpty ? get() : null;
-      });
-    });
-  }
+  // Future allCategories() async {
+  //   await AllCollegeRepositories.allColleges().then((value) {
+  //     value.fold((l) {
+  //       CustomShowToast.showMessage(
+  //           message: l, messageType: MessageType.REJECTED);
+  //     }, (r) {
+  //       for (var college in r) {
+  //         String nameCategory = college.category!.name!;
+  //         String nameColleges = college.name!;
+  //         String logoCategory = college.category!.logo!;
+  //         String IdCategory = college.category!.id!.toString();
+  //         String logoColleges = college.logo!;
+  //         if (!Colleges22.containsKey(nameCategory)) {
+  //           Colleges22.addAll({
+  //             nameCategory: [nameColleges, logoColleges,IdCategory],
+  //           });
+  //         } else if (Colleges22.containsKey(nameCategory)) {
+  //           Colleges22[nameCategory]!.add(nameColleges,);
+  //           Colleges22[nameCategory]!.add(logoColleges);
+  //           Colleges22[nameCategory]!.add(IdCategory);
+  //         }
+  //       }
+  //       // categoriesAllName.value = Colleges22.keys.toList();
+  //       Colleges22.isNotEmpty ? get() : null;
+  //     });
+  //   });
+  // }
 
   get() {
     Colleges22.values.forEach((element) {
@@ -110,6 +104,29 @@ class HomeController extends GetxController {
     });
     Colleges22.keys.forEach((element) {
       categoriesAllName.add(element);
+    });
+  }
+
+  Future allColleges()async{
+    await AllCollegeRepositories.allColleges().then((value) {
+      value.fold((l) {
+        CustomShowToast.showMessage(
+            message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+
+      });
+    });
+  }
+
+
+  Future allCategories()async{
+    await AllCollegeRepositories.allColleges().then((value) {
+      value.fold((l) {
+        CustomShowToast.showMessage(
+            message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+
+      });
     });
   }
   // updateSpecializzationListShow(String nameOfCategories){
@@ -123,4 +140,5 @@ class HomeController extends GetxController {
   //     specializationListShow.addAll(Colleges22[])
   //   }
   // }
+
 }

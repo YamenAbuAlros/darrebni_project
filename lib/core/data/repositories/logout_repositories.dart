@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:template/core/data/network/endpoints/profile_endpoints.dart';
 import 'package:template/core/enums/request_type.dart';
 
-import '../../../enums/request_type_multipart.dart';
-import '../../../utilis/network_utilis.dart';
-import '../../models/common_response.dart';
-import '../../network/network_config.dart';
+import '../../enums/request_type_multipart.dart';
+import '../../utilis/network_utilis.dart';
+import '../models/common_response.dart';
+import '../network/network_config.dart';
 
 class LogoutRepositories {
   static Future<Either<String, bool>> logout(

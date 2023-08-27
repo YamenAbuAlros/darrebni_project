@@ -1,19 +1,27 @@
+import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:template/core/data/models/common_response.dart';
-import 'package:template/core/data/models/profile_model/get_myprofle_model.dart';
+import 'package:template/core/data/models/update_photo_model.dart';
 import 'package:template/core/data/network/endpoints/profile_endpoints.dart';
 import 'package:template/core/data/network/network_config.dart';
 import 'package:template/core/enums/request_type.dart';
-import '../../../utilis/network_utilis.dart';
+import 'package:template/core/enums/request_type_multipart.dart';
+import '../../utilis/network_utilis.dart';
 
-class GetMyProfileRepositories {
-  static Future<Either<String, GetMyProfileModel>> getMyProfile() async {
+class UpdatePhotoRepositories {
+  static Future<Either<String,UpdatePhotoModel>> updatePhoto(
+      {required File photo,}) async {
     try {
-      return NetworkUtil.sendRequest(type: RequestType.GET,
-          url: ProfileEndPoint.getMyProfile,
+      return NetworkUtil.postMultipart(
+          method: MultiRequestType.POST,
+          url: ProfileEndPoint.updatePhoto,
+          files: {
+            'photo2':photo.toString(),
+          },
           headers: NetworkConfig.getHeaders(
+              extraHeaders: {"Content-Type": "multipart/form-data;"},
               needAuth: true,
-              type: RequestType.GET))
+              type: RequestType.POST))
           .then((respons) {
         CommonResponse<dynamic> commonResponse =
         CommonResponse.fromJson(respons);
