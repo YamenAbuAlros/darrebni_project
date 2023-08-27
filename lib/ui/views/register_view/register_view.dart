@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/colors.dart';
 import 'package:template/ui/shared/custom_widgets/custom_button.dart';
@@ -174,47 +173,94 @@ class _RegisterViewState extends State<RegisterView> {
                     //     ],
                     //   ),
                     // ),
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+                  //--------------------------------------------------------------------------------
+                  //   SizedBox(
+                  //       child: Obx(
+                  //             () => controller.isNotLodding.value
+                  //             ? ListView.builder(
+                  //               itemCount:controller.specializationList.length ,
+                  //             scrollDirection: Axis.horizontal,
+                  //             itemBuilder: (context, index) {
+                  //               return Column(
+                  //                 children: [
+                  //                   CachedNetworkImage(
+                  //                     height: height * 0.1,
+                  //                     errorWidget: (context, url, error) =>
+                  //                     const Icon(Icons.error),
+                  //                     // width: width,
+                  //                     placeholder: (context, url) =>
+                  //                         CircularProgressIndicator(
+                  //                           color: AppColors.mainOrangeColor,
+                  //                           strokeWidth: 2,
+                  //                         ),
+                  //                     imageUrl: controller
+                  //                         .specializationList[index][1],
+                  //                   ),
+                  //                   CustomRadioLisTile(
+                  //                     text: controller
+                  //                         .specializationList[index][0],
+                  //                     groupValue:
+                  //                     controller.radioValue.value,
+                  //                     onchanged: (value) {
+                  //                       controller.radioValue.value =
+                  //                       value!;
+                  //                     },
+                  //                     value: controller
+                  //                         .specializationList[index][0],
+                  //                   ),
+                  //                 ],
+                  //               );
+                  //             })
+                  //             : SpinKitWave(
+                  //           color: AppColors.mainPurple1,
+                  //           size: width * 0.09,
+                  //         ),
+                  //       )),
 
                     Obx(
-                      () => SizedBox(height: height*0.3,
-                        child: controller.isLodding.value
-                            ? ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) {
-                                  return Column(
-                                    children: [
-                                      CachedNetworkImage(
-                                        height: height * 0.1,
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.error),
-                                        // width: width,
-                                        placeholder: (context, url) =>
-                                            CircularProgressIndicator(
+                          () => controller.isNotLodding.value
+                          ? Wrap(
+                            alignment: WrapAlignment.start, // محاذاة العناصر في الزاوية العليا اليسرى
+                            spacing: width * 0.01,
+                            runSpacing: width * 0.01,
+                        children: List.generate(
+                          controller.specializationList.length,
+                              (index) {
+                            return SizedBox(width: width*0.35,
+                              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CachedNetworkImage(
+                                    height: height * 0.04,
+                                    errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(
                                           color: AppColors.mainOrangeColor,
                                           strokeWidth: 2,
                                         ),
-                                        imageUrl: controller
-                                            .specializationList[index][1],
-                                      ),
-                                      CustomRadioLisTile(
-                                        text: controller
-                                            .specializationList[index][0],
-                                        groupValue: controller.radioValue.value,
-                                        onchanged: (value) {
-                                          controller.radioValue.value = value!;
-                                        },
-                                        value: controller
-                                            .specializationList[index][0],
-                                      ),
-                                    ],
-                                  );
-                                })
-                            : SpinKitWave(
-                                color: AppColors.mainPurple1,
-                                size: width * 0.09,
+                                    imageUrl: 'https://backendsp01.000webhostapp.com/public/images/college/1692752664.jpg',
+                                  ),
+                                  CustomRadioLisTile(
+                                    text: controller.specializationList[index][0],
+                                    groupValue: controller.radioValue.value,
+                                    onchanged: (value) {
+                                      controller.radioValue.value = value!;
+                                    },
+                                    value: controller.specializationList[index][2],
+                                  ),
+                                ],
                               ),
+                            );
+                          },
+                        ),
+                      )
+                          : SpinKitWave(
+                        color: AppColors.mainPurple1,
+                        size: width * 0.09,
                       ),
                     ),
+
                     (width * 0.05).sbh,
                     CustomButton(
                       onPressed: () {

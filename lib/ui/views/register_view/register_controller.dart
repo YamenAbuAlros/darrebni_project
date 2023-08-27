@@ -15,29 +15,17 @@ import '../../../core/data/repositories/category_repositories/all_categories_rep
 
 class RegisterController extends BaseController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  RxString radioValue = ''.obs;
+  RxInt radioValue = 0.obs;
   TextEditingController userController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  List<List> specializationList = [[]].obs;
-  RxBool isLodding =true.obs;
-  List<String> specializtionList = [
-    'الطب البشري',
-    'طب الأسنان',
-    'كلية الصيدلة',
-    'الهندسة  المعلوماتية',
-    'الهندسة المعمارية',
-    'التمريض'
-  ];
+  RxList<List> specializationList = <List>[].obs;
+  RxBool isNotLodding =false.obs;
   @override
   onInit() {
     // getAllSpecializtions();
     geAllCollage();
     super.onInit();
   }
-
-  // void getAllSpecializtions() {
-  //   NetworkUtil.sendRequest(type: RequestType.GET, url: '/');
-  // }
 
   void register() {
     if (formKey.currentState!.validate()) {
@@ -46,7 +34,7 @@ class RegisterController extends BaseController {
               .register(
                   name: userController.text,
                   phone: phoneController.text,
-                  college_id:1 )
+                  college_id:radioValue.value)
               .then((value) {
         value.fold(
                 (l) {
@@ -69,13 +57,12 @@ class RegisterController extends BaseController {
             message: l, messageType: MessageType.REJECTED);
       }, (r) {
         for(var specializtion in r){
-                     specializationList.add([specializtion.name,specializtion.logo]);
+          List specializ=[specializtion.name,specializtion.logo,specializtion.id];
+                     specializationList.add(specializ);
                    }
-        isLodding.value=false;
-          //          // Get.off(const LoginView(), transition: Transition.cupertino);
+        isNotLodding.value=true;
       });
     });
   }
-
 
 }
