@@ -9,11 +9,11 @@ import '../../../core/data/repositories/all_college_repositories.dart';
 
 class RegisterController extends BaseController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  RxInt radioValue = 0.obs;
+  RxInt collegeId = 0.obs;
   TextEditingController userController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   RxList<List> specializationList = <List>[].obs;
-  RxBool isNotLodding =false.obs;
+  RxBool isLoading =true.obs;
   @override
   onInit() {
     // getAllSpecializtions();
@@ -28,7 +28,7 @@ class RegisterController extends BaseController {
               .register(
                   name: userController.text,
                   phone: phoneController.text,
-                  college_id:radioValue.value)
+                  college_id:collegeId.value)
               .then((value) {
         value.fold(
                 (l) {
@@ -36,8 +36,6 @@ class RegisterController extends BaseController {
               message: l, messageType: MessageType.REJECTED);
         },
                 (r) {
-          // storage.setSubStatus(true);
-          // storage.setTokenIno(r);
           Get.off(const MainView(), transition: Transition.cupertino);
         });
       }));
@@ -54,7 +52,7 @@ class RegisterController extends BaseController {
           List specializ=[specializtion.name,specializtion.logo,specializtion.id];
                      specializationList.add(specializ);
                    }
-        isNotLodding.value=true;
+        isLoading.value=false;
       });
     });
   }

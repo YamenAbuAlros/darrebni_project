@@ -2,7 +2,9 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:template/core/data/models/all_slider_model.dart';
 import 'package:template/core/data/repositories/all_category_reositories.dart';
+import 'package:template/core/data/repositories/slider_all_repositories.dart';
 import 'package:template/core/enums/message_type.dart';
 import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
 import '../../../../core/data/repositories/all_college_repositories.dart';
@@ -34,9 +36,7 @@ class HomeController extends GetxController {
     ['هندسة معلوماتية', 'It'],
     ['هندسة معمارية', 'ARCH']
   ];
-  List<String> specializationListShow = [
-
-  ];
+  List<AllSliderModel> allSlider=<AllSliderModel>[].obs;
 
   void changeList(int index) {
     selectedNum.value = index;
@@ -67,6 +67,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
+    getAllSlider();
     super.onInit();
   }
 
@@ -129,16 +130,17 @@ class HomeController extends GetxController {
       });
     });
   }
-  // updateSpecializzationListShow(String nameOfCategories){
-  //
-  //   specializationListShow.forEach((element) {
-  //     specializationListShow.addAll(Colleges22.values);
-  //   });
-  //   specializationListShow.addAll(Colleges22[nameOfCategories]);
-  //   if(indexOfCategories==1){
-  //     specializationListShow.clear();
-  //     specializationListShow.addAll(Colleges22[])
-  //   }
-  // }
+
+  Future getAllSlider()async{
+    await AllSliderRepositories.allSlider().then((value) {
+      value.fold((l) {
+        CustomShowToast.showMessage(
+            message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        allSlider.addAll(r);
+      });
+    });
+  }
+
 
 }

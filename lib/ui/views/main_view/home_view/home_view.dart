@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -36,192 +37,196 @@ class _HomeViewState extends State<HomeView> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.05),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                 CustomTextField(
-                    controller: controller.searchController,
-                    prefixIconName: 'ic_search',
-                    hinttext: 'بحث'),
-                // (height * 0.005).sbh,
-                CarouselSlider(
-                  items: [
-                    Image.asset('assets/images/ad-section.png'),
-                    Image.asset('assets/images/ad-section.png'),
+                controller: controller.searchController,
+                prefixIconName: 'ic_search',
+                hinttext: 'بحث'),
+            // (height * 0.005).sbh,
+            Obx(() => CarouselSlider(
+              items: List.generate(controller.allSlider.length, (index){
+                return CachedNetworkImage(
+                  height: height * 0.1,
+                  errorWidget: (context, url, error) =>
+                  const Icon(Icons.error),
+                  // width: width,
 
-                    Image.asset('assets/images/ad-section.png'),
-
-                    // CachedNetworkImage(
-                    //   height: height * 0.1,
-                    //   errorWidget: (context, url, error) =>
-                    //       const Icon(Icons.error),
-                    //   // width: width,
-
-                    //   placeholder: (context, url) => CircularProgressIndicator(
-                    //     color: AppColors.mainOrangeColor,
-                    //     strokeWidth: 2,
-                    //   ),
-                    //   imageUrl: 'assets/images/ad-section.svg',
-                    // ),
-                  ],
-                  options: CarouselOptions(
-                    aspectRatio: 3,
-                    // height: height * 0.4,
-                    initialPage: 0,
-                    enableInfiniteScroll: false,
-                    reverse: false,
-                    autoPlayAnimationDuration:
-                        const Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enlargeCenterPage: true,
-                    enlargeFactor: 0.3,
-                    onPageChanged: (i, _) {
-                      controller.indexCarousel.value = i;
-                    },
-                    scrollDirection: Axis.horizontal,
+                  placeholder: (context, url) => CircularProgressIndicator(
+                    color: AppColors.mainPurple1,
+                    strokeWidth: 2,
                   ),
-                ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                        3,
-                        (index) => Obx(
-                              () => Padding(
-                                padding: EdgeInsetsDirectional.only(
-                                    end: width * 0.01),
-                                child: Container(
-                                  width: width * 0.02,
-                                  height: width * 0.02,
-                                  decoration: BoxDecoration(
-                                      color: controller.indexCarousel == index
-                                          ? AppColors.mainPurple1
-                                          : null,
-                                      border: Border.all(width: width * 0.005)),
-                                ),
-                              ),
-                            ))),
+                  imageUrl: controller.allSlider[index].imageUrl.toString(),
+                );
+              }),
 
-                CustomContainer(text: 'التصنيفات', color: AppColors.maingrey),
 
-                (height * 0.03).sbh,
-                SizedBox(
-                    height: height * 0.05,
-                    child: Obx(() => controller.categoriesAllName.isNotEmpty
-                        ? ListView.separated(
-                            shrinkWrap: true,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Obx(() => Container(
-                                    decoration: controller.selectedNum.value ==
-                                            index
-                                        ? BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    width: width * 0.005,
-                                                    color:
-                                                        AppColors.mainblue1)))
+              options: CarouselOptions(
+                aspectRatio: 3,
+                // height: height * 0.4,
+                initialPage: 0,
+                enableInfiniteScroll: false,
+                reverse: false,
+                autoPlayAnimationDuration:
+                const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                enlargeFactor: 0.3,
+                onPageChanged: (i, _) {
+                  controller.indexCarousel.value = i;
+                },
+                scrollDirection: Axis.horizontal,
+              ),
+            ),),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                  controller.allSlider.length,
+                      (index) =>
+                      Obx(
+                            () =>
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(
+                                  end: width * 0.01),
+                              child: Container(
+                                width: width * 0.02,
+                                height: width * 0.02,
+                                decoration: BoxDecoration(
+                                    color: controller.indexCarousel == index
+                                        ? AppColors.mainPurple1
                                         : null,
-                                    child: InkWell(
-                                      onTap: () {
-                                        controller.changeList(index);
-                                      },
-                                      child: CustomText(
-                                        text:
-                                            controller.categoriesAllName[index],
-                                        textcolor:
-                                            controller.selectedNum.value ==
-                                                    index
-                                                ? AppColors.mainblue1
-                                                : AppColors.mainBlack,
-                                      ),
-                                    ),
-                                  ));
-                            },
-                            itemCount: controller.categoriesAllName.length,
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return SizedBox(
-                                width: width * 0.05,
-                              );
-                            },
-                          )
-                        : Center(
-                            child: SpinKitWave(
-                              color: AppColors.mainPurple1,
-                              size: width * 0.09,
-                            ),
-                          ))),
-                (height * 0.025).sbh,
-                Obx(
-                  () => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: List.generate(
-                        controller.gridLength.value > 4
-                            ? controller.gridLength.value - 2
-                            : controller.gridLength.value, (index) {
-                      var imageName =
-                          controller.specializzationListShow[index].last;
-
-                      return InkWell(
-                        onTap: () {storage.isLoggedIn?
-                          Get.to(MainItView(
-                            collageName:
-                                controller.specializzationListShow[index].first,
-                          )):showCustomAlertDialog();
-                        },
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/ic_search.svg',
-                            ),
-                            (height * 0.02).sbh,
-                            CustomText(
-                                text: controller
-                                    .specializzationListShow[index].first)
-                          ],
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-                (height * 0.025).sbh,
-                Obx(() {
-                  return controller.gridLength.value == 6
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: List.generate(2, (index) {
-                            var imageName = controller
-                                .specializzationListShow[index + 4].last;
-                            return InkWell(
-                              onTap: () {
-                                Get.to(MainItView(
-                                  collageName: controller
-                                      .specializzationListShow[index].first,
-                                ));
-                              },
-                              child: Column(
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/ic_search.svg',
-                                  ),
-                                  (height * 0.02).sbh,
-                                  CustomText(
-                                      text: controller
-                                          .specializzationListShow[index + 4]
-                                          .first)
-                                ],
+                                    border: Border.all(width: width * 0.005)),
                               ),
-                            );
-                          }),
-                        )
-                      : const SizedBox();
-                }),
-              ],
-            ),
+                            ),
+                      ))),
+
+          CustomContainer(text: 'التصنيفات', color: AppColors.maingrey),
+
+          (height * 0.03).sbh,
+          SizedBox(
+              height: height * 0.05,
+              child: Obx(() =>
+              controller.categoriesAllName.isNotEmpty
+                  ? ListView.separated(
+                shrinkWrap: true,
+                physics: const AlwaysScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return Obx(() =>
+                      Container(
+                        decoration: controller.selectedNum.value ==
+                            index
+                            ? BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                    width: width * 0.005,
+                                    color:
+                                    AppColors.mainblue1)))
+                            : null,
+                        child: InkWell(
+                          onTap: () {
+                            controller.changeList(index);
+                          },
+                          child: CustomText(
+                            text:
+                            controller.categoriesAllName[index],
+                            textcolor:
+                            controller.selectedNum.value ==
+                                index
+                                ? AppColors.mainblue1
+                                : AppColors.mainBlack,
+                          ),
+                        ),
+                      ));
+                },
+                itemCount: controller.categoriesAllName.length,
+                separatorBuilder:
+                    (BuildContext context, int index) {
+                  return SizedBox(
+                    width: width * 0.05,
+                  );
+                },
+              )
+                  : Center(
+                child: SpinKitWave(
+                  color: AppColors.mainPurple1,
+                  size: width * 0.09,
+                ),
+              ))),
+          (height * 0.025).sbh,
+          Obx(
+                () =>
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: List.generate(
+                      controller.gridLength.value > 4
+                          ? controller.gridLength.value - 2
+                          : controller.gridLength.value, (index) {
+                    var imageName =
+                        controller.specializzationListShow[index].last;
+
+                    return InkWell(
+                      onTap: () {
+                        storage.isLoggedIn ?
+                        Get.to(MainItView(
+                          collageName:
+                          controller.specializzationListShow[index].first,
+                        )) : showCustomAlertDialog();
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/images/ic_search.svg',
+                          ),
+                          (height * 0.02).sbh,
+                          CustomText(
+                              text: controller
+                                  .specializzationListShow[index].first)
+                        ],
+                      ),
+                    );
+                  }),
+                ),
           ),
+          (height * 0.025).sbh,
+          Obx(() {
+            return controller.gridLength.value == 6
+                ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: List.generate(2, (index) {
+                var imageName = controller
+                    .specializzationListShow[index + 4].last;
+                return InkWell(
+                  onTap: () {
+                    Get.to(MainItView(
+                      collageName: controller
+                          .specializzationListShow[index].first,
+                    ));
+                  },
+                  child: Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/ic_search.svg',
+                      ),
+                      (height * 0.02).sbh,
+                      CustomText(
+                          text: controller
+                              .specializzationListShow[index + 4]
+                              .first)
+                    ],
+                  ),
+                );
+              }),
+            )
+                : const SizedBox();
+          }),
         ],
       ),
+    ),]
+    ,
+    )
+    ,
     );
   }
 }

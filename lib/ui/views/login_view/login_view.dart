@@ -22,6 +22,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   LoginController controller = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -81,18 +82,25 @@ class _LoginViewState extends State<LoginView> {
                       text1: 'ليس لديك حساب؟',
                       text2: 'أنشأ حسابك الان',
                       ontap: () {
-                        Get.off(() =>const RegisterView());
+                        Get.to(() => const RegisterView());
                       }),
                   const Spacer(),
-                  InkWell(
-                    onTap: () {
-                      Get.to(const MainView());
-                    },
-                    child: const Center(
-                        child: CustomText(
-                      text: 'المتابعة كزائر',
-                      isDecoration: true,
-                    )),
+                  Center(
+                    child: InkWell(
+                      highlightColor: AppColors.transparent,
+                      onTap: () {
+                        Get.to(const MainView());
+                      },
+                      child: SizedBox(
+                        width: width * 0.3,
+                        height: height * 0.05,
+                        child: const CustomText(
+                          isTextAlignCenter: true,
+                          text: 'المتابعة كزائر',
+                          isDecoration: true,
+                        ),
+                      ),
+                    ),
                   ),
                   (width * 0.1).sbh,
                 ],

@@ -12,7 +12,6 @@ import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/login_view/login_view.dart';
 import 'package:template/ui/views/register_view/register_controller.dart';
-
 import '../../../core/utilis/string_util.dart';
 import '../../shared/custom_widgets/custom_tap_bar.dart';
 
@@ -31,7 +30,6 @@ class _RegisterViewState extends State<RegisterView> {
     return SafeArea(
       child: Scaffold(
           resizeToAvoidBottomInset: false,
-          extendBody: true,
           body: SingleChildScrollView(
             child: Padding(
               padding:
@@ -81,192 +79,48 @@ class _RegisterViewState extends State<RegisterView> {
                     (width * 0.03).sbh,
                     const CustomText(text: "اختر الاختصاص"),
                     (width * 0.03).sbh,
-                    // Obx(
-                    //   () => Row(
-                    //     mainAxisAlignment: MainAxisAlignment.center,
-                    //     children: [
-                    //       Column(
-                    //         children: [
-                    //           SvgPicture.asset('assets/images/ic_search.svg'),
-                    //           CustomRadioLisTile(
-                    //             text: controller.specializtionList[0],
-                    //             groupValue: controller.radioValue.value,
-                    //             onchanged: (value) {
-                    //               controller.radioValue.value = value!;
-                    //             },
-                    //             value: controller.specializtionList[0],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //       Column(
-                    //         children: [
-                    //           SvgPicture.asset('assets/images/ic_search.svg'),
-                    //           CustomRadioLisTile(
-                    //             text: controller.specializtionList[1],
-                    //             groupValue: controller.radioValue.value,
-                    //             onchanged: (value) {
-                    //               controller.radioValue.value = value!;
-                    //             },
-                    //             value: controller.specializtionList[1],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //       Column(
-                    //         children: [
-                    //           SvgPicture.asset('assets/images/ic_search.svg'),
-                    //           CustomRadioLisTile(
-                    //             text: controller.specializtionList[2],
-                    //             groupValue: controller.radioValue.value,
-                    //             onchanged: (value) {
-                    //               controller.radioValue.value = value!;
-                    //             },
-                    //             value: controller.specializtionList[2],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-
-                    // Obx(
-                    //   () => Row(
-                    //     children: [
-                    //       Column(
-                    //         children: [
-                    //           SvgPicture.asset('assets/images/ic_search.svg'),
-                    //           CustomRadioLisTile(
-                    //             text: controller.specializtionList[3],
-                    //             groupValue: controller.radioValue.value,
-                    //             onchanged: (value) {
-                    //               controller.radioValue.value = value!;
-                    //             },
-                    //             value: controller.specializtionList[3],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //       Column(
-                    //         children: [
-                    //           SvgPicture.asset('assets/images/ic_search.svg'),
-                    //           CustomRadioLisTile(
-                    //             text: controller.specializtionList[4],
-                    //             groupValue: controller.radioValue.value,
-                    //             onchanged: (value) {
-                    //               controller.radioValue.value = value!;
-                    //             },
-                    //             value: controller.specializtionList[4],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //       Column(
-                    //         children: [
-                    //           SvgPicture.asset('assets/images/ic_search.svg'),
-                    //           CustomRadioLisTile(
-                    //             text: controller.specializtionList[5],
-                    //             groupValue: controller.radioValue.value,
-                    //             onchanged: (value) {
-                    //               controller.radioValue.value = value!;
-                    //             },
-                    //             value: controller.specializtionList[5],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //       //
-                    //     ],
-                    //   ),
-                    // ),
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //--------------------------------------------------------------------------------
-                    //   SizedBox(
-                    //       child: Obx(
-                    //             () => controller.isNotLodding.value
-                    //             ? ListView.builder(
-                    //               itemCount:controller.specializationList.length ,
-                    //             scrollDirection: Axis.horizontal,
-                    //             itemBuilder: (context, index) {
-                    //               return Column(
-                    //                 children: [
-                    //                   CachedNetworkImage(
-                    //                     height: height * 0.1,
-                    //                     errorWidget: (context, url, error) =>
-                    //                     const Icon(Icons.error),
-                    //                     // width: width,
-                    //                     placeholder: (context, url) =>
-                    //                         CircularProgressIndicator(
-                    //                           color: AppColors.mainOrangeColor,
-                    //                           strokeWidth: 2,
-                    //                         ),
-                    //                     imageUrl: controller
-                    //                         .specializationList[index][1],
-                    //                   ),
-                    //                   CustomRadioLisTile(
-                    //                     text: controller
-                    //                         .specializationList[index][0],
-                    //                     groupValue:
-                    //                     controller.radioValue.value,
-                    //                     onchanged: (value) {
-                    //                       controller.radioValue.value =
-                    //                       value!;
-                    //                     },
-                    //                     value: controller
-                    //                         .specializationList[index][0],
-                    //                   ),
-                    //                 ],
-                    //               );
-                    //             })
-                    //             : SpinKitWave(
-                    //           color: AppColors.mainPurple1,
-                    //           size: width * 0.09,
-                    //         ),
-                    //       )),
-
-                    Obx(
-                      () => controller.isNotLodding.value
-                          ? Wrap( alignment: WrapAlignment.center,
-                              runSpacing: width * 0.01,
-                              children: List.generate(
-                                controller.specializationList.length,
-                                (index) {
-                                  return Wrap(children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        CachedNetworkImage(
-                                          height: height * 0.04,
-                                          errorWidget: (context, url, error) =>
-                                              const Icon(Icons.error),
-                                          placeholder: (context, url) =>
-                                              CircularProgressIndicator(
-                                            color: AppColors.mainOrangeColor,
-                                            strokeWidth: 2,
-                                          ),
-                                          imageUrl:
-                                              'https://backendsp01.000webhostapp.com/public/images/college/1692752664.jpg',
-                                        ),
-                                        CustomRadioLisTile(
-                                          text: controller
-                                              .specializationList[index][0],
-                                          groupValue:
-                                              controller.radioValue.value,
-                                          onchanged: (value) {
-                                            controller.radioValue.value =
-                                                value!;
-                                          },
-                                          value: controller
-                                              .specializationList[index][2],
-                                        ),
-                                      ],
+                    Obx(() => controller.isLoading.value
+                        ? SpinKitWave(
+                            color: AppColors.mainPurple1,
+                            size: width * 0.09,
+                          )
+                        : Wrap(
+                            alignment: WrapAlignment.center,
+                            runSpacing: width * 0.01,
+                            children: List.generate(
+                              controller.specializationList.length,
+                              (index) {
+                                return Column(
+                                  children: [
+                                    CachedNetworkImage(
+                                      height: height * 0.04,
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(
+                                        color: AppColors.mainPurple1,
+                                        strokeWidth: 2,
+                                      ),
+                                      imageUrl: 'https://backendsp01.000webhostapp.com/public/images/college/1692752664.jpg',
+                                      // controller.specializationList[index][1],
                                     ),
-                                  ]);
-                                },
-                              ),
-                            )
-                          : SpinKitWave(
-                              color: AppColors.mainPurple1,
-                              size: width * 0.09,
+                                    CustomRadioLisTile(
+                                      text: controller
+                                          .specializationList[index][0],
+                                      groupValue: controller.collegeId.value,
+                                      onchanged: (value) {
+                                        controller.collegeId.value = value!;
+                                      },
+                                      value: controller
+                                          .specializationList[index][2],
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
-                    ),
-
+                          )),
                     (width * 0.05).sbh,
+
                     CustomButton(
                       onPressed: () {
                         controller.register();
@@ -275,7 +129,6 @@ class _RegisterViewState extends State<RegisterView> {
                       textColor: AppColors.mainWhite,
                     ),
                     (width * 0.05).sbh,
-
                     CustomRichText(
                         text1: 'لديك حساب؟',
                         text2: 'تسجيل الدخول',

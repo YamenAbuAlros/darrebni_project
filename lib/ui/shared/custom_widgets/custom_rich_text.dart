@@ -22,10 +22,10 @@ class CustomRichText extends StatelessWidget {
           text: text1,
           textcolor: AppColors.mainBlack,
         ),
-        InkWell( highlightColor: Colors.transparent, // تعيين لون اللزن أثناء التأشير
+        InkWell( highlightColor:AppColors.transparent, // تعيين لون اللزن أثناء التأشير
 
           onTap: ontap,
-          child: SizedBox(width:width*0.3 ,height: height*0.05,
+          child: SizedBox(height: height*0.05,
             child: Center(
               child: CustomText(
                 text: text2,
