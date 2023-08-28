@@ -12,29 +12,24 @@ class LoginController extends BaseController {
   TextEditingController codeLoginController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
   void login() {
     if (formKey.currentState!.validate()) {
       runFullLoadingFutureFunction(
-          function: UserRepositoriey
-              .login(
-              name: userNameController.text, code:codeLoginController.text)
+          function: UserRepositoriey.login(
+                  name: userNameController.text, code: codeLoginController.text)
               .then((value) {
-            value.fold(
-                    (l) {
-                  CustomShowToast.showMessage(
-                      message: l, messageType: MessageType.REJECTED);
-                },
-                    (r) {
-                  storage.setSubStatus(true);
-                  storage.setTokenIno(r);
-                  Get.off(const MainView(), transition: Transition.cupertino);
-                });
-          }));
+        value.fold((l) {
+          CustomShowToast.showMessage(
+              message: l, messageType: MessageType.REJECTED);
+        }, (r) {
+          storage.setTokenIno(r);
+          Get.off(const MainView(), transition: Transition.cupertino);
+        });
+      }));
     } else {}
   }
 
-@override
+  @override
   void onClose() {
     userNameController.clear();
     codeLoginController.clear();

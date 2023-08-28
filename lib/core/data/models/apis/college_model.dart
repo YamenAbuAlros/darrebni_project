@@ -1,38 +1,13 @@
-class SpecializationsOfCollegeByIdModel {
-  String? uuid;
-  String? name;
-  College? college;
-
-  SpecializationsOfCollegeByIdModel({this.uuid, this.name, this.college});
-
-  SpecializationsOfCollegeByIdModel.fromJson(Map<String, dynamic> json) {
-    uuid = json['uuid'];
-    name = json['name'];
-    college =
-        json['college'] != null ? College.fromJson(json['college']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['uuid'] = uuid;
-    data['name'] = name;
-    if (college != null) {
-      data['college'] = college!.toJson();
-    }
-    return data;
-  }
-}
-
-class College {
+class CollegeModel {
   int? id;
   String? uuid;
   String? name;
   String? logo;
   Category? category;
 
-  College({this.id, this.uuid, this.name, this.logo, this.category});
+  CollegeModel({this.id, this.uuid, this.name, this.logo, this.category});
 
-  College.fromJson(Map<String, dynamic> json) {
+  CollegeModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     uuid = json['uuid'];
     name = json['name'];

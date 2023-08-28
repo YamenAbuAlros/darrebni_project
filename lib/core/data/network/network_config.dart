@@ -20,6 +20,8 @@ class NetworkConfig {
       if (needHost!) "Host": NetworkUtil.baseUrl,
       // if (needAuth!)"Authorization": "Bearer 7|67tq9HBCoPvaBYw07kxWHjyU7swwJVgupN3kgalg",
       if (needAuth!)"Authorization": "Bearer ${storage.getTokenInfo()?.accessToken ?? ''}",
+            // if (needAuth!)"Authorization": "Bearer 4|XgGR6uYKMCFMNEzMolyAe2DZun68yqc1hl6mOOqv",
+
       if (type != RequestType.GET) "Content-Type": "application/json",
       // if (type is MultiRequestType) "Content-Type": "application/json",
       ...extraHeaders!

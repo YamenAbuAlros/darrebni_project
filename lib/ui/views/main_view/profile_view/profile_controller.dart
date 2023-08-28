@@ -94,13 +94,17 @@ class ProfileController extends GetxController {
 
   void logout() {
     LogoutRepositories.logout().then((value) {
-      value.fold((l) { CustomShowToast.showMessage(
-          message: l, messageType: MessageType.REJECTED);}, (r) {
-        if(r){storage.removeToken();
-          Get.offAll(LoginView());}
-        else {
+      value.fold((l) {
+        CustomShowToast.showMessage(
+            message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        if (r) {
+          storage.removeToken();
+          Get.offAll(const LoginView());
+        } else {
           CustomShowToast.showMessage(
-        message: 'الرجاء التأكد من الأنترنت', messageType: MessageType.REJECTED);
+              message: 'الرجاء التأكد من الأنترنت',
+              messageType: MessageType.REJECTED);
         }
       });
     });

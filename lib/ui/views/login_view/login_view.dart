@@ -81,18 +81,23 @@ class _LoginViewState extends State<LoginView> {
                       text1: 'ليس لديك حساب؟',
                       text2: 'أنشأ حسابك الان',
                       ontap: () {
-                        Get.off(() =>const RegisterView());
+                        Get.off(() => const RegisterView());
                       }),
                   const Spacer(),
-                  InkWell(
-                    onTap: () {
-                      Get.to(const MainView());
-                    },
-                    child: const Center(
-                        child: CustomText(
-                      text: 'المتابعة كزائر',
-                      isDecoration: true,
-                    )),
+                  Center(
+                    child: InkWell(
+                      highlightColor: AppColors.transparent,
+                      onTap: () {
+                        Get.to(const MainView());
+                      },
+                      child: SizedBox(
+                        height: height * 0.05,
+                        child: const CustomText(
+                          text: 'المتابعة كزائر',
+                          isDecoration: true,
+                        ),
+                      ),
+                    ),
                   ),
                   (width * 0.1).sbh,
                 ],

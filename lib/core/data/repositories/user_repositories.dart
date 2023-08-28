@@ -14,7 +14,7 @@ class UserRepositoriey {
       return NetworkUtil.postMultipart(
               method: MultiRequestType.POST,
               url: UserEndPoints.login,
-              fields: {"name":name, "code":code},  //"code":'ePx9ekn6Or'
+              fields: {"name": name, "code": code}, //"code":'ePx9ekn6Or'
               headers: NetworkConfig.getHeaders(
                   extraHeaders: {"Content-Type": "multipart/form-data;"},
                   needAuth: false,
@@ -24,7 +24,7 @@ class UserRepositoriey {
             CommonResponse.fromJson(respons);
 
         if (commonResponse.getstatus && commonResponse.data['status'] == true) {
-          return Right(        TokenInfo.fromJson(commonResponse.data['data'])                );
+          return Right(TokenInfo.fromJson(commonResponse.data['data']));
         } else {
           (commonResponse.data['message']);
           return Left(commonResponse.data['message'] ?? '');
@@ -39,7 +39,7 @@ class UserRepositoriey {
     required String name,
     required String phone,
     required int college_id,
-    // String? photo,
+
   }) async {
     try {
       return NetworkUtil.postMultipart(

@@ -18,17 +18,7 @@ Future<void> main() async {
   //*  -- Add To Dependency Injection --
   Get.put(SharedPreferenceRepositories());
   Get.put(ConnectivityService());
-  Get.put(MyAppController());
-  // Get.put(CartServices());
-  // Get.put(LocationService());
-
-  // try {
-  //   await Firebase.initializeApp(
-  //     options: DefaultFirebaseOptions.currentPlatform,
-  //   );
-  //   Get.put(NotificationService());
-  // } catch (e) {
-  //   print(e);
-  // }
+  Get.put(MyAppController()); 
+  
   runApp(const MyApp());
 }

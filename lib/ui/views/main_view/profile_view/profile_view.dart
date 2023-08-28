@@ -155,3 +155,24 @@ class _ProfileViewState extends State<ProfileView> {
                 //   ],
                 // ),
               // ),
+
+              // GetBuilder<ProfileController>(
+              //   init: ProfileController(),
+              //   builder: (controller) {
+              //     return InkWell(
+              //       onTap: () {
+              //         controller.showBottomSheetwithGetX();
+              //       },
+              //       child: CircleAvatar(
+              //         backgroundImage:controller.isChoosed? FileImage(File(controller.myProfile[0].photo.toString()))
+              //             : null,
+              //         radius: 60,
+              //         backgroundColor:controller.isChoosed?null: AppColors.mainWhite,
+              //         child: controller.isChoosed ?null
+              //             : SvgPicture.asset('assets/images/ic_profile.svg',width: width*0.1),
+              //       ),
+              //     );
+              //   },
+              // ),
+              // (height * 0.02).sbh,
+              //  CustomText(text:controller.myProfile[0].name??'اسم المستخدم'),

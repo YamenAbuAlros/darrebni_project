@@ -20,10 +20,8 @@ class ConnectivityService {
     switch (result) {
       case ConnectivityResult.bluetooth:
         return ConnectivityStatus.ONLINE;
-
       case ConnectivityResult.wifi:
         return ConnectivityStatus.ONLINE;
-
       case ConnectivityResult.ethernet:
         return ConnectivityStatus.ONLINE;
       case ConnectivityResult.mobile:
@@ -32,8 +30,8 @@ class ConnectivityService {
         return ConnectivityStatus.OFFLINE;
       case ConnectivityResult.vpn:
         return ConnectivityStatus.ONLINE;
-      case ConnectivityResult.other:
-        return ConnectivityStatus.ONLINE;
+      // case ConnectivityResult.other:
+      //   return ConnectivityStatus.ONLINE;
     }
   }
 }

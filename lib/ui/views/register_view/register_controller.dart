@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:template/core/data/repositories/college_repositories.dart';
 import 'package:template/core/data/repositories/user_repositories.dart';
 import 'package:template/core/enums/message_type.dart';
 import 'package:template/core/services/base_controller.dart';
 import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
+import 'package:template/ui/views/login_view/login_view.dart';
 import 'package:template/ui/views/main_view/main_view.dart';
-import '../../../core/data/repositories/all_college_repositories.dart';
 
 class RegisterController extends BaseController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  RxInt radioValue = 0.obs;
+  RxInt colegeId = 0.obs;
   TextEditingController userController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   RxList<List> specializationList = <List>[].obs;
-  RxBool isNotLodding =false.obs;
+  RxBool isLoading = true.obs;
   @override
   onInit() {
-    // getAllSpecializtions();
     geAllCollage();
     super.onInit();
   }
@@ -24,39 +24,38 @@ class RegisterController extends BaseController {
   void register() {
     if (formKey.currentState!.validate()) {
       runFullLoadingFutureFunction(
-          function: UserRepositoriey
-              .register(
+          function: UserRepositoriey.register(
                   name: userController.text,
                   phone: phoneController.text,
-                  college_id:radioValue.value)
+                  college_id: colegeId.value)
               .then((value) {
-        value.fold(
-                (l) {
+        value.fold((l) {
           CustomShowToast.showMessage(
               message: l, messageType: MessageType.REJECTED);
-        },
-                (r) {
-          // storage.setSubStatus(true);
-          // storage.setTokenIno(r);
-          Get.off(const MainView(), transition: Transition.cupertino);
+        }, (r) {
+          Get.to(()=>LoginView());
+          // Get.off(const MainView(), transition: Transition.cupertino);
         });
       }));
-
     } else {}
   }
-  Future geAllCollage() async{
-    await AllCollegeRepositories.allColleges().then((value) {
+
+  Future geAllCollage() async {
+    await CollegeRepositories.allColleges().then((value) {
       value.fold((l) {
         CustomShowToast.showMessage(
             message: l, messageType: MessageType.REJECTED);
       }, (r) {
-        for(var specializtion in r){
-          List specializ=[specializtion.name,specializtion.logo,specializtion.id];
-                     specializationList.add(specializ);
-                   }
-        isNotLodding.value=true;
+        for (var specializtion in r) {
+          List specializ = [
+            specializtion.name,
+            specializtion.logo,
+            specializtion.id
+          ];
+          specializationList.add(specializ);
+        }
+        isLoading.value = false;
       });
     });
   }
-
 }

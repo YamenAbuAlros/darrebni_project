@@ -7,20 +7,20 @@ import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
 import 'package:template/ui/views/it_question/it_question_view.dart';
 
-import 'main_it_controller.dart';
+import 'main_college_controller.dart';
 
-class ItView extends StatefulWidget {
-  const ItView(
+class CollegeView extends StatefulWidget {
+  const CollegeView(
       {super.key, required this.collageName, required this.materialName});
 
   final String collageName;
   final String materialName;
 
   @override
-  State<ItView> createState() => _ItViewState();
+  State<CollegeView> createState() => _CollegeViewState();
 }
 
-class _ItViewState extends State<ItView> {
+class _CollegeViewState extends State<CollegeView> {
   late MainItController controller;
 
   // get itemBuilder => null;
