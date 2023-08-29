@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:template/core/data/repositories/auth_repositories.dart';
 import 'package:template/core/data/repositories/college_repositories.dart';
-import 'package:template/core/data/repositories/user_repositories.dart';
 import 'package:template/core/enums/message_type.dart';
 import 'package:template/core/services/base_controller.dart';
 import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
@@ -16,14 +16,14 @@ class RegisterController extends BaseController {
   RxBool isLoading = true.obs;
   @override
   onInit() {
-    geAllCollage();
+    getAllCollages();
     super.onInit();
   }
 
   void register() {
     if (formKey.currentState!.validate()) {
       runFullLoadingFutureFunction(
-          function: UserRepositoriey.register(
+          function: AuthRepositories.register(
                   name: userController.text,
                   phone: phoneController.text,
                   college_id: colegeId.value)
@@ -31,19 +31,26 @@ class RegisterController extends BaseController {
         value.fold((l) {
           CustomShowToast.showMessage(
               message: l, messageType: MessageType.REJECTED);
+          if (l == 'الرجاء التأكد من الاتصال') {
+            Get.back();
+          }
         }, (r) {
-          Get.to(()=>const LoginView());
+          Get.to(() => const LoginView());
           // Get.off(const MainView(), transition: Transition.cupertino);
         });
       }));
     } else {}
   }
 
-  Future geAllCollage() async {
+  Future getAllCollages() async {
     await CollegeRepositories.allColleges().then((value) {
       value.fold((l) {
         CustomShowToast.showMessage(
             message: l, messageType: MessageType.REJECTED);
+        if (l == 'الرجاء التأكد من الاتصال') {
+          Future.delayed(const Duration(seconds: 5))
+              .then((value) => getAllCollages());
+        }
       }, (r) {
         for (var specializtion in r) {
           List specializ = [

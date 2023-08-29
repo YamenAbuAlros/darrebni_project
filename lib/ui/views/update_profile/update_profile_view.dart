@@ -22,6 +22,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(children: [
         const CustomAppBar(
             iconName: 'ic_profile', text: 'تعديل المعلومات الشخصية'),
@@ -32,7 +33,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 CustomText(text: controller.userController.text),
+                CustomText(text: controller.userController.text),
                 (width * 0.03).sbh,
                 CustomTextField(
                   textFieldColor: AppColors.mainblue3,

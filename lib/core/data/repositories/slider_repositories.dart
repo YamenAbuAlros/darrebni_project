@@ -15,19 +15,24 @@ class SliderRepositories {
               headers: NetworkConfig.getHeaders(
                   needAuth: false, type: RequestType.GET))
           .then((respons) {
-        CommonResponse<dynamic> commonResponse =
-            CommonResponse.fromJson(respons);
-        if (commonResponse.getstatus && commonResponse.data["status"] == true) {
-          List<SliderModel> resultList = [];
-          commonResponse.data['data']['sliders'].forEach(
-            (element) {
-              resultList.add(SliderModel.fromJson(element));
-            },
-          );
-          return Right(resultList);
+        if (respons == null) {
+          return const Left('الرجاء التأكد من الاتصال');
         } else {
-          (commonResponse.data.message);
-          return Left(commonResponse.data['message'] ?? '');
+          CommonResponse<dynamic> commonResponse =
+              CommonResponse.fromJson(respons);
+          if (commonResponse.getstatus &&
+              commonResponse.data["status"] == true) {
+            List<SliderModel> resultList = [];
+            commonResponse.data['data']['sliders'].forEach(
+              (element) {
+                resultList.add(SliderModel.fromJson(element));
+              },
+            );
+            return Right(resultList);
+          } else {
+            (commonResponse.data.message);
+            return Left(commonResponse.data['message'] ?? '');
+          }
         }
       });
     } catch (e) {

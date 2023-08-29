@@ -5,12 +5,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:template/core/data/repositories/auth_repositories.dart';
 import 'package:template/core/data/repositories/profile_repositories.dart';
-import 'package:template/core/data/repositories/update_photo_repositories.dart';
 import 'package:template/core/enums/image_type.dart';
 import 'package:template/core/utilis/general_util.dart';
 import 'package:template/ui/views/login_view/login_view.dart';
-import '../../../../core/data/repositories/logout_repositories.dart';
 import '../../../../core/enums/message_type.dart';
 import '../../../shared/colors.dart';
 
@@ -88,12 +87,12 @@ class ProfileController extends GetxController {
   }
 
   Future EditImageProgile() async {
-    await UpdatePhotoRepositories.updatePhoto(photo: File(choosedImage!.path));
+    await ProfileRepositories.updatePhoto(photo: File(choosedImage!.path));
     await ProfileRepositories.getMyProfile();
   }
 
   void logout() {
-    LogoutRepositories.logout().then((value) {
+    AuthRepositories.logout().then((value) {
       value.fold((l) {
         CustomShowToast.showMessage(
             message: l, messageType: MessageType.REJECTED);

@@ -42,31 +42,7 @@ bool checkLogin() {
     return true;
   }
 }
-// sendSms(String path, String body) async {
-//   final Uri smsLaunchUri = Uri(
-//     scheme: 'sms',
-//     path: path,
-//     queryParameters: <String, String>{
-//       'body': Uri.encodeComponent(body),
-//     },
-//   );
-//   if (await canLaunchUrl(smsLaunchUri)) {
-//     launchUrl(smsLaunchUri);
-//   } else {
-//     CustomShowToast.showMessage(
-//         message: 'Could not launch $smsLaunchUri',
-//         messageType: MessageType.REJECTED);
-//   }
-// }
 
-// sendEmail(String path, String subject) async {
-//   final Uri emailLaunchUri = Uri(
-//     scheme: 'mailto',
-//     path: path,
-//     query: encodeQueryParameters(<String, String>{
-//       'subject': subject,
-//     }),
-//   );
 // //^ Here you canuse mode with launchUrl for open in our app or in external app
 
 //   if (await canLaunchUrl(emailLaunchUri)) {

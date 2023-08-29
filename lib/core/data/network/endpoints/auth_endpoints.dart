@@ -1,6 +1,6 @@
 import 'package:template/core/data/network/network_config.dart';
 
-class UserEndPoints {
+class AuthEndPoints {
   static String login = NetworkConfig.getFullApiRoute('login');
 
   static String giveCode = NetworkConfig.getFullApiRoute('give-code');

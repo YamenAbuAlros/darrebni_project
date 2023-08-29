@@ -14,7 +14,7 @@ class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
 
   Map<String, List<String>> Colleges22 = {};
-  
+
   RxList categoriesAllName = [].obs;
   RxList<List<String>> collegesAllName = [
     ['']
@@ -47,6 +47,10 @@ class HomeController extends GetxController {
     CategoryRepositories.getAllCategory().then((value) => value.fold((l) {
           CustomShowToast.showMessage(
               message: l, messageType: MessageType.REJECTED);
+          if (l == 'الرجاء التأكد من الاتصال') {
+            Future.delayed(const Duration(seconds: 5))
+                .then((value) => getAllCategories());
+          }
         }, (r) {
           for (var element in r) {
             categoryNameList.add([element.id!, element.name!]);
@@ -60,6 +64,10 @@ class HomeController extends GetxController {
       value.fold((l) {
         CustomShowToast.showMessage(
             message: l, messageType: MessageType.REJECTED);
+        if (l == 'الرجاء التأكد من الاتصال') {
+          Future.delayed(const Duration(seconds: 5))
+              .then((value) => getAllCollege());
+        }
       }, (r) {
         allColegeList.addAll(r);
         collegeList.addAll(r);
@@ -78,6 +86,11 @@ class HomeController extends GetxController {
       CollegeRepositories.getColleges(id).then((value) => value.fold((l) {
             CustomShowToast.showMessage(
                 message: l, messageType: MessageType.REJECTED);
+
+            if (l == 'الرجاء التأكد من الاتصال') {
+              Future.delayed(const Duration(seconds: 5))
+                  .then((value) => getCollegesOfCategory(id));
+            }
           }, (r) {
             collegeList.addAll(r);
             isLoading.value = false;
@@ -90,6 +103,10 @@ class HomeController extends GetxController {
       value.fold((l) {
         CustomShowToast.showMessage(
             message: l, messageType: MessageType.REJECTED);
+        if (l == 'الرجاء التأكد من الاتصال') {
+          Future.delayed(const Duration(seconds: 5))
+              .then((value) => getAllSlider());
+        }
       }, (r) {
         allSliderList.addAll(r);
       });

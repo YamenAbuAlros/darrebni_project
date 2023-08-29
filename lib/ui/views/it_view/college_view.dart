@@ -5,6 +5,7 @@ import 'package:template/ui/shared/custom_widgets/custom_app_bar.dart';
 import 'package:template/ui/shared/custom_widgets/custom_button.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
+import 'package:template/ui/views/courses_view/courses_view.dart';
 import 'package:template/ui/views/it_question/it_question_view.dart';
 
 import 'main_college_controller.dart';
@@ -51,10 +52,9 @@ class _CollegeViewState extends State<CollegeView> {
                 textColor: AppColors.mainWhite,
                 backgroundColor: AppColors.mainblue1,
                 onPressed: () {
-                  Get.to(ItQuestionView(
+                  Get.to(CoursesView(
                     collageName: controller.collageName,
                     materialName: widget.materialName,
-                    typeOfQuestion: 'دورات',
                   ));
                 },
               ),

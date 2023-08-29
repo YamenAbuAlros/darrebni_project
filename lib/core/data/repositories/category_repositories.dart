@@ -15,20 +15,25 @@ class CategoryRepositories {
               headers: NetworkConfig.getHeaders(
                   needAuth: false, type: RequestType.GET))
           .then((respons) {
-        CommonResponse<dynamic> commonResponse =
-            CommonResponse.fromJson(respons);
-        if (commonResponse.getstatus && commonResponse.data["status"] == true) {
-          List<CategoryModel> resultList = [];
-          commonResponse.data['data']['categories'].forEach(
-            (element) {
-              resultList.add(CategoryModel.fromJson(element));
-            },
-          );
-          return Right(resultList);
-        } else {
-          (commonResponse.data.message);
-          return Left(commonResponse.data['message'] ?? '');
-        }
+        if (respons == null) {
+          return const Left('الرجاء التأكد من الاتصال');
+        } 
+          CommonResponse<dynamic> commonResponse =
+              CommonResponse.fromJson(respons);
+          if (commonResponse.getstatus &&
+              commonResponse.data["status"] == true) {
+            List<CategoryModel> resultList = [];
+            commonResponse.data['data']['categories'].forEach(
+              (element) {
+                resultList.add(CategoryModel.fromJson(element));
+              },
+            );
+            return Right(resultList);
+          } else {
+            (commonResponse.data.message);
+            return Left(commonResponse.data['message'] ?? '');
+          }
+        
       });
     } catch (e) {
       return Left(e.toString());

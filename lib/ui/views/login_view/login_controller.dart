@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:template/core/data/repositories/user_repositories.dart';
+import 'package:template/core/data/repositories/auth_repositories.dart';
 import 'package:template/core/enums/message_type.dart';
 import 'package:template/core/services/base_controller.dart';
 import 'package:template/core/utilis/general_util.dart';
@@ -15,12 +15,15 @@ class LoginController extends BaseController {
   void login() {
     if (formKey.currentState!.validate()) {
       runFullLoadingFutureFunction(
-          function: UserRepositoriey.login(
+          function: AuthRepositories.login(
                   name: userNameController.text, code: codeLoginController.text)
               .then((value) {
         value.fold((l) {
           CustomShowToast.showMessage(
               message: l, messageType: MessageType.REJECTED);
+          if (l == 'الرجاء التأكد من الاتصال') {
+            Get.back();
+          }
         }, (r) {
           storage.setTokenIno(r);
           Get.off(const MainView(), transition: Transition.cupertino);
