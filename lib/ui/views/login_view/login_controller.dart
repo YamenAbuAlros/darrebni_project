@@ -26,7 +26,6 @@ class LoginController extends BaseController {
                       message: l, messageType: MessageType.REJECTED);
                 },
                     (r) {
-                  storage.setSubStatus(true);
                   storage.setTokenIno(r);
                   Get.off(const MainView(), transition: Transition.cupertino);
                 });
@@ -34,10 +33,4 @@ class LoginController extends BaseController {
     } else {}
   }
 
-@override
-  void onClose() {
-    userNameController.clear();
-    codeLoginController.clear();
-    super.onClose();
-  }
 }

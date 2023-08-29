@@ -67,37 +67,10 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    getAllSlider();
+    allColleges();
+    // getAllSlider();
     super.onInit();
   }
-
-  // Future allCategories() async {
-  //   await AllCollegeRepositories.allColleges().then((value) {
-  //     value.fold((l) {
-  //       CustomShowToast.showMessage(
-  //           message: l, messageType: MessageType.REJECTED);
-  //     }, (r) {
-  //       for (var college in r) {
-  //         String nameCategory = college.category!.name!;
-  //         String nameColleges = college.name!;
-  //         String logoCategory = college.category!.logo!;
-  //         String IdCategory = college.category!.id!.toString();
-  //         String logoColleges = college.logo!;
-  //         if (!Colleges22.containsKey(nameCategory)) {
-  //           Colleges22.addAll({
-  //             nameCategory: [nameColleges, logoColleges,IdCategory],
-  //           });
-  //         } else if (Colleges22.containsKey(nameCategory)) {
-  //           Colleges22[nameCategory]!.add(nameColleges,);
-  //           Colleges22[nameCategory]!.add(logoColleges);
-  //           Colleges22[nameCategory]!.add(IdCategory);
-  //         }
-  //       }
-  //       // categoriesAllName.value = Colleges22.keys.toList();
-  //       Colleges22.isNotEmpty ? get() : null;
-  //     });
-  //   });
-  // }
 
   get() {
     Colleges22.values.forEach((element) {

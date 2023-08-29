@@ -44,7 +44,7 @@ class _HomeViewState extends State<HomeView> {
                 controller: controller.searchController,
                 prefixIconName: 'ic_search',
                 hinttext: 'بحث'),
-            // (height * 0.005).sbh,
+            // (height * 0.005).sbh,  
             Obx(() => CarouselSlider(
               items: List.generate(controller.allSlider.length, (index){
                 return CachedNetworkImage(

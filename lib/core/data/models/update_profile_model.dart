@@ -21,13 +21,15 @@ class Profile {
   String? uuid;
   String? name;
   String? phone;
+  String?  photo;
 
-  Profile({this.uuid, this.name, this.phone});
+  Profile({this.uuid, this.name, this.phone,this.photo});
 
   Profile.fromJson(Map<String, dynamic> json) {
     uuid = json['uuid'];
     name = json['name'];
     phone = json['phone'];
+    photo=json['photo'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +37,7 @@ class Profile {
     data['uuid'] = this.uuid;
     data['name'] = this.name;
     data['phone'] = this.phone;
+    data['photo']=this.photo;
     return data;
   }
 }

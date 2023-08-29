@@ -13,7 +13,7 @@ class CustomRadioLisTile extends StatelessWidget {
         this.value,
         this.onchanged,
         this.answer = false,
-        this.fontSizeText});
+        this.fontSizeText, this.heighText});
 
   final String text;
   final groupValue;
@@ -22,6 +22,7 @@ class CustomRadioLisTile extends StatelessWidget {
   final onchanged;
   final bool? answer;
   final double? fontSizeText;
+  final double? heighText;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +36,13 @@ class CustomRadioLisTile extends StatelessWidget {
         ),
         answer == false
             ? CustomText(
+          heighText: heighText??1.0,
           text: text,
           fontsize: fontSizeText ?? width * 0.0225,
         )
             : Expanded(
             child: CustomText(
+              heighText: heighText??1.0,
               text: text,
               fontsize: fontSizeText ?? width * 0.0225,
             ))

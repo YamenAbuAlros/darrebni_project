@@ -11,17 +11,25 @@ import '../../shared/custom_widgets/custom_text.dart';
 import '../../shared/custom_widgets/custom_textfield.dart';
 
 class UpdateProfileView extends StatefulWidget {
-  const UpdateProfileView({super.key});
+   UpdateProfileView({super.key,required this.userName,required this.numberPhone});
+  String userName;
+  String numberPhone;
 
   @override
   State<UpdateProfileView> createState() => _UpdateProfileViewState();
 }
 
 class _UpdateProfileViewState extends State<UpdateProfileView> {
-  UpdateProfileController controller = Get.put(UpdateProfileController());
+ late UpdateProfileController controller;
+  @override
+  void initState() {
+    controller = Get.put(UpdateProfileController(numberPhone:widget.numberPhone ,userName:widget.userName ));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(children: [
         const CustomAppBar(
             iconName: 'ic_profile', text: 'تعديل المعلومات الشخصية'),
@@ -38,7 +46,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                   textFieldColor: AppColors.mainblue3,
                   suffixIconName: 'ic_edit',
                   prefixIconName: 'ic_profile',
-                  hinttext: "حلا الدروبي",
+                  hinttext: 'ليث السكاف',
                   controller: controller.userController,
                 ),
                 (width * 0.05).sbh,
@@ -48,11 +56,11 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                     textFieldColor: AppColors.mainblue3,
                     suffixIconName: 'ic_edit',
                     prefixIconName: "ic_phone",
-                    hinttext: "+963-999-999-999",
+                    hinttext:'963-999-999-999+',
                     controller: controller.phoneNumberController),
                 (width * 0.35).sbh,
                 CustomButton(
-                    text: 'حفظ التغيرات', textColor: AppColors.mainWhite),
+                    text: 'حفظ التغيرات', textColor: AppColors.mainWhite,onPressed: (){controller.updatePhoto();},),
                 (width * 0.05).sbh,
                 InkWell(
                   onTap: () {

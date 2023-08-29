@@ -1,0 +1,6 @@
+enum TypeSizeElevatedButton {
+  SECONDARYSMALL,
+  SECONDARYLARGE,
+  PRIMARYLARGE,
+  PRIMARYSMALL,
+}

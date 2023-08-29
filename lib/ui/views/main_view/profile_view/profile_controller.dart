@@ -1,36 +1,35 @@
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
+import 'package:template/core/services/base_controller.dart';
+import 'package:template/core/utilis/general_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:template/core/data/repositories/get_myprofile_repositories.dart';
-import 'package:template/core/data/repositories/update_photo_repositories.dart';
+import 'package:template/core/data/repositories/profile.dart';
+import 'package:template/core/data/repositories/user_repositories.dart';
 import 'package:template/core/enums/image_type.dart';
-import 'package:template/core/utilis/general_util.dart';
 import 'package:template/ui/views/login_view/login_view.dart';
-import '../../../../core/data/repositories/logout_repositories.dart';
-import '../../../../core/data/repositories/shared_preference_repositories.dart';
+import '../../../../core/data/models/update_profile_model.dart';
 import '../../../../core/enums/message_type.dart';
 import '../../../shared/colors.dart';
 import 'package:cross_file/cross_file.dart';
 
 import '../../../shared/custom_widgets/custom_showtoast.dart';
 
-class ProfileController extends GetxController {
+class ProfileController extends BaseController {
   TextEditingController complaintController = TextEditingController();
 
-  final ImagePicker picker = ImagePicker();
-  bool userChoose = false;
-  var sbar;
-  XFile? choosedImage;
-  XFile? ifchoosedImage;
-  var tosendRequest;
+  final picker = ImagePicker();
+  File? choosedImage;
   XFile? ifChoose;
-  FilePickerResult? result;
+  List<Profile> myProfile=<Profile>[];
+  RxBool isChoosed = false.obs;
 
-////////////////////////////////////////////
-  bool isClicked = false;
-  var image;
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    getProfile();
+    super.onInit();
+  }
 
   void showBottomSheetwithGetX() {
     Get.bottomSheet(
@@ -52,8 +51,7 @@ class ProfileController extends GetxController {
           ),
           ListTile(
             onTap: () async {
-              choosedImage = null;
-              update();
+              updatePhoto();
               Get.back();
             },
             leading: const Icon(Icons.delete),
@@ -70,15 +68,17 @@ class ProfileController extends GetxController {
       case ImageType.GALLERY:
         ifChoose = await picker.pickImage(source: ImageSource.gallery);
         if (ifChoose != null) {
-          choosedImage = ifChoose;
-          tosendRequest = choosedImage!.path;
+          choosedImage = File(ifChoose!.path);
+          updatePhoto();
+          isChoosed.value=true;
         }
         break;
       case ImageType.CAMERA:
         ifChoose = await picker.pickImage(source: ImageSource.camera);
         if (ifChoose != null) {
-          choosedImage = ifChoose;
-          tosendRequest = choosedImage!.path;
+          choosedImage = File(ifChoose!.path);
+          updatePhoto();
+          isChoosed.value=true;
         }
         break;
     }
@@ -87,22 +87,51 @@ class ProfileController extends GetxController {
     Get.back();
   }
 
-  Future EditImageProgile() async {
-    await UpdatePhotoRepositories.updatePhoto(photo: File(choosedImage!.path));
-    await GetMyProfileRepositories.getMyProfile();
-  }
-
   void logout() {
     LogoutRepositories.logout().then((value) {
-      value.fold((l) { CustomShowToast.showMessage(
-          message: l, messageType: MessageType.REJECTED);}, (r) {
-        if(r){storage.removeToken();
-          Get.offAll(LoginView());}
-        else {
+      value.fold((l) {
+        CustomShowToast.showMessage(
+            message: l, messageType: MessageType.REJECTED);
+      }, (r) {
+        if (r) {
+          storage.removeToken();
+          Get.offAll(LoginView());
+        } else {
           CustomShowToast.showMessage(
-        message: 'الرجاء التأكد من الأنترنت', messageType: MessageType.REJECTED);
+              message: 'الرجاء التأكد من الأنترنت',
+              messageType: MessageType.REJECTED);
         }
       });
     });
   }
+
+  Future updatePhoto() async{
+    UpdatePhotoRepositories.updatePhoto(photo: choosedImage!).then((value) {
+      value.fold((l) {
+        isChoosed.value=true;
+        CustomShowToast.showMessage(
+            message: 'الرجاء التأكد من اتصالك بالإنترنيت',
+            messageType: MessageType.REJECTED);
+      }, (r) {
+      });
+    });
+  }
+
+  Future getProfile() async{
+   await    GetMyProfileRepositories.getMyProfile().then((value) {
+     value.fold((l) {
+       isChoosed.value=true;
+       CustomShowToast.showMessage(
+           message: 'الرجاء التأكد من اتصالك بالإنترنيت',
+           messageType: MessageType.REJECTED);
+     }, (r) {
+       myProfile.add(r);
+       choosedImage=File(myProfile[0].photo.toString());
+       isChoosed.value=true;
+      // storage.setMyProfile();
+     });
+   });
+  }
+
+
 }

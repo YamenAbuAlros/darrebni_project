@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:template/app/app_config.dart';
 import 'package:template/core/data/models/apis/token_info.dart';
+import 'package:template/core/data/models/get_myprofle_model.dart';
 import 'package:template/core/enums/data_type.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,22 +18,37 @@ class SharedPreferenceRepositories {
   String PREF_CART_LIST = 'cart_list';
   String PREF_SUB_STATUS = 'sub_status';
   String PREF_NUM_NOTIFICATION = 'num_notification';
+  String PREF_MY_PROFILE= 'my_profile';
 
-  void setSubStatus(bool value) {
+  // void setSubStatus(bool value) {
+  //   setPreference(
+  //     dataType: DataType.BOOL,
+  //     key: PREF_SUB_STATUS,
+  //     value: value,
+  //   );
+  // }
+  void setMyProfile(List<String> value) {
     setPreference(
-      dataType: DataType.BOOL,
-      key: PREF_SUB_STATUS,
+      dataType: DataType.STRINGLIST,
+      key: PREF_MY_PROFILE,
       value: value,
     );
   }
-
-  bool getSubStatus() {
-    if (Get.find<SharedPreferences>().containsKey(PREF_SUB_STATUS)) {
-      return getPreference(key: PREF_SUB_STATUS);
+  bool getMyProfile() {
+    if (globalSharedPreferences.containsKey(PREF_MY_PROFILE)) {
+      return getPreference(key: PREF_MY_PROFILE);
     } else {
       return true;
     }
   }
+
+  // bool getSubStatus() {
+  //   if (Get.find<SharedPreferences>().containsKey(PREF_SUB_STATUS)) {
+  //     return getPreference(key: PREF_SUB_STATUS);
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
   void setNumberOfNotifications(int value) {
     setPreference(

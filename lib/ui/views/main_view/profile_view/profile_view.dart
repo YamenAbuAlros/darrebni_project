@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:template/ui/shared/colors.dart';
@@ -24,6 +25,7 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   ProfileController controller = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,39 +41,41 @@ class _ProfileViewState extends State<ProfileView> {
           padding: EdgeInsets.symmetric(horizontal: width * 0.05),
           child: Column(
             children: [
-              GetBuilder<ProfileController>(
-                init: ProfileController(),
-                builder: (controller) {
-                  return InkWell(
+              Obx(() =>controller.isChoosed.value? InkWell(
                     onTap: () {
                       controller.showBottomSheetwithGetX();
                     },
                     child: CircleAvatar(
+                      backgroundImage: controller.choosedImage.isNull
+                          ? null
+                          : FileImage(controller.choosedImage!),
                       radius: 60,
-                      backgroundColor: AppColors.mainWhite,
-                      child: controller.choosedImage != null
-                          ? ClipOval(
-                              child: controller.choosedImage != null
-                                  ? Image.file(
-                                      File(controller.choosedImage!.path),
-                                      fit: BoxFit.fill,
-                                    )
-                                  : controller.result != null
-                                      ? const Icon(Icons.file_copy)
-                                      : null,
-                            )
-                          : SvgPicture.asset('assets/images/User.svg'),
+                      backgroundColor:controller.choosedImage.isNull
+                          ? AppColors.mainWhite
+                          : null,
+                      child: controller.choosedImage.isNull
+                          ? SvgPicture.asset('assets/images/ic_profile.svg',
+                          width: width * 0.1)
+                          : null,
                     ),
-                  );
-                },
-              ),
+                  ):SpinKitWave(color:AppColors.mainPurple1,)),
               (height * 0.02).sbh,
-              const CustomText(text: 'اسم المستخدم'),
+              Obx(
+                () =>controller.isChoosed.value? CustomText(
+                    text: controller.choosedImage.isNull
+                        ? 'اسم المستخدم'
+                        :controller.myProfile[0].name! ):SpinKitWave(color: AppColors.mainPurple1,),
+              ),
               (height * 0.06).sbh,
+
               CustomContainer(
-                ontap: () {
-                  Get.to(const UpdateProfileView());
-                },
+                ontap:controller.myProfile.isNotEmpty? () {
+                  Get.to(()=>
+                      UpdateProfileView(
+                    numberPhone: controller.myProfile[0].phone!,
+                    userName: controller.myProfile[0].name!,
+                  ));
+                }:null,
                 text: 'المعلومات الشخصية',
                 iconName: 'ic_edit',
               ),
@@ -96,7 +100,13 @@ class _ProfileViewState extends State<ProfileView> {
                 iconName: 'ic_info',
               ),
               (height * 0.04).sbh,
-              CustomButton(text: 'تسجيل الخروج', textColor: AppColors.mainWhite,onPressed: (){controller.logout();},)
+              CustomButton(
+                text: 'تسجيل الخروج',
+                textColor: AppColors.mainWhite,
+                onPressed: () {
+                  controller.logout();
+                },
+              )
             ],
           ),
         )
@@ -104,9 +114,6 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 }
-
-
-
 
 // GetBuilder<SignUpContoller>(
 //                 init: SignUpContoller(),
@@ -119,39 +126,39 @@ class _ProfileViewState extends State<ProfileView> {
 //                                 controller.result == null
 //                             ? () {
 //                                 signUpController.showBottomSheetwithGetX();
-                //               }
-                //             : null,
-                //         child: CircleAvatar(
-                //           radius: width * 0.13,
-                //           backgroundColor: AppColors.placeHolderColor,
-                //           child: ClipOval(
-                //             child: controller.choosedImage != null
-                //                 ? Image.file(
-                //                     File(controller.choosedImage!.path),
-                //                     fit: BoxFit.fill,
-                //                   )
-                //                 : controller.result != null
-                //                     ? const Icon(Icons.file_copy)
-                //                     : null,
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //     Visibility(
-                //       visible: controller.choosedImage != null ||
-                //           controller.result != null,
-                //       child: Positioned(
-                //           left: width * 0.55,
-                //           child: InkWell(
-                //             onTap: () {
-                //               signUpController.showBottomSheetwithGetX();
-                //             },
-                //             child: CircleAvatar(
-                //               radius: width * 0.05,
-                //               child: const Icon(Icons.edit),
-                //             ),
-                //           )),
-                //     )
-                //   ],
-                // ),
-              // ),
+//               }
+//             : null,
+//         child: CircleAvatar(
+//           radius: width * 0.13,
+//           backgroundColor: AppColors.placeHolderColor,
+//           child: ClipOval(
+//             child: controller.choosedImage != null
+//                 ? Image.file(
+//                     File(controller.choosedImage!.path),
+//                     fit: BoxFit.fill,
+//                   )
+//                 : controller.result != null
+//                     ? const Icon(Icons.file_copy)
+//                     : null,
+//           ),
+//         ),
+//       ),
+//     ),
+//     Visibility(
+//       visible: controller.choosedImage != null ||
+//           controller.result != null,
+//       child: Positioned(
+//           left: width * 0.55,
+//           child: InkWell(
+//             onTap: () {
+//               signUpController.showBottomSheetwithGetX();
+//             },
+//             child: CircleAvatar(
+//               radius: width * 0.05,
+//               child: const Icon(Icons.edit),
+//             ),
+//           )),
+//     )
+//   ],
+// ),
+// ),

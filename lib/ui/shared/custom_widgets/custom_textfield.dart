@@ -34,7 +34,6 @@ class CustomTextField extends StatelessWidget {
   final Color? textFieldColor;
   final int? maxLines;
   final TextInputType? keyboardtype;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(

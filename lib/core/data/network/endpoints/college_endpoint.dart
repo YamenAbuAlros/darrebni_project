@@ -5,5 +5,4 @@ class CollegeEndpoint {
   static String specializationsOfCollege = NetworkConfig.getFullApiRoute('specializations-of-college/');
   static String getCollegeById = NetworkConfig.getFullApiRoute('college/');
 
-
 }

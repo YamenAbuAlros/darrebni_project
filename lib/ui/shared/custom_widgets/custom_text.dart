@@ -11,13 +11,14 @@ class CustomText extends StatelessWidget {
         this.textcolor,
         this.fontsize,
         this.fontWeight,
-        this.isDecoration = false, this.isTextAlignCenter=false});
+        this.isDecoration = false, this.isTextAlignCenter=false, this.heighText});
   final String text;
   final double? fontsize;
   final Color? textcolor;
   final bool isDecoration;
   final bool? isTextAlignCenter;
   final FontWeight? fontWeight;
+  final double? heighText;
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -27,9 +28,11 @@ class CustomText extends StatelessWidget {
       text,
       textAlign:isTextAlignCenter!?TextAlign.center: TextAlign.right,
       maxLines: null,
+
       overflow: TextOverflow.visible,
       // maxLines: 1,
       style: TextStyle(
+        height: heighText??1.0,
         // fontFamily: 'Alexandria-Regular',
           decoration: isDecoration ? TextDecoration.underline : null,
           color: textcolor ?? AppColors.mainPurple1,

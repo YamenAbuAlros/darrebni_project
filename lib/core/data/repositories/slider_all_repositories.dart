@@ -11,7 +11,7 @@ class AllSliderRepositories {
     try {
       return NetworkUtil.sendRequest(
           type: RequestType.GET,
-          url: CollegeEndpoint.allCollege,
+          url: 'slider/all',
           headers: NetworkConfig.getHeaders(
               needAuth: false, type: RequestType.GET))
           .then((respons) {

@@ -19,7 +19,7 @@ class NetworkUtil {
     MultiRequestType method = MultiRequestType.POST,
     Map<String, String>? headers = const {},
     Map<String, String>? fields = const {},
-    Map<String, String>? files = const {},
+    Map<String, dynamic>? files = const {},
     Map<String, dynamic>? params,
   }) async {
     try {
