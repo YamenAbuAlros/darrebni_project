@@ -37,6 +37,9 @@ class _CollegeViewState extends State<CollegeView> {
       body: Column(children: [
         CustomAppBar(
             iconName: 'ic_back',
+            ontap: () {
+              Get.back();
+            },
             text: '${controller.collageName}/${widget.materialName}'),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: width * 0.05),

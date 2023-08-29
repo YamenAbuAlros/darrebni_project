@@ -24,7 +24,8 @@ class NetworkUtil {
   }) async {
     try {
       // var uri = Uri.https(baseUrl, url, params);
-      var request = http.MultipartRequest('POST', Uri.https(baseUrl, url, params));
+      var request =
+          http.MultipartRequest('POST', Uri.https(baseUrl, url, params));
 
       // var request = http.MultipartRequest(method.name.toString(), uri);
 

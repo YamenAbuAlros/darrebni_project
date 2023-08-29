@@ -85,42 +85,44 @@ class _RegisterViewState extends State<RegisterView> {
                             color: AppColors.mainPurple1,
                             size: width * 0.09,
                           )
-                        : Wrap(
-                            alignment: WrapAlignment.center,
-                            runSpacing: width * 0.01,
-                            children: List.generate(
-                              controller.specializationList.length,
-                              (index) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    CachedNetworkImage(
-                                      height: height * 0.04,
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
-                                      placeholder: (context, url) =>
-                                          CircularProgressIndicator(
-                                        color: AppColors.mainOrangeColor,
-                                        strokeWidth: 2,
+                        : Center(
+                            child: Wrap(
+                              alignment: WrapAlignment.center,
+                              runSpacing: width * 0.01,
+                              children: List.generate(
+                                controller.specializationList.length,
+                                (index) {
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CachedNetworkImage(
+                                        height: height * 0.04,
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                        placeholder: (context, url) =>
+                                            CircularProgressIndicator(
+                                          color: AppColors.mainOrangeColor,
+                                          strokeWidth: 2,
+                                        ),
+                                        imageUrl:
+                                            'https://backendsp01.000webhostapp.com/public/images/college/1692752664.jpg',
+                                        //     imageUrl: controller
+                                        // .specializationList[index][1],
                                       ),
-                                      imageUrl:
-                                          'https://backendsp01.000webhostapp.com/public/images/college/1692752664.jpg',
-                                      //     imageUrl: controller
-                                      // .specializationList[index][1],
-                                    ),
-                                    CustomRadioLisTile(
-                                      text: controller.specializationList[index]
-                                          [0],
-                                      groupValue: controller.colegeId.value,
-                                      onchanged: (value) {
-                                        controller.colegeId.value = value!;
-                                      },
-                                      value: controller
-                                          .specializationList[index][2],
-                                    ),
-                                  ],
-                                );
-                              },
+                                      CustomRadioLisTile(
+                                        text: controller
+                                            .specializationList[index][0],
+                                        groupValue: controller.colegeId.value,
+                                        onchanged: (value) {
+                                          controller.colegeId.value = value!;
+                                        },
+                                        value: controller
+                                            .specializationList[index][2],
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
                             ),
                           )),
                     (width * 0.05).sbh,

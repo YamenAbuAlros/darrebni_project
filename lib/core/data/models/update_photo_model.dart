@@ -8,8 +8,8 @@ class UpdatePhotoModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['photo'] = this.photo;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['photo'] = photo;
     return data;
   }
 }

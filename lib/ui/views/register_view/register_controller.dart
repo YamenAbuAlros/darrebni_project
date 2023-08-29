@@ -6,7 +6,6 @@ import 'package:template/core/enums/message_type.dart';
 import 'package:template/core/services/base_controller.dart';
 import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
 import 'package:template/ui/views/login_view/login_view.dart';
-import 'package:template/ui/views/main_view/main_view.dart';
 
 class RegisterController extends BaseController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -33,7 +32,7 @@ class RegisterController extends BaseController {
           CustomShowToast.showMessage(
               message: l, messageType: MessageType.REJECTED);
         }, (r) {
-          Get.to(()=>LoginView());
+          Get.to(()=>const LoginView());
           // Get.off(const MainView(), transition: Transition.cupertino);
         });
       }));

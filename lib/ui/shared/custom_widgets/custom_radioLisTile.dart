@@ -7,13 +7,13 @@ import '../colors.dart';
 class CustomRadioLisTile extends StatelessWidget {
   const CustomRadioLisTile(
       {super.key,
-        required this.text,
-        this.groupValue,
-        this.activeColor,
-        this.value,
-        this.onchanged,
-        this.answer = false,
-        this.fontSizeText});
+      required this.text,
+      this.groupValue,
+      this.activeColor,
+      this.value,
+      this.onchanged,
+      this.answer = false,
+      this.fontSizeText});
 
   final String text;
   final groupValue;
@@ -25,7 +25,8 @@ class CustomRadioLisTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisSize: MainAxisSize.min,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Radio(
           value: value,
@@ -35,14 +36,14 @@ class CustomRadioLisTile extends StatelessWidget {
         ),
         answer == false
             ? CustomText(
-          text: text,
-          fontsize: fontSizeText ?? width * 0.0225,
-        )
+                text: text,
+                fontsize: fontSizeText ?? width * 0.0225,
+              )
             : Expanded(
-            child: CustomText(
-              text: text,
-              fontsize: fontSizeText ?? width * 0.0225,
-            ))
+                child: CustomText(
+                text: text,
+                fontsize: fontSizeText ?? width * 0.0225,
+              ))
       ],
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -53,65 +55,6 @@ class _MainCollegeViewState extends State<MainCollegeView> {
                       controller: controller.searchController,
                       prefixIconName: 'ic_search',
                       hinttext: 'بحث'),
-                  // CarouselSlider(
-                  //   items: [
-                  //     Image.asset('assets/images/ad-section.png'),
-
-                  //     Image.asset('assets/images/ad-section.png'),
-
-                  //     Image.asset('assets/images/ad-section.png'),
-                  //     // CachedNetworkImage(
-                  //     //   height: height * 0.1,
-                  //     //   errorWidget: (context, url, error) =>
-                  //     //       const Icon(Icons.error),
-                  //     //   // width: width,
-
-                  //     //   placeholder: (context, url) => CircularProgressIndicator(
-                  //     //     color: AppColors.mainOrangeColor,
-                  //     //     strokeWidth: 2,
-                  //     //   ),
-                  //     //   imageUrl: 'assets/images/ad-section.svg',
-                  //     // ),
-                  //   ],
-                  //   options: CarouselOptions(
-                  //     aspectRatio: 3,
-                  //     // height: height * 0.4,
-                  //     initialPage: 0,
-                  //     enableInfiniteScroll: true,
-                  //     reverse: false,
-                  //     autoPlay: true,
-                  //     autoPlayAnimationDuration:
-                  //         const Duration(milliseconds: 800),
-                  //     autoPlayCurve: Curves.fastOutSlowIn,
-                  //     enlargeCenterPage: true,
-                  //     enlargeFactor: 0.3,
-                  //     onPageChanged: (i, _) {
-                  //       controller.carouselIndex.value = i;
-                  //     },
-                  //     scrollDirection: Axis.horizontal,
-                  //   ),
-                  // ),
-                  // (height * 0.02).sbh,
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: List.generate(
-                  //       3,
-                  //       (index) => Obx(
-                  //             () => Padding(
-                  //               padding: EdgeInsetsDirectional.only(
-                  //                   end: width * 0.01),
-                  //               child: Container(
-                  //                 width: width * 0.02,
-                  //                 height: width * 0.02,
-                  //                 decoration: BoxDecoration(
-                  //                     color: controller.carouselIndex == index
-                  //                         ? AppColors.mainPurple1
-                  //                         : null,
-                  //                     border: Border.all(width: width * 0.005)),
-                  //               ),
-                  //             ),
-                  //           )),
-                  // ),
                   Obx(
                     () => controller.allSliderList.isEmpty
                         ? SpinKitWave(
@@ -154,7 +97,6 @@ class _MainCollegeViewState extends State<MainCollegeView> {
                             ),
                           ),
                   ),
-
                   (height * 0.03).sbh,
                   Obx(
                     () => Row(
@@ -182,39 +124,42 @@ class _MainCollegeViewState extends State<MainCollegeView> {
                     color: AppColors.mainBlack,
                   ),
                   (width * 0.05).sbh,
-                  Obx(
-                    () => Wrap(
-                        // crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: width * 0.02,
-                        runSpacing: width * 0.02,
-                        alignment: WrapAlignment.center,
-                        children: List.generate(
-                          controller.nameOfSpecializations.length,
-                          (index) {
-                            final textLength =
-                                controller.nameOfSpecializations.length;
-                            final buttonWidth = (textLength * (width * 0.03)) +
-                                width * 0.02; // تعديل القيمة حسب احتياجات
-                            return CustomButton(
-                                onPressed: () {
-                                  Get.to(() => CollegeView(
-                                        collageName: controller.collageName,
-                                        materialName: controller
-                                            .nameOfSpecializations[index].name!,
-                                      ));
-                                },
-                                // isBackgroundColor: false,
-                                borderColor: AppColors.mainPurple1,
-                                backgroundColor: AppColors.mainWhite,
-                                widthSize: buttonWidth > width * 0.15
-                                    ? buttonWidth
-                                    : width * 0.19,
-                                text: controller
-                                    .nameOfSpecializations[index].name!,
-                                textColor: AppColors.mainPurple1);
-                          },
+                  Obx(() => controller.nameOfSpecializations.isNotEmpty
+                      ? Wrap(
+                          // crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: width * 0.02,
+                          runSpacing: width * 0.02,
+                          alignment: WrapAlignment.center,
+                          children: List.generate(
+                            controller.nameOfSpecializations.length,
+                            (index) {
+                              final textLength = controller
+                                  .nameOfSpecializations[index].name!.length;
+                              final buttonWidth =
+                                  (textLength * (width * 0.03)) +
+                                      width * 0.02; // تعديل القيمة حسب احتياجات
+                              return CustomButton(
+                                  onPressed: () {
+                                    Get.to(() => CollegeView(
+                                          collageName: controller.collageName,
+                                          materialName: controller
+                                              .nameOfSpecializations[index]
+                                              .name!,
+                                        ));
+                                  },
+                                  borderColor: AppColors.mainPurple1,
+                                  backgroundColor: AppColors.mainWhite,
+                                  widthSize: buttonWidth > width * 0.15
+                                      ? buttonWidth
+                                      : width * 0.19,
+                                  text: controller
+                                      .nameOfSpecializations[index].name!,
+                                  textColor: AppColors.mainPurple1);
+                            },
+                          ))
+                      : SpinKitWave(
+                          color: AppColors.mainPurple1,
                         )),
-                  ),
                   (width * 0.05).sbh,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

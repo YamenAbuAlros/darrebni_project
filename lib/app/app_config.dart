@@ -1,4 +1,4 @@
 class AppConfig {
-  static bool isLocationRequired = true;
+  // static bool isLocationRequired = true;
   static String defaultLanguage = 'ar';
 }

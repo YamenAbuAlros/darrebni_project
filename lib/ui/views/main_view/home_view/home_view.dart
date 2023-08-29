@@ -85,39 +85,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                 ),
 
-                // CarouselSlider(
-                //   items: [
-                //     Image.asset('assets/images/ad-section.png'),
-                //     Image.asset('assets/images/ad-section.png'),
-                //     Image.asset('assets/images/ad-section.png'),
-                //     CachedNetworkImage(
-                //       height: height * 0.1,
-                //       errorWidget: (context, url, error) =>
-                //           const Icon(Icons.error),
-                //       placeholder: (context, url) => CircularProgressIndicator(
-                //         color: AppColors.mainOrangeColor,
-                //         strokeWidth: 2,
-                //       ),
-                //       imageUrl: 'assets/images/ad-section.svg',
-                //     ),
-                //   ],
-                //   options: CarouselOptions(
-                //     aspectRatio: 3,
-                //     // height: height * 0.4,
-                //     initialPage: 0,
-                //     enableInfiniteScroll: false,
-                //     reverse: false,
-                //     autoPlayAnimationDuration:
-                //         const Duration(milliseconds: 800),
-                //     autoPlayCurve: Curves.fastOutSlowIn,
-                //     enlargeCenterPage: true,
-                //     enlargeFactor: 0.3,
-                //     onPageChanged: (i, _) {
-                //       controller.indexCarousel.value = i;
-                //     },
-                //     scrollDirection: Axis.horizontal,
-                //   ),
-                // ),
+              
                 (height * 0.03).sbh,
                 Obx(
                   () => Row(
@@ -131,7 +99,7 @@ class _HomeViewState extends State<HomeView> {
                             width: width * 0.02,
                             height: width * 0.02,
                             decoration: BoxDecoration(
-                                color: controller.indexCarousel == index
+                                color: controller.indexCarousel.value == index
                                     ? AppColors.mainPurple1
                                     : null,
                                 border: Border.all(width: width * 0.001)),

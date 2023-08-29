@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               // buttonTheme:
               // const ButtonThemeData(buttonColor: Colors.transparent),
             ),
-            home: storage.isLoggedIn? MainView():LoginView()));
+            home: storage.isLoggedIn? const MainView():const LoginView()));
   }
 }
 

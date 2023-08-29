@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:template/core/services/connectivity_service.dart';
-import 'package:template/core/services/location_service.dart';
 import 'package:template/core/utilis/network_utilis.dart';
 import 'package:template/ui/shared/custom_widgets/custom_showtoast.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../app/my_app_controller.dart';
 import '../../ui/shared/custom_widgets/custom_overalay.dart';
 import '../data/repositories/shared_preference_repositories.dart';
@@ -40,8 +38,9 @@ bool checkLogin() {
   if (!storage.isLoggedIn) {
     showCustomAlertDialog();
     return false;
-  } else
+  } else {
     return true;
+  }
 }
 // sendSms(String path, String body) async {
 //   final Uri smsLaunchUri = Uri(
