@@ -85,7 +85,6 @@ class _HomeViewState extends State<HomeView> {
                         ),
                 ),
 
-              
                 (height * 0.03).sbh,
                 Obx(
                   () => Row(
@@ -176,8 +175,8 @@ class _HomeViewState extends State<HomeView> {
                     : Center(
                         child: Wrap(
                           alignment: WrapAlignment.center,
-                          runSpacing: width * 0.01,
-                          spacing: width * 0.1,
+                          runSpacing: width * 0.04,
+                          spacing: width * 0.04,
                           children: List.generate(
                             controller.collegeList.length,
                             (index) {
@@ -219,70 +218,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       )),
 
-                // Obx(
-                //   () => Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //     children: List.generate(
-                //         controller.gridLength.value > 4
-                //             ? controller.gridLength.value - 2
-                //             : controller.gridLength.value, (index) {
-                //       var imageName =
-                //           controller.specializzationListShow[index].last;
-
-                //       return InkWell(
-                //         onTap: () {storage.isLoggedIn?
-                //           Get.to(MainItView(
-                //             collageName:
-                //                 controller.specializzationListShow[index].first,
-                //           )):showCustomAlertDialog();
-                //         },
-                //         child: Column(
-                //           children: [
-                //             SvgPicture.asset(
-                //               'assets/images/ic_search.svg',
-                //             ),
-                //             (height * 0.02).sbh,
-                //             CustomText(
-                //                 text: controller
-                //                     .specializzationListShow[index].first)
-                //           ],
-                //         ),
-                //       );
-                //     }),
-                //   ),
-                // ),
                 (height * 0.025).sbh,
-                // Obx(() {
-                //   return controller.gridLength.value == 6
-                //       ? Row(
-                //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //           children: List.generate(2, (index) {
-                //             var imageName = controller
-                //                 .specializzationListShow[index + 4].last;
-                //             return InkWell(
-                //               onTap: () {
-                //                 Get.to(MainItView(
-                //                   collageName: controller
-                //                       .specializzationListShow[index].first,
-                //                 ));
-                //               },
-                //               child: Column(
-                //                 children: [
-                //                   SvgPicture.asset(
-                //                     'assets/images/ic_search.svg',
-                //                   ),
-                //                   (height * 0.02).sbh,
-                //                   CustomText(
-                //                       text: controller
-                //                           .specializzationListShow[index + 4]
-                //                           .first)
-                //                 ],
-                //               ),
-                //             );
-                //           }),
-                //         )
-                //       : const SizedBox();
-                // }),
               ],
             ),
           ),

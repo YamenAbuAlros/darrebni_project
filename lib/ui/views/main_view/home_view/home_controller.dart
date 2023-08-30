@@ -69,6 +69,8 @@ class HomeController extends GetxController {
               .then((value) => getAllCollege());
         }
       }, (r) {
+        allColegeList.clear();
+        collegeList.clear();
         allColegeList.addAll(r);
         collegeList.addAll(r);
         isLoading.value = false;

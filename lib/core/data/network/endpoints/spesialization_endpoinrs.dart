@@ -1,0 +1,3 @@
+class SpesializationEndPoints {
+  // static String 
+}

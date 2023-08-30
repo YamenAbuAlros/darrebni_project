@@ -7,11 +7,42 @@ import 'package:template/core/enums/request_type.dart';
 import 'package:template/core/utilis/network_utilis.dart';
 
 class TermRepositories {
-  static Future<Either<String, List<TermModel>>> allSlider() async {
+  static Future<Either<String, List<TermModel>>> allTerms() async {
     try {
       return NetworkUtil.sendRequest(
               type: RequestType.GET,
               url: TermEndpoints.allTerms,
+              headers: NetworkConfig.getHeaders(
+                  needAuth: false, type: RequestType.GET))
+          .then((respons) {
+        if (respons == null) {
+          return const Left('الرجاء التأكد من الاتصال');
+        }
+        CommonResponse<dynamic> commonResponse =
+            CommonResponse.fromJson(respons);
+        if (commonResponse.getstatus && commonResponse.data["status"] == true) {
+          List<TermModel> resultList = [];
+          commonResponse.data['data']['term'].forEach(
+            (element) {
+              resultList.add(TermModel.fromJson(element));
+            },
+          );
+          return Right(resultList);
+        } else {
+          (commonResponse.data.message);
+          return Left(commonResponse.data['message'] ?? '');
+        }
+      });
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+   static Future<Either<String, List<TermModel>>> getTermBuUuid() async {
+    try {
+      return NetworkUtil.sendRequest(
+              type: RequestType.GET,
+              url: TermEndpoints.termByUuid,
               headers: NetworkConfig.getHeaders(
                   needAuth: false, type: RequestType.GET))
           .then((respons) {

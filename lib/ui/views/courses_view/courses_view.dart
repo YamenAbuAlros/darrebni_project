@@ -48,6 +48,9 @@ class _CoursesViewState extends State<CoursesView> {
                         padding:
                             EdgeInsetsDirectional.only(bottom: height * 0.04),
                         child: CustomButton(
+                            onPressed: () {
+                              controller.allTermList[index].uuid!;
+                            },
                             isPrefix: true,
                             selectedChild: true,
                             backgroundColor: index.isEven

@@ -15,7 +15,7 @@ Future<void> main() async {
     return prefs;
   });
 
-  //*  -- Add To Dependency Injection --
+  //*  -- Add To Dependency Injection --  
   Get.put(SharedPreferenceRepositories());
   Get.put(ConnectivityService());
   Get.put(MyAppController()); 

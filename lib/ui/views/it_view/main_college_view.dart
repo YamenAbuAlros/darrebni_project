@@ -12,6 +12,7 @@ import 'package:template/ui/shared/custom_widgets/custom_container.dart';
 import 'package:template/ui/shared/custom_widgets/custom_textfield.dart';
 import 'package:template/ui/shared/extenssions/extenssions.dart';
 import 'package:template/ui/shared/utils.dart';
+import 'package:template/ui/views/it_question/it_question_view.dart';
 import 'package:template/ui/views/it_view/college_view.dart';
 import 'package:template/ui/views/it_view/main_college_controller.dart';
 
@@ -38,6 +39,7 @@ class _MainCollegeViewState extends State<MainCollegeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(children: [
+
         CustomAppBar(
             iconName: 'ic_back',
             text: controller.collageName,
@@ -137,7 +139,7 @@ class _MainCollegeViewState extends State<MainCollegeView> {
                                   .nameOfSpecializations[index].name!.length;
                               final buttonWidth =
                                   (textLength * (width * 0.03)) +
-                                      width * 0.02; // تعديل القيمة حسب احتياجات
+                                      width * 0.02;
                               return CustomButton(
                                   onPressed: () {
                                     Get.to(() => CollegeView(
@@ -165,6 +167,12 @@ class _MainCollegeViewState extends State<MainCollegeView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomButton(
+                          onPressed: () {
+                            Get.to(() => ItQuestionView(
+                                collageName: controller.collageName,
+                                materialName: controller.materialName,
+                                typeOfQuestion: ''));
+                          },
                           backgroundColor: AppColors.mainblue1,
                           widthSize: width * 0.3,
                           text: 'الدورات',

@@ -17,7 +17,22 @@ class CoursesController extends GetxController {
   }
 
   void getAllTerms() {
-    TermRepositories.allSlider().then((value) {
+    TermRepositories.allTerms().then((value) {
+      value.fold((l) {
+        CustomShowToast.showMessage(
+            message: l, messageType: MessageType.REJECTED);
+        if (l == 'الرجاء التأكد من الاتصال') {
+          Future.delayed(const Duration(seconds: 5))
+              .then((value) => getAllTerms());
+        }
+      }, (r) {
+        allTermList.addAll(r);
+      });
+    });
+  }
+
+  void getTermByUuid() {
+    TermRepositories.getTermBuUuid().then((value) {
       value.fold((l) {
         CustomShowToast.showMessage(
             message: l, messageType: MessageType.REJECTED);

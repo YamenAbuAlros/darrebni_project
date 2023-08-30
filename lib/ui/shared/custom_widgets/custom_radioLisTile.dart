@@ -13,12 +13,14 @@ class CustomRadioLisTile extends StatelessWidget {
       this.value,
       this.onchanged,
       this.answer = false,
-      this.fontSizeText});
+      this.fontSizeText, this.textColor, });
 
   final String text;
   final groupValue;
   final Color? activeColor;
   final value;
+  
+  final Color? textColor;
   final onchanged;
   final bool? answer;
   final double? fontSizeText;
@@ -35,12 +37,12 @@ class CustomRadioLisTile extends StatelessWidget {
           onChanged: onchanged,
         ),
         answer == false
-            ? CustomText(
+            ? CustomText(textcolor:textColor ,
                 text: text,
                 fontsize: fontSizeText ?? width * 0.0225,
               )
             : Expanded(
-                child: CustomText(
+                child: CustomText(textcolor: textColor,
                 text: text,
                 fontsize: fontSizeText ?? width * 0.0225,
               ))
